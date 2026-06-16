@@ -19,7 +19,7 @@
     <title>Mi Álbum de Fútbol 2026</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.4.0/dist/tesseract.min.js"></script>
 <style>
 /* ═══════════════ RESET & TOKENS ═══════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -1081,7 +1081,10 @@ async function initOcrWorker(){
   if(ocrWorker) return;
   setOcrStatus('⏳ Cargando OCR…');
   try{
-    ocrWorker = Tesseract.createWorker({logger:()=>{}});
+    if(!window.Tesseract || typeof window.Tesseract.createWorker !== 'function'){
+      throw new Error('Tesseract.js no está cargado o la versión es incompatible');
+    }
+    ocrWorker = window.Tesseract.createWorker({logger:()=>{}});
     await ocrWorker.load();
     await ocrWorker.loadLanguage('eng');
     await ocrWorker.initialize('eng');
@@ -1092,8 +1095,8 @@ async function initOcrWorker(){
   }catch(e){
     console.error('OCR init error',e);
     setOcrStatus('❌ Error OCR: '+(e.message||e));
-    ocrWorker=null;
     showScanResult('err','❌ Error OCR: '+(e.message||e));
+    ocrWorker=null;
   }
 }
 
