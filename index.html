@@ -2,11 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="monetag" content="802f0d9ed57035cbf152f9b1c74744d8">
+    <meta name="google-site-verification" content="R6yZM9uHBSVVI6UXLmyd0Sn23wzTSaIzTLp29Ys4JHA" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5499913988915360" crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-5499913988915360">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -40,14 +37,20 @@ html,body{height:100%;background:var(--bg);color:var(--text);
 body{display:flex;flex-direction:column;height:100dvh}
 .views-wrapper{flex:1;overflow:hidden;display:flex;flex-direction:column;min-height:0}
 
-/* ═══════════════ ADSENSE BANNER ═══════════════ */
-.adsense-banner-container{
-  flex-shrink:0;height:50px;background:#0d0a1a;
+/* ═══════════════ ADSTERRA NATIVE BANNER ═══════════════ */
+.adsterra-banner-container {
+  flex-shrink:0;
+  min-height:120px;
+  height:auto;
+  background:#0d0a1a;
   border-top:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  padding:8px 4px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
-.adsense-placeholder{font-size:11px;color:var(--text4);
-  border:1px dashed var(--text4);padding:4px 20px;border-radius:4px;}
 
 /* ═══════════════ NAV ═══════════════ */
 .nav{display:flex;background:var(--bg2);border-top:1px solid var(--border);flex-shrink:0;z-index:10}
@@ -196,6 +199,7 @@ body{display:flex;flex-direction:column;height:100dvh}
 .cbar-fill{height:100%;border-radius:99px;
   background:linear-gradient(90deg,var(--purple),var(--purple2));transition:width 0.5s}
 .cbar-pct{font-size:11px;color:var(--text3);width:30px;text-align:right;flex-shrink:0}
+.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
 .milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
 .milestone{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
   padding:12px 8px;text-align:center}
@@ -491,7 +495,7 @@ body{display:flex;flex-direction:column;height:100dvh}
       <div class="settings-divider"></div>
       <div class="settings-card">
         <h3>🔒 Política de Privacidad</h3>
-        <p>Lee cómo usamos datos, anuncios y cookies. Recomendado por Google AdSense para verificación.</p>
+        <p>Lee cómo usamos datos, anuncios y cookies. Recomendado para control de red de anuncios.</p>
         <a class="settings-btn" href="privacy.html" target="_blank" rel="noopener">Ver Política de Privacidad</a>
       </div>
 
@@ -507,17 +511,12 @@ body{display:flex;flex-direction:column;height:100dvh}
 
 </div>
 
-<div class="adsense-banner-container" id="adsenseBanner">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-format="fluid"
-       data-ad-layout-key="-fb+5w+4e-db+86"
-       data-ad-client="ca-pub-5499913988915360"
-       data-ad-slot="3077431924"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+<!-- ==================== ADSTERRA NATIVE BANNER INFERIOR ==================== -->
+<div class="adsterra-banner-container" id="adsterraBanner">
+  <script async="async" data-cfasync="false" src="https://pl29768116.effectivecpmnetwork.com/47b8414b756b125da99bfd1fdf5e1df6/invoke.js"></script>
+  <div id="container-47b8414b756b125da99bfd1fdf5e1df6"></div>
 </div>
+<!-- ========================================================================= -->
 
 <div class="nav" role="navigation" aria-label="Barra de navegación">
   <button class="nav-btn active" onclick="showView('album',this)"><span class="ni">📖</span>Álbum</button>
@@ -533,7 +532,6 @@ body{display:flex;flex-direction:column;height:100dvh}
     <div class="inter-ad-placeholder">
       <span style="font-size:28px">📢</span>
       <span>Espacio publicitario</span>
-      <span style="font-size:11px;color:var(--text4)">Google AdSense — Vignette Ad</span>
     </div>
     <button class="inter-close" id="interCloseBtn" onclick="closeInterstitial()">
       Cerrar anuncio
@@ -942,7 +940,6 @@ function showView(name,btn){
   if(!view) return;
   view.classList.add('active');
   if(btn && btn.classList) btn.classList.add('active');
-  // map names to renderers
   if(name==='progreso') renderStats();
   if(name==='partidos') renderPartidos();
   if(name==='compartir') renderCompartir();
@@ -995,10 +992,9 @@ function showTriviaIfNeeded(){
   try{
     const saved=JSON.parse(localStorage.getItem(triviaKey())||'{}');
     const idx=todaysTriviaIndex();
-    if(saved.day===idx) return; // already answered today
+    if(saved.day===idx) return; 
     const t=TRIVIA_POOL[idx];
     if(!t) return;
-    // show modal with multiple choice
     const overlay=document.createElement('div'); overlay.style= 'position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999';
     const box=document.createElement('div'); box.style='background:var(--card);padding:20px;border-radius:12px;max-width:500px;color:var(--text);text-align:center';
     let optionsHtml=t.opciones.map((o,i)=>`<div style="margin:8px 0;padding:10px;border-radius:8px;border:2px solid var(--border);cursor:pointer;background:var(--bg3);transition:all 0.2s" class="trivia-opt" data-idx="${i}" onclick="document.querySelectorAll('.trivia-opt').forEach(x=>x.style.borderColor='var(--border)');this.style.borderColor='#3B82F6'">${o}</div>`).join('');
@@ -1018,12 +1014,10 @@ function showTriviaIfNeeded(){
 }
 
 function confettiEffect(){
-  // Lightweight CSS confetti: create few colored divs
   const wrap=document.createElement('div'); wrap.style='position:fixed;inset:0;pointer-events:none;z-index:10000'; document.body.appendChild(wrap);
   for(let i=0;i<24;i++){const d=document.createElement('div');const s=Math.random()*10+6;d.style=`position:absolute;left:${Math.random()*100}%;top:-10px;width:${s}px;height:${s*0.6}px;background:hsl(${Math.random()*360} 80% 60%);opacity:0.95;transform:rotate(${Math.random()*360}deg);animation:fall 1.6s linear forwards`;wrap.appendChild(d);} setTimeout(()=>wrap.remove(),1800);
 }
 
-// tiny confetti keyframes (inject)
 const kf = document.createElement('style'); kf.textContent='@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}'; document.head.appendChild(kf);
 
 // ======================= COMPARTIR / GENERADOR DE INTERCAMBIO =======================
