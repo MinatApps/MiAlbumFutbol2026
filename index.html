@@ -36,16 +36,26 @@ html,body{height:100%;background:var(--bg);color:var(--text);
 body{display:flex;flex-direction:column;height:100dvh}
 .views-wrapper{flex:1;overflow:hidden;display:flex;flex-direction:column;min-height:0}
 
-/* ═══════════════ AD BANNER (highperformanceformat) ═══════════════ */
+/* ═══════════════ AD BANNER ═══════════════ */
 #ad-banner-container{
   flex-shrink:0;
+  height:50px;
   min-height:50px;
+  max-height:50px;
   background:#0d0a1a;
   border-top:1px solid var(--border);
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
+  /* Bloquea cualquier iframe que intente crecer fuera de la franja */
+  position:relative;
+  z-index:5;
+}
+#ad-banner-container iframe,
+#ad-banner-container ins{
+  max-height:50px !important;
+  overflow:hidden !important;
 }
 
 /* ═══════════════ NAV ═══════════════ */
@@ -503,9 +513,8 @@ body{display:flex;flex-direction:column;height:100dvh}
 
 </div><!-- /views-wrapper -->
 
-<!-- ════ INSTRUCCIÓN 1: Banner permanente (highperformanceformat) ════
-     Se inyecta dinámicamente desde JS para que el script se ejecute.
-     Este div actúa de contenedor visible siempre sobre el .nav        -->
+<!-- ════ BANNER AdSense 320x50 — franja fija sobre el .nav ════
+     El <ins> se inyecta desde initBannerAd() en DOMContentLoaded.  -->
 <div id="ad-banner-container"></div>
 
 <!-- ════ NAV ════ -->
@@ -679,27 +688,28 @@ function status(id) {
 }
 
 // ════════════════════════════════════════════════════════════════
-// INSTRUCCIÓN 1 — Banner permanente (highperformanceformat)
-// Se inyecta con createElement para que el script sea ejecutado.
+// BANNER — Google AdSense (franja fija 50px sobre el nav)
+// Usa createElement para ejecutarse correctamente en SPA.
 // ════════════════════════════════════════════════════════════════
 function initBannerAd() {
   const container = document.getElementById('ad-banner-container');
   if (!container) return;
 
-  // 1. Definir opciones del banner en window
-  window.atOptions = {
-    key:    'c556ff9b04e11bbff03a97b1278f36c8',
-    format: 'iframe',
-    height: 50,
-    width:  320,
-    params: {}
-  };
+  // Crear <ins> de AdSense formato banner 320x50
+  const ins = document.createElement('ins');
+  ins.className        = 'adsbygoogle';
+  ins.style.cssText    = 'display:inline-block;width:320px;height:50px;';
+  ins.dataset.adClient = 'ca-pub-5499913988915360';
+  ins.dataset.adSlot   = '3077431924';
+  ins.dataset.adFormat = 'fixed';
+  container.appendChild(ins);
 
-  // 2. Crear e insertar el script de invocación dinámicamente
-  const s = document.createElement('script');
-  s.type  = 'text/javascript';
-  s.src   = 'https://www.highperformanceformat.com/c556ff9b04e11bbff03a97b1278f36c8/invoke.js';
-  container.appendChild(s);
+  // Push de AdSense dinámico
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch(e) {
+    console.warn('[AdSense banner]', e);
+  }
 }
 
 // ════════════════════════════════════════════════════════════════
@@ -712,59 +722,72 @@ let interCloseEnabled  = false;
 let interCountdown     = null;
 
 function maybeShowInterstitial() {
-  // Condición estricta: múltiplo de 15 y mayor que 0
+  // Solo disparar si es múltiplo exacto de 15 y > 0
   if (stickerAddedCount <= 0 || stickerAddedCount % 15 !== 0) return;
   openInterstitialModal();
 }
 
 function openInterstitialModal() {
-  const modal      = document.getElementById('interstitial-modal');
-  const closeBtn   = document.getElementById('interCloseBtn');
-  const timerEl    = document.getElementById('interTimer');
-  const adSlot     = document.getElementById('ad-interstitial-container');
+  const modal    = document.getElementById('interstitial-modal');
+  const closeBtn = document.getElementById('interCloseBtn');
+  const timerEl  = document.getElementById('interTimer');
+  const adSlot   = document.getElementById('ad-interstitial-container');
 
-  // Limpiar el slot anterior (libera memoria RAM) y re-inyectar el ad
+  // Cancelar cualquier countdown anterior
+  clearInterval(interCountdown);
+  interCountdown = null;
+
+  // Limpiar slot anterior y re-inyectar el contenedor del ad
   adSlot.innerHTML = '<div id="container-47b8414b756b125da99bfd1fdf5e1df6"></div>';
 
-  // Crear el script del interstitial dinámicamente
-  const adScript         = document.createElement('script');
-  adScript.async         = true;
-  adScript.dataset.cfasync = 'false';
-  adScript.src           = 'https://pl29768116.effectivecpmnetwork.com/47b8414b756b125da99bfd1fdf5e1df6/invoke.js';
+  // Inyectar el script del interstitial dinámicamente
+  const adScript = document.createElement('script');
+  adScript.async = true;
+  adScript.setAttribute('data-cfasync', 'false');
+  adScript.src   = 'https://pl29768116.effectivecpmnetwork.com/47b8414b756b125da99bfd1fdf5e1df6/invoke.js';
   adSlot.appendChild(adScript);
 
-  // Mostrar el modal
+  // Mostrar modal y resetear estado de cierre
   modal.style.display = 'flex';
+  interCloseEnabled   = false;
+  closeBtn.disabled   = true;
+  closeBtn.style.opacity = '0.45';
 
-  // Deshabilitar el botón de cierre durante 5 segundos
-  closeBtn.disabled       = true;
-  interCloseEnabled       = false;
-  let secs                = 5;
-  timerEl.textContent     = `Podrás cerrar en ${secs}s`;
+  let secs = 5;
+  timerEl.textContent = 'Podrás cerrar en ' + secs + 's';
 
-  clearInterval(interCountdown);
   interCountdown = setInterval(() => {
     secs--;
     if (secs <= 0) {
       clearInterval(interCountdown);
-      closeBtn.disabled     = false;
-      interCloseEnabled     = true;
-      timerEl.textContent   = '';
+      interCountdown    = null;
+      interCloseEnabled = true;        // ← habilitar cierre
+      closeBtn.disabled = false;
+      closeBtn.style.opacity = '1';
+      timerEl.textContent   = 'Toca para continuar';
     } else {
-      timerEl.textContent   = `Podrás cerrar en ${secs}s`;
+      timerEl.textContent = 'Podrás cerrar en ' + secs + 's';
     }
   }, 1000);
 }
 
-// INSTRUCCIÓN 3 — Cierre del modal: limpia el slot y oculta
+// Cierre del modal — libera iframe y RAM
 function closeInterstitial() {
-  if (!interCloseEnabled) return;
-  const modal  = document.getElementById('interstitial-modal');
-  const adSlot = document.getElementById('ad-interstitial-container');
-  modal.style.display = 'none';
-  // Vaciar innerHTML libera el iframe y recursos del ad de memoria RAM
-  adSlot.innerHTML = '';
+  if (!interCloseEnabled) return;       // bloquear si aún no pasaron los 5s
   clearInterval(interCountdown);
+  interCountdown    = null;
+  interCloseEnabled = false;
+
+  const modal    = document.getElementById('interstitial-modal');
+  const closeBtn = document.getElementById('interCloseBtn');
+  const timerEl  = document.getElementById('interTimer');
+  const adSlot   = document.getElementById('ad-interstitial-container');
+
+  modal.style.display    = 'none';
+  adSlot.innerHTML       = '';          // libera el iframe del ad de la RAM
+  closeBtn.disabled      = true;
+  closeBtn.style.opacity = '0.45';
+  timerEl.textContent    = '';
 }
 
 // ── Touch hold (toque largo = repetida) ──────────────────────
