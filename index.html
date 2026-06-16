@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="R6yZM9uHBSVVI6UXLmyd0Sn23wzTSaIzTLp29Ys4JHA" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5499913988915360" crossorigin="anonymous"></script>
@@ -19,7 +18,7 @@
     <title>Mi Álbum de Fútbol 2026</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.4.0/dist/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <style>
 /* ═══════════════ RESET & TOKENS ═══════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -39,6 +38,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;overflow:hidden}
 body{display:flex;flex-direction:column;height:100dvh}
 .views-wrapper{flex:1;overflow:hidden;display:flex;flex-direction:column;min-height:0}
+
+/* ═══════════════ ADSENSE BANNER ═══════════════ */
+.adsense-banner-container{
+  flex-shrink:0;height:50px;background:#0d0a1a;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.adsense-placeholder{font-size:11px;color:var(--text4);
+  border:1px dashed var(--text4);padding:4px 20px;border-radius:4px;}
 
 /* ═══════════════ NAV ═══════════════ */
 .nav{display:flex;background:var(--bg2);border-top:1px solid var(--border);flex-shrink:0;z-index:10}
@@ -69,7 +77,6 @@ body{display:flex;flex-direction:column;height:100dvh}
 .export-btn{background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.25);
   color:#fff;padding:8px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;
   display:flex;align-items:center;gap:5px}
-
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
   margin-bottom:12px;position:relative;z-index:1}
 .stat{background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.12);
@@ -77,159 +84,279 @@ body{display:flex;flex-direction:column;height:100dvh}
 .stat-val{font-size:21px;font-weight:700;color:#fff}
 .stat-val.g{color:#6EE7B7}.stat-val.o{color:#FCD34D}.stat-val.b{color:#93C5FD}
 .stat-lbl{font-size:10px;color:rgba(255,255,255,0.55);margin-top:2px}
-
 .prog-row{display:flex;justify-content:space-between;align-items:center;
   margin-bottom:5px;position:relative;z-index:1}
-.prog-lbl{font-size:12px;color:rgba(255,255,255,0.65)}
-.prog-pct{font-size:13px;font-weight:700;color:#fff}
+  .prog-lbl{font-size:12px;color:rgba(255,255,255,0.65)}
+  .prog-pct{font-size:13px;font-weight:700;color:#fff}
 .prog-track{height:6px;background:rgba(255,255,255,0.15);border-radius:99px;
   overflow:hidden;position:relative;z-index:1}
 .prog-fill{height:100%;background:linear-gradient(90deg,#6EE7B7,#34D399);
   border-radius:99px;transition:width 0.5s cubic-bezier(.4,0,.2,1)}
 
-/* ═══════════════ TABS & FILTERS ═══════════════ */
+/* ═══════════════ TABS ═══════════════ */
 .tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);
   flex-shrink:0;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex-shrink:0;padding:12px 16px;font-size:13px;font-weight:600;color:var(--text3);
-  background:none;border:none;cursor:pointer;position:relative;transition:color 0.2s}
+.tab{flex-shrink:0;padding:10px 14px;font-size:13px;font-weight:500;color:var(--text3);
+  background:none;border:none;cursor:pointer;white-space:nowrap;position:relative}
 .tab.active{color:var(--purple2)}
-.tab.active::after{content:'';position:absolute;bottom:0;left:16px;right:16px;
-  height:2.5px;background:var(--purple2);border-radius:2px 2px 0 0}
+.tab.active::after{content:'';position:absolute;bottom:0;left:10%;right:10%;
+  height:2px;background:var(--purple2);border-radius:2px 2px 0 0}
 
+/* ═══════════════ SEARCH & BULK ═══════════════ */
 .search-row{display:flex;gap:8px;padding:10px 12px;background:var(--bg2);
   border-bottom:1px solid var(--border);flex-shrink:0}
 .search-wrap{flex:1;position:relative}
 .search-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);
-  color:var(--text4);font-size:14px;pointer-events:none}
+  font-size:14px;pointer-events:none}
 .search-wrap input{width:100%;padding:9px 10px 9px 32px;border-radius:var(--r);
   border:1px solid var(--border);background:var(--card);color:var(--text);
-  font-size:14px;outline:none;transition:border-color 0.2s}
-.search-wrap input:focus{border-color:var(--purple2)}
-
+  font-size:14px;outline:none}
+.search-wrap input:focus{border-color:var(--purple)}
+.search-wrap input::placeholder{color:var(--text4)}
 .fsel{padding:9px 24px 9px 10px;border-radius:var(--r);border:1px solid var(--border);
-  background:var(--card);color:var(--text);font-size:13px;outline:none;
-  cursor:pointer;min-width:105px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%237C6BA8' d='M0 0l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 10px center;-webkit-appearance:none}
-
+  background:var(--card);color:var(--text);font-size:13px;outline:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237C6BA8'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 8px center;min-width:105px}
 .bulk-row{display:flex;gap:7px;padding:8px 12px;background:var(--bg2);
   border-bottom:1px solid var(--border);flex-shrink:0}
 .bulk-row input{flex:1;padding:8px 10px;border-radius:var(--r);border:1px solid var(--border);
   background:var(--card);color:var(--text);font-size:13px;outline:none}
-.bbtn{padding:8px 14px;border-radius:var(--r);border:none;font-size:12px;
-  font-weight:700;cursor:pointer;white-space:nowrap;transition:transform 0.1s}
-.bbtn:active{transform:scale(0.96)}
+.bulk-row input::placeholder{color:var(--text4)}
+.bbtn{padding:8px 11px;border-radius:var(--r);border:none;font-size:12px;
+  font-weight:600;cursor:pointer;white-space:nowrap}
 .bbtn.g{background:var(--green);color:#fff}
 .bbtn.b{background:var(--blue);color:#fff}
 
-/* ═══════════════ SCROLL & GRID ═══════════════ */
+/* ═══════════════ ALBUM SCROLL ═══════════════ */
 .album-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 10px 20px}
-.group-section{margin-bottom:16px}
-.group-title{font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px;
-  padding-left:4px;display:flex;align-items:center;gap:6px}
-.sticker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-
-/* ═══════════════ STICKER CARD ═══════════════ */
+.country-page{margin-bottom:24px}
+.page-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;
+  padding:10px 12px;background:var(--card);border-radius:var(--rl);border:1px solid var(--border)}
+.page-flag{font-size:28px;line-height:1}
+.page-info{flex:1;min-width:0}
+.page-name{font-size:15px;font-weight:700;color:var(--text)}
+.page-prog-track{height:4px;background:var(--border);border-radius:99px;margin-top:5px;overflow:hidden}
+.page-prog-fill{height:100%;background:var(--purple2);border-radius:99px;transition:width 0.4s}
+.page-stat{font-size:12px;color:var(--text3);flex-shrink:0;font-weight:600}
+.sticker-book{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .sticker-card{border-radius:var(--r);border:1.5px solid var(--border);background:var(--card);
-  cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:space-between;
-  padding:8px 4px 7px;position:relative;transition:transform 0.12s, border-color 0.2s;min-height:64px}
-.sticker-card:active{transform:scale(0.94)}
-.sc-num{font-size:14px;font-weight:800;color:var(--text3);line-height:1.2}
-.sc-lbl{font-size:8px;color:var(--text4);text-align:center;margin-top:2px;
-  max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-.sticker-card.owned{background:linear-gradient(160deg,#052E1C 0%,#065F46 100%);border-color:#10B981}
+  cursor:pointer;display:flex;flex-direction:column;align-items:center;
+  padding:8px 4px 7px;position:relative;transition:transform 0.12s;
+  user-select:none;-webkit-user-select:none;min-height:64px}
+.sticker-card:active{transform:scale(0.88)}
+.sc-flag{font-size:18px;line-height:1;margin-bottom:3px}
+.sc-num{font-size:11px;font-weight:800;color:var(--text2);letter-spacing:0.3px}
+.sc-type{font-size:8px;color:var(--text4);margin-top:1px;text-transform:uppercase;letter-spacing:0.4px}
+.sticker-card.owned{background:linear-gradient(160deg,#052E1C,#065F46);border-color:#10B981}
 .sticker-card.owned .sc-num{color:#6EE7B7}
-.sticker-card.owned .sc-lbl{color:#34D399}
-
-.sticker-card.repeated{background:linear-gradient(160deg,#0D1F40 0%,#1E3A8A 100%);border-color:#3B82F6}
+.sticker-card.owned .sc-type{color:#10B981}
+.sticker-card.owned::after{content:'✓';position:absolute;top:3px;right:5px;
+  font-size:10px;font-weight:900;color:#6EE7B7}
+.sticker-card.repeated{background:linear-gradient(160deg,#0D1F40,#1E3A8A);border-color:#3B82F6}
 .sticker-card.repeated .sc-num{color:#93C5FD}
-.sticker-card.repeated .sc-lbl{color:#60A5FA}
-
+.sticker-card.repeated .sc-type{color:#3B82F6}
+.sticker-card.missing{opacity:0.25}
 .sticker-card.special{border-color:var(--gold)}
-.sticker-card.special:not(.owned):not(.repeated){background:linear-gradient(160deg,#241403 0%,#452205 100%)}
-.sticker-card.special:not(.owned):not(.repeated) .sc-num{color:var(--gold2)}
+.sticker-card.special .sc-num{color:var(--gold2)}
+.sticker-card.special.owned{background:linear-gradient(160deg,#2D1A00,#3D2500)}
+.rep-badge{position:absolute;top:-6px;right:-6px;min-width:17px;height:17px;
+  border-radius:99px;background:#3B82F6;color:#fff;font-size:8px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;padding:0 3px;border:2px solid var(--bg2)}
+@keyframes holdRing{from{transform:scale(0.9);opacity:0.8}to{transform:scale(1.12);opacity:0}}
+.sticker-card.pressing::before{content:'';position:absolute;inset:-3px;border-radius:13px;
+  border:2.5px solid var(--blue);animation:holdRing 0.5s ease-out}
 
-.rep-badge{position:absolute;top:-6px;right:-6px;min-width:17px;height:17px;border-radius:99px;
-  background:#3B82F6;color:#fff;font-size:9px;font-weight:900;display:flex;align-items:center;
-  justify-content:center;border:2px solid var(--bg2);padding:0 2px}
+/* ═══════════════ STATS VIEW ═══════════════ */
+.stats-view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:16px 14px 20px;background:var(--bg)}
+.sv-title{font-size:12px;font-weight:600;color:var(--text3);letter-spacing:0.06em;
+  text-transform:uppercase;margin-bottom:10px;margin-top:16px}
+.sv-title:first-child{margin-top:0}
+.big-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.big-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);
+  padding:16px;text-align:center}
+.big-stat-val{font-size:34px;font-weight:800;line-height:1}
+.big-stat-lbl{font-size:11px;color:var(--text3);margin-top:4px}
+.donut-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);
+  padding:16px;display:flex;align-items:center;gap:16px;margin-bottom:4px}
+.donut-legend{flex:1}
+.donut-item{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.donut-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.donut-lbl{font-size:13px;color:var(--text2)}
+.donut-val{font-size:13px;font-weight:700;color:var(--text);margin-left:auto}
+.country-bars{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);
+  padding:14px;margin-bottom:4px}
+.cbar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.cbar-flag{font-size:16px;flex-shrink:0;width:24px;text-align:center}
+.cbar-name{font-size:12px;color:var(--text2);width:75px;flex-shrink:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cbar-track{flex:1;height:8px;background:var(--border);border-radius:99px;overflow:hidden}
+.cbar-fill{height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--purple),var(--purple2));transition:width 0.5s}
+.cbar-pct{font-size:11px;color:var(--text3);width:30px;text-align:right;flex-shrink:0}
+.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
+.milestone{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:12px 8px;text-align:center}
+.milestone.reached{border-color:var(--gold);background:linear-gradient(160deg,#2D1A00,#3D2500)}
+.milestone-ico{font-size:24px;margin-bottom:4px}
+.milestone-lbl{font-size:10px;color:var(--text3);line-height:1.3}
+.milestone.reached .milestone-lbl{color:var(--gold2)}
+.milestone-pct{font-size:11px;font-weight:700;color:var(--text4);margin-top:3px}
+.milestone.reached .milestone-pct{color:var(--gold)}
+.fun-facts{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);
+  padding:14px;margin-bottom:4px}
+.fact{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;
+  font-size:13px;color:var(--text2);line-height:1.4}
+.fact:last-child{margin-bottom:0}
+.fact-ico{font-size:20px;flex-shrink:0;margin-top:1px}
 
-/* ═══════════════ PROGRESO VIEW ═══════════════ */
-.stats-view{flex:1;overflow-y:auto;padding:16px 14px 20px;background:var(--bg)}
-.panel-title{font-size:16px;font-weight:700;margin-bottom:14px;color:#fff}
-.team-stat-row{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-  padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;justify-content:between;gap:12px}
-.ts-info{display:flex;align-items:center;gap:8px;width:120px;flex-shrink:0}
-.ts-flag{font-size:16px}
-.ts-name{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ts-bar-container{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;position:relative}
-.ts-bar-fill{height:100%;background:var(--purple);border-radius:99px;transition:width 0.4s}
-.ts-nums{font-size:12px;font-weight:700;color:var(--text2);width:45px;text-align:right;flex-shrink:0}
-
-/* ═══════════════ SCANNER VIEW ═══════════════ */
-.scanner-view{flex:1;display:flex;flex-direction:column;background:#000;overflow:hidden;position:relative}
-.cam-area{flex:1;position:relative;display:flex;align-items:center;justify-content:center;background:#000}
+/* ═══════════════ SCANNER ═══════════════ */
+.scanner-view{flex:1;display:flex;flex-direction:column;background:var(--bg);
+  overflow:hidden;min-height:0}
+.scanner-top{padding:12px 16px 8px;flex-shrink:0}
+.scanner-top h2{font-size:17px;font-weight:700;color:var(--text);margin-bottom:2px}
+.scanner-top p{font-size:12px;color:var(--text3);line-height:1.4}
+.cam-area{flex:1;position:relative;background:#000;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;min-height:0}
 #video{width:100%;height:100%;object-fit:cover;display:block}
-.scan-frame{width:240px;height:100px;border:2px dashed var(--purple2);border-radius:var(--r);
-  box-shadow:0 0 0 4000px rgba(15,7,32,0.65);position:absolute;z-index:2;
-  display:flex;align-items:center;justify-content:center}
-.scan-laser{position:absolute;left:4px;right:4px;top:10px;height:2px;background:var(--red);
-  box-shadow:0 0 8px var(--red);animation:laserMove 2s infinite ease-in-out}
-@keyframes laserMove{0%{top:10px}50%{top:90px}100%{top:10px}}
-
-.scan-controls{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top, rgba(15,7,32,0.95) 75%, transparent);
-  padding:20px 16px 24px;z-index:5;display:flex;flex-direction:column;gap:12px;align-items:center}
-.scan-btn-main{width:60px;height:60px;border-radius:99px;background:var(--purple);border:4px solid rgba(255,255,255,0.15);
-  color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 15px rgba(124,58,237,0.4)}
-.scan-btn-main.scanning{background:var(--red);box-shadow:0 4px 15px rgba(239,68,68,0.4)}
-.scan-hint{font-size:12px;color:var(--text3);text-align:center}
-.manual-scan-box{width:100%;max-width:280px;display:flex;gap:6px;margin-top:4px}
-.manual-scan-box input{flex:1;padding:10px 12px;background:rgba(255,255,255,0.07);border:1px solid var(--border);
-  border-radius:var(--r);color:#fff;outline:none;font-size:14px;text-align:center;font-weight:700}
-.manual-scan-box button{padding:0 16px;border-radius:var(--r);background:var(--purple);border:none;color:#fff;font-weight:700;cursor:pointer}
-
-.scan-result-overlay{position:absolute;top:16px;left:16px;right:16px;border-radius:var(--rl);
-  padding:12px 14px;z-index:10;display:none;align-items:center;gap:10px;animation:slideDownAd 0.25s ease-out;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
-.sro-icon{font-size:20px;flex-shrink:0}
-.sro-text{flex:1;font-size:13px;font-weight:600;line-height:1.3}
-.sro-action{background:rgba(255,255,255,0.18);border:none;color:#fff;padding:6px 10px;border-radius:var(--r);font-size:11px;font-weight:700;cursor:pointer}
+#ocrCanvas{display:none}
+.cam-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.scan-frame{width:220px;height:100px;border:2px solid rgba(124,58,237,0.8);
+  border-radius:var(--r);box-shadow:0 0 0 2000px rgba(0,0,0,0.5);position:relative}
+.scan-frame::before,.scan-frame::after{content:'';position:absolute;width:24px;height:24px}
+.scan-frame::before{top:-2px;left:-2px;border-top:3px solid var(--purple2);
+  border-left:3px solid var(--purple2);border-radius:4px 0 0 0}
+.scan-frame::after{bottom:-2px;right:-2px;border-bottom:3px solid var(--purple2);
+  border-right:3px solid var(--purple2);border-radius:0 0 4px 0}
+@keyframes scanLine{0%{top:0}100%{top:100%}}
+.scan-line{position:absolute;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--purple2),transparent);
+  animation:scanLine 1.5s ease-in-out infinite alternate}
+.cam-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,0.7);color:#fff;padding:8px 16px;border-radius:20px;
+  font-size:12px;white-space:nowrap;backdrop-filter:blur(10px)}
+.ocr-status{position:absolute;top:12px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,0.75);color:var(--purple2);padding:4px 12px;
+  border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;
+  backdrop-filter:blur(8px);border:0.5px solid var(--border2)}
+.cam-placeholder{flex:1;display:flex;align-items:center;justify-content:center;
+  background:var(--bg3);flex-direction:column;gap:12px;min-height:0}
+.scanner-bottom{flex-shrink:0;background:var(--bg2);border-top:1px solid var(--border);padding:10px 16px}
+.manual-input-label{font-size:12px;color:var(--text3);margin-bottom:6px}
+.manual-row{display:flex;gap:8px;margin-bottom:8px}
+.manual-row input{flex:1;padding:10px 12px;border-radius:var(--r);border:1px solid var(--border);
+  background:var(--card);color:var(--text);font-size:16px;outline:none;text-transform:uppercase}
+.manual-row input:focus{border-color:var(--purple)}
+.manual-row button{padding:10px 16px;border-radius:var(--r);background:var(--purple);
+  border:none;color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+.cam-btn{width:100%;padding:11px;border-radius:var(--rl);border:none;font-size:15px;
+  font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.cam-btn.start{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff}
+.cam-btn.stop{background:rgba(255,255,255,0.1);border:1px solid var(--border);color:var(--text)}
+.scan-result{display:flex;align-items:center;gap:10px;padding:10px 14px;
+  border-radius:var(--r);margin-bottom:8px;font-size:13px;font-weight:500}
+.scan-result.ok{background:var(--green-dark);color:var(--green2)}
+.scan-result.err{background:rgba(239,68,68,0.2);color:var(--red2)}
+.scan-result.warn{background:rgba(245,158,11,0.15);color:var(--gold2)}
 
 /* ═══════════════ SETTINGS VIEW ═══════════════ */
-.settings-view{flex:1;overflow-y:auto;padding:16px 14px 20px;background:var(--bg)}
-.settings-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:16px;margin-bottom:14px}
-.settings-card h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.settings-card p{font-size:12px;color:var(--text2);line-height:1.4;margin-bottom:14px}
-.settings-btn{width:100%;padding:11px;border-radius:var(--r);border:none;font-size:13px;font-weight:700;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.2s;color:#fff}
-.settings-btn.purple{background:var(--purple)}
-.settings-btn.purple:hover{background:var(--purple-dark)}
-.settings-btn.gold{background:var(--gold);color:#0f0720}
-.settings-btn.red{background:rgba(239,68,68,0.15);color:var(--red2);border:1px solid rgba(239,68,68,0.25)}
+.settings-view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:16px 14px 20px;background:var(--bg)}
+.settings-card{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--rl);padding:16px;margin-bottom:14px}
+.settings-card h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.settings-card p{font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.5}
+.settings-btn{width:100%;padding:13px;border-radius:var(--r);border:none;
+  font-size:14px;font-weight:600;cursor:pointer;margin-bottom:10px;
+  display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity 0.15s}
+.settings-btn:active{opacity:0.75}
+.settings-btn:last-child{margin-bottom:0}
+.settings-btn.gold{background:linear-gradient(135deg,#B45309,#F59E0B);color:#fff}
+.settings-btn.green{background:linear-gradient(135deg,#065F46,#10B981);color:#fff}
+.settings-btn.red{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:var(--red2)}
+.settings-btn.purple{background:linear-gradient(135deg,var(--purple-dark),var(--purple));color:#fff}
 #restoreFileInput{display:none}
+.settings-divider{height:1px;background:var(--border);margin:14px 0}
+.settings-info{font-size:12px;color:var(--text4);text-align:center;padding:8px 0}
 
-/* ═══════════════ COMPARTIR (INFOGRAFÍA) ═══════════════ */
-.share-preview-box{background:var(--card2);border:1px dashed var(--border2);border-radius:var(--rl);padding:24px 16px;text-align:center;margin-bottom:16px;display:flex;flex-direction:column;align-items:center;gap:8px}
-.share-card-mini{background:linear-gradient(145deg,#1e1147,#0f0720);border:2px solid var(--gold);border-radius:var(--r);padding:16px;width:100%;max-width:260px;box-shadow:0 6px 18px rgba(0,0,0,0.3)}
-
-/* ═══════════════ CORRECCIÓN INTERSTITIAL TOTAL ═══════════════ */
-/* Se fuerza la desaparición total del contenedor de pantalla completa mediante CSS */
-.interstitial-overlay {
-    display: none !important;
+/* ═══════════════ INTERSTITIAL MODAL ═══════════════ */
+.interstitial-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9000;
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px;
 }
+.interstitial-overlay.show{display:flex}
+.interstitial-box{
+  background:linear-gradient(160deg,#1E1147,#2A1660);
+  border:1px solid var(--border2);border-radius:var(--rl);
+  width:100%;max-width:380px;padding:28px 20px 20px;
+  text-align:center;position:relative;
+}
+.inter-label{font-size:10px;color:var(--text4);letter-spacing:0.1em;
+  text-transform:uppercase;margin-bottom:12px}
+.inter-ad-placeholder{
+  width:100%;height:200px;background:var(--bg3);border-radius:var(--r);
+  border:1px dashed var(--border2);display:flex;align-items:center;
+  justify-content:center;font-size:13px;color:var(--text4);margin-bottom:16px;
+  flex-direction:column;gap:8px;
+}
+.inter-close{
+  width:100%;padding:13px;border-radius:var(--r);border:none;
+  background:var(--purple);color:#fff;font-size:15px;font-weight:700;cursor:pointer;
+}
+.inter-timer{font-size:12px;color:var(--text3);margin-top:10px}
 
-/* ═══════════════ TOAST & GLOBAL SYSTEM ═══════════════ */
-.toast{position:fixed;bottom:125px;left:50%;transform:translateX(-50%);background:rgba(30,17,71,0.96);
-  color:#fff;padding:10px 18px;border-radius:24px;font-size:12.5px;font-weight:600;opacity:0;
-  pointer-events:none;z-index:99999;border:1px solid var(--border2);transition:opacity 0.2s, bottom 0.2s;
-  box-shadow:0 4px 16px rgba(0,0,0,0.35);text-align:center;white-space:nowrap}
-.toast.show{opacity:1;bottom:135px}
+/* ═══════════════ TOAST ═══════════════ */
+.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 112px);
+  left:50%;transform:translateX(-50%) translateY(10px);
+  background:rgba(30,17,71,0.97);color:#fff;padding:11px 20px;border-radius:24px;
+  font-size:13px;font-weight:500;opacity:0;transition:all 0.25s;z-index:999;
+  white-space:nowrap;pointer-events:none;border:0.5px solid var(--border2);
+  backdrop-filter:blur(20px)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.empty{text-align:center;padding:3rem 1rem;color:var(--text4)}
+.empty-ico{font-size:48px;margin-bottom:12px}
 
-#infografia-template{position:absolute;left:-9999px;top:0;width:540px;background:linear-gradient(160deg,#0f0720 0%,#1e1147 60%,#2A1660 100%);padding:40px 32px;border:3px solid #F59E0B;border-radius:20px;color:#F0EEFF;box-sizing:border-box}
+/* ═══════════════ INFOGRAFÍA TEMPLATE ═══════════════ */
+#infografia-template{
+  position:absolute;left:-9999px;top:0;
+  width:540px;background:linear-gradient(160deg,#0f0720 0%,#1e1147 60%,#2A1660 100%);
+  padding:40px 32px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+  border:3px solid #F59E0B;border-radius:20px;color:#F0EEFF;
+}
+.infog-title{font-size:22px;font-weight:900;color:#FCD34D;text-align:center;
+  margin-bottom:6px;letter-spacing:-0.5px;line-height:1.3}
+.infog-subtitle{font-size:13px;color:rgba(240,238,255,0.55);text-align:center;margin-bottom:28px}
+.infog-ring-wrap{display:flex;justify-content:center;margin-bottom:28px}
+.infog-ring{position:relative;width:160px;height:160px}
+.infog-ring svg{transform:rotate(-90deg)}
+.infog-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center}
+.infog-pct{font-size:38px;font-weight:900;color:#FCD34D;line-height:1}
+.infog-pct-lbl{font-size:12px;color:rgba(240,238,255,0.55);margin-top:2px}
+.infog-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px}
+.infog-card{background:rgba(255,255,255,0.06);border:1px solid rgba(245,158,11,0.25);
+  border-radius:12px;padding:14px 10px;text-align:center}
+.infog-card-val{font-size:26px;font-weight:800;line-height:1;margin-bottom:4px}
+.infog-card-lbl{font-size:10px;color:rgba(240,238,255,0.55);line-height:1.3}
+.infog-completed{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);
+  border-radius:12px;padding:14px;margin-bottom:24px}
+.infog-completed-title{font-size:12px;font-weight:700;color:#6EE7B7;margin-bottom:8px}
+.infog-completed-list{font-size:13px;color:#6EE7B7;line-height:1.7;word-break:break-word}
+.infog-cta{background:linear-gradient(135deg,#F59E0B,#EF4444);border-radius:14px;
+  padding:18px 16px;text-align:center}
+.infog-cta-line1{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px}
+.infog-cta-url{font-size:15px;font-weight:900;color:#fff;letter-spacing:-0.3px;
+  word-break:break-all}
+.infog-footer{text-align:center;font-size:11px;color:rgba(240,238,255,0.3);
+  margin-top:16px}
 </style>
 </head>
 <body>
 
 <div class="views-wrapper">
+
   <div class="view active" id="view-album">
     <div class="album-header">
       <div class="header-top">
@@ -240,793 +367,934 @@ body{display:flex;flex-direction:column;height:100dvh}
             <div class="logo-sub">980 láminas · 48 selecciones</div>
           </div>
         </div>
-        <button class="export-btn" onclick="showView('compartir', document.querySelector('.nav-btn:nth-child(4)'))">📸 Compartir</button>
+        <button class="export-btn" onclick="exportData()">📸 Compartir</button>
       </div>
-      
-      <div class="stats-row" id="statsGrid">
-        <div class="stat"><div class="stat-val" id="val-total">0</div><div class="stat-lbl">Total</div></div>
-        <div class="stat"><div class="stat-val g" id="val-owned">0</div><div class="stat-lbl">Tengo</div></div>
-        <div class="stat"><div class="stat-val o" id="val-missing">0</div><div class="stat-lbl">Faltan</div></div>
-        <div class="stat"><div class="stat-val b" id="val-repeated">0</div><div class="stat-lbl">Repes</div></div>
-      </div>
-
+      <div class="stats-row" id="statsGrid"></div>
       <div class="prog-row">
-        <span class="prog-lbl">Progreso global del álbum</span>
+        <span class="prog-lbl">Progreso del álbum</span>
         <span class="prog-pct" id="pctLabel">0%</span>
       </div>
-      <div class="prog-track"><div class="prog-fill" id="progressBar" style="width: 0%"></div></div>
+      <div class="prog-track"><div class="prog-fill" id="progressBar" style="width:0%"></div></div>
     </div>
-
     <div class="tabs">
-      <button class="tab active" onclick="setTab('all', this)">📚 Todas</button>
-      <button class="tab" onclick="setTab('owned', this)">✅ Tengo (<span id="tab-cnt-owned">0</span>)</button>
-      <button class="tab" onclick="setTab('missing', this)">❌ Faltan (<span id="tab-cnt-missing">0</span>)</button>
-      <button class="tab" onclick="setTab('repeated', this)">🔁 Repetidas (<span id="tab-cnt-repeated">0</span>)</button>
+      <button class="tab active" onclick="setTab('all',this)">📚 Todas</button>
+      <button class="tab" onclick="setTab('owned',this)">✅ Tengo</button>
+      <button class="tab" onclick="setTab('missing',this)">❌ Faltan</button>
+      <button class="tab" onclick="setTab('repeated',this)">🔁 Cambio</button>
     </div>
-
     <div class="search-row">
       <div class="search-wrap">
         <span class="search-ico">🔍</span>
-        <input type="search" id="searchInput" placeholder="Buscar código o selección..." oninput="render()" autocomplete="off" />
+        <input type="search" id="searchInput" placeholder="Buscar código o país…"
+          oninput="render()" autocomplete="off" autocorrect="off" spellcheck="false"/>
       </div>
-      <select class="fsel" id="groupFilter" onchange="render()">
-        <option value="">Todas</option>
-      </select>
+      <select class="fsel" id="groupFilter" onchange="render()"><option value="">Todos</option></select>
     </div>
-
     <div class="bulk-row">
-      <input type="text" id="bulkInput" placeholder="Ej: ARG1, ARG5, BRA12 (separar por coma)" autocomplete="off" />
-      <button class="bbtn g" onclick="bulkAdd()">✅ Añadir</button>
-      <button class="bbtn b" onclick="bulkRepeat()">🔁 Repe</button>
+      <input type="text" id="bulkInput" placeholder="ARG1, BRA5, ESP3… añadir varias"
+        autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="bbtn g" onclick="bulkAdd()">✅</button>
+      <button class="bbtn b" onclick="bulkRepeat()">🔁</button>
     </div>
-
     <div class="album-scroll" id="albumScroll"></div>
   </div>
 
-  <div class="view" id="view-progreso">
-    <div class="stats-view" id="statsView">
-      <h2 class="panel-title">📊 Desglose por Selecciones</h2>
-      <div id="statsTeamsContainer"></div>
-    </div>
+  <div class="view" id="view-stats">
+    <div class="stats-view" id="statsView"></div>
   </div>
 
   <div class="view" id="view-scanner">
     <div class="scanner-view">
-      <div class="scan-result-overlay" id="scanResultOverlay">
-        <div class="sro-icon" id="sroIcon">✅</div>
-        <div class="sro-text" id="sroText">Código detectado</div>
-        <button class="sro-action" id="sroAction" onclick="addRepeatedFromScan()">Convertir en Repe</button>
+      <div class="scanner-top">
+        <h2>📷 Escáner de láminas</h2>
+        <p>Activa la cámara y centra el código de la lámina en el recuadro, o escríbelo manualmente.</p>
       </div>
-
-      <div class="cam-area">
-        <div class="scan-frame"><div class="scan-laser"></div></div>
+      <canvas id="ocrCanvas"></canvas>
+      <div class="cam-area" id="camArea" style="display:none">
         <video id="video" autoplay playsinline muted></video>
-      </div>
-
-      <div class="scan-controls">
-        <div class="scan-hint" id="scanHint">Presiona el botón para iniciar el escáner de cámara AI</div>
-        <button class="scan-btn-main" id="scanBtnMain" onclick="toggleScanner()">📷</button>
-        
-        <div class="manual-scan-box">
-          <input type="text" id="manualCode" placeholder="Código Manual (Ej: ARG7)" autocomplete="off" />
-          <button onclick="manualMark()">Ok</button>
+        <div class="cam-overlay">
+          <div class="scan-frame"><div class="scan-line"></div></div>
         </div>
+        <div class="ocr-status" id="ocrStatus">🔍 Iniciando OCR…</div>
+        <div class="cam-hint">Centra el código en el recuadro</div>
       </div>
-    </div>
-  </div>
-
-  <div class="view" id="view-compartir">
-    <div class="settings-view">
-      <div class="panel-title">🔗 Compartir mi Progreso</div>
-      <div class="share-preview-box">
-        <div class="share-card-mini">
-          <div style="font-size:12px;color:var(--gold);font-weight:bold;margin-bottom:4px">🏆 MI ÁLBUM 2026</div>
-          <div id="shareMiniPct" style="font-size:28px;font-weight:800;color:#fff;margin-bottom:6px">0%</div>
-          <div id="shareMiniTxt" style="font-size:11px;color:var(--text2);line-height:1.3">Cargando estadísticas actuales...</div>
+      <div class="cam-placeholder" id="camPlaceholder">
+        <span style="font-size:56px">📷</span>
+        <span style="color:var(--text3);font-size:14px">Cámara desactivada</span>
+      </div>
+      <div class="scanner-bottom">
+        <div id="scanResult"></div>
+        <div class="manual-input-label">Código (ej: ARG1, FWC3, WC1):</div>
+        <div class="manual-row">
+          <input type="text" id="manualCode" placeholder="Ej: ARG7"
+            autocomplete="off" autocorrect="off" autocapitalize="characters"
+            spellcheck="false" onkeydown="if(event.key==='Enter')manualMark()"/>
+          <button onclick="manualMark()">✅ Tenida</button>
         </div>
-        <p style="margin-top:6px">Genera una infografía en formato de imagen lista para tus redes o estados.</p>
+        <button class="cam-btn start" id="camToggleBtn" onclick="toggleCamera()">📷 Activar cámara</button>
       </div>
-      <button class="settings-btn purple" onclick="generateInfografiaImage()">📸 Guardar Infografía como Imagen</button>
-      <div style="margin: 12px 0"></div>
-      <button class="settings-btn gold" onclick="shareTextList()">📋 Copiar Lista de Faltantes en Texto</button>
     </div>
   </div>
 
   <div class="view" id="view-settings">
     <div class="settings-view">
-      <div class="panel-title">⚙️ Configuración y Datos</div>
-      
+      <div class="sv-title" style="margin-top:0">Copia de seguridad</div>
+
       <div class="settings-card">
-        <h3>📥 Copia de Seguridad</h3>
-        <p>Exporta tu progreso actual en un archivo externo para guardarlo como respaldo o transferirlo a otro teléfono.</p>
-        <button class="settings-btn purple" onclick="exportBackupData()">Descargar Archivo JSON</button>
+        <h3>💾 Generar Copia de Seguridad</h3>
+        <p>Descarga un archivo .json con todo tu progreso actual para guardarlo en tu dispositivo y restaurarlo cuando quieras.</p>
+        <button class="settings-btn gold" onclick="backupData()">
+          💾 Descargar backup_album_2026.json
+        </button>
       </div>
 
       <div class="settings-card">
-        <h3>📤 Restaurar Progreso</h3>
-        <p>Carga un archivo de copia de seguridad previamente descargado para restaurar tu colección.</p>
-        <button class="settings-btn gold" onclick="document.getElementById('restoreFileInput').click()">Seleccionar Archivo JSON</button>
-        <input type="file" id="restoreFileInput" accept=".json" onchange="restoreBackupData(event)" />
+        <h3>📂 Restaurar Progreso</h3>
+        <p>Sube el archivo .json de tu copia de seguridad para recuperar tu álbum en este dispositivo.</p>
+        <input type="file" id="restoreFileInput" accept=".json" onchange="restoreData(event)"/>
+        <button class="settings-btn green" onclick="document.getElementById('restoreFileInput').click()">
+          📂 Seleccionar archivo .json
+        </button>
       </div>
 
-      <div class="settings-card" style="border-color: rgba(239,68,68,0.3)">
-        <h3 style="color: var(--red)">🗑️ Restablecer Aplicación</h3>
-        <p>Esta acción eliminará de forma irreversible todas las láminas que has marcado, incluyendo las repetidas.</p>
-        <button class="settings-btn red" onclick="clearAllData()">Borrar Todo el Progreso</button>
+      <div class="settings-divider"></div>
+      <div class="sv-title">Compartir progreso</div>
+
+      <div class="settings-card">
+        <h3>📸 Infografía para redes</h3>
+        <p>Genera una imagen con tu progreso actual optimizada para Instagram Stories y WhatsApp.</p>
+        <button class="settings-btn purple" onclick="exportData()">
+          📸 Generar y descargar infografía PNG
+        </button>
       </div>
+
+      <div class="settings-divider"></div>
+      <div class="sv-title">Peligro</div>
+
+      <div class="settings-card">
+        <h3>🗑 Borrar todo el progreso</h3>
+        <p>Elimina permanentemente todos tus datos del álbum. Esta acción no se puede deshacer.</p>
+        <button class="settings-btn red" onclick="clearAllData()">
+          🗑 Borrar todo mi progreso
+        </button>
+      </div>
+
+      <div class="settings-divider"></div>
+      <div class="settings-card">
+        <h3>🔒 Política de Privacidad</h3>
+        <p>Lee cómo usamos datos, anuncios y cookies. Recomendado por Google AdSense para verificación.</p>
+        <a class="settings-btn" href="privacy.html" target="_blank" rel="noopener">Ver Política de Privacidad</a>
+      </div>
+
+      <div class="settings-card">
+        <h3>✉️ Contacto</h3>
+        <p>¿Necesitas soporte o quieres reportar un problema?</p>
+        <a class="settings-btn green" href="mailto:contacto@tualbum.app">Enviar correo</a>
+      </div>
+
+      <div class="settings-info">Mi Álbum de Fútbol 2026 · v3.0<br>980 láminas · 48 selecciones · PWA</div>
     </div>
   </div>
+
 </div>
 
-<div style="background: var(--bg2); border-top: 1px solid var(--border); padding: 10px; text-align: center; font-size: 12.5px; flex-shrink: 0; z-index: 99; display: flex; align-items: center; justify-content: center; min-height: 42px;">
-   <a id="bannerLink" href="https://example.com/premium" target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 600; transition: color 0.3s ease; width: 100%; display: block;">
-      <span id="bannerText">⭐ ¡Prueba la versión Premium para eliminar anuncios y respaldar en la nube! ⭐</span>
-   </a>
+<div class="adsense-banner-container" id="adsenseBanner">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-format="fluid"
+       data-ad-layout-key="-fb+5w+4e-db+86"
+       data-ad-client="ca-pub-5499913988915360"
+       data-ad-slot="3077431924"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </div>
 
-<div class="nav" role="navigation" aria-label="Barra de navegación">
-  <button class="nav-btn active" onclick="showView('album', this)"><span class="ni">📖</span>Álbum</button>
-  <button class="nav-btn" onclick="showView('progreso', this)"><span class="ni">📊</span>Progreso</button>
-  <button class="nav-btn" onclick="showView('scanner', this)"><span class="ni">📷</span>Cámara</button>
-  <button class="nav-btn" onclick="showView('compartir', this)"><span class="ni">🔗</span>Compartir</button>
-  <button class="nav-btn" onclick="showView('settings', this)"><span class="ni">⚙️</span>Config</button>
+<div class="nav">
+  <button class="nav-btn active" onclick="showView('album',this)"><span class="ni">📖</span>Álbum</button>
+  <button class="nav-btn" onclick="showView('stats',this)"><span class="ni">📊</span>Progreso</button>
+  <button class="nav-btn" onclick="showView('scanner',this)"><span class="ni">📷</span>Escáner</button>
+  <button class="nav-btn" onclick="showView('settings',this)"><span class="ni">⚙️</span>Ajustes</button>
+</div>
+
+<div class="interstitial-overlay" id="interstitialOverlay">
+  <div class="interstitial-box">
+    <div class="inter-label">Anuncio</div>
+    <div class="inter-ad-placeholder">
+      <span style="font-size:28px">📢</span>
+      <span>Espacio publicitario</span>
+      <span style="font-size:11px;color:var(--text4)">Google AdSense — Vignette Ad</span>
+    </div>
+    <button class="inter-close" id="interCloseBtn" onclick="closeInterstitial()">
+      Cerrar anuncio
+    </button>
+    <div class="inter-timer" id="interTimer"></div>
+  </div>
 </div>
 
 <div id="infografia-template">
-  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--purple2); padding-bottom:16px; margin-bottom:20px">
-    <div>
-      <h1 style="font-size:26px; font-weight:800; color:#fff; margin:0">MI ÁLBUM 2026</h1>
-      <p style="font-size:12px; color:var(--text2); margin:4px 0 0">Progreso de Colección Oficial</p>
-    </div>
-    <div style="font-size:42px">⚽</div>
-  </div>
-  <div style="display:flex; gap:24px; align-items:center; margin-bottom:24px">
-    <div style="background:rgba(124,58,237,0.15); border:2px solid var(--purple2); width:130px; height:130px; border-radius:99px; display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0">
-      <div id="infoPct" style="font-size:38px; font-weight:900; color:var(--gold)">0%</div>
-      <div style="font-size:10px; color:var(--text3); font-weight:700; margin-top:-2px">COMPLETADO</div>
-    </div>
-    <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:12px">
-      <div style="background:var(--card); padding:12px; border-radius:12px; border:1px solid var(--border)"><div style="font-size:10px; color:var(--text3)">LÁMINAS TOTALES</div><div style="font-size:20px; font-weight:800; color:#fff" id="infoTot">0</div></div>
-      <div style="background:var(--card); padding:12px; border-radius:12px; border:1px solid var(--border)"><div style="font-size:10px; color:var(--green2)">TENGO</div><div style="font-size:20px; font-weight:800; color:var(--green)" id="infoOwn">0</div></div>
-      <div style="background:var(--card); padding:12px; border-radius:12px; border:1px solid var(--border)"><div style="font-size:10px; color:var(--gold2)">FALTAN</div><div style="font-size:20px; font-weight:800; color:var(--gold)" id="infoMis">0</div></div>
-      <div style="background:var(--card); padding:12px; border-radius:12px; border:1px solid var(--border)"><div style="font-size:10px; color:var(--blue2)">REPETIDAS</div><div style="font-size:20px; font-weight:800; color:var(--blue)" id="infoRep">0</div></div>
+  <div class="infog-title">🏆 MI PROGRESO — ÁLBUM DE FÚTBOL 2026 🏆</div>
+  <div class="infog-subtitle" id="infog-date"></div>
+  <div class="infog-ring-wrap">
+    <div class="infog-ring">
+      <svg width="160" height="160" viewBox="0 0 160 160">
+        <circle cx="80" cy="80" r="65" fill="none" stroke="rgba(124,58,237,0.2)" stroke-width="18"/>
+        <circle id="infog-ring-arc" cx="80" cy="80" r="65" fill="none"
+          stroke="#F59E0B" stroke-width="18" stroke-linecap="round"
+          stroke-dasharray="0 408" stroke-dashoffset="0"/>
+      </svg>
+      <div class="infog-ring-label">
+        <div class="infog-pct" id="infog-pct">0%</div>
+        <div class="infog-pct-lbl">completado</div>
+      </div>
     </div>
   </div>
-  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:12px; text-align:center; font-size:13px; color:var(--text2)">
-    ¡Gestiona tu álbum digitalmente, escanea códigos y organiza tus cambios rápido!
+  <div class="infog-cards">
+    <div class="infog-card">
+      <div class="infog-card-val" id="infog-owned" style="color:#6EE7B7">0</div>
+      <div class="infog-card-lbl">✅ Tenidas</div>
+    </div>
+    <div class="infog-card">
+      <div class="infog-card-val" id="infog-missing" style="color:#FCD34D">0</div>
+      <div class="infog-card-lbl">❌ Faltan</div>
+    </div>
+    <div class="infog-card">
+      <div class="infog-card-val" id="infog-repeated" style="color:#93C5FD">0</div>
+      <div class="infog-card-lbl">🔁 Cambio</div>
+    </div>
   </div>
+  <div class="infog-completed">
+    <div class="infog-completed-title">🎉 Selecciones completadas al 100%</div>
+    <div class="infog-completed-list" id="infog-completed-list">Ninguna aún — ¡sigue coleccionando!</div>
+  </div>
+  <div class="infog-cta">
+    <div class="infog-cta-line1">¡Organiza tu álbum y escanea tus láminas gratis en:</div>
+    <div class="infog-cta-url">Mi Álbum de Fútbol 2026</div>
+  </div>
+  <div class="infog-footer">Generado con Mi Álbum de Fútbol 2026 · Mundial de Fútbol 2026</div>
 </div>
 
-<div id="toast" class="toast"></div>
+<div class="toast" id="toast"></div>
 
 <script>
-let state = { owned: {}, repeated: {} };
-let currentTab = 'all'; 
-let ocrWorker = null;
-let isProcessingOCR = false;
-let lastScannedCode = null;
-let stickerAddedCount = 0;
+// ════════════════════════════════════════════════
+// LÓGICA DE APLICACIÓN — MI ÁLBUM 2026
+// ════════════════════════════════════════════════
 
-// GENERADOR DE STICKERS POR SELECCIÓN
-function makeStickers(prefix, count, flag, gName) {
-    const arr = [];
-    for (let i = 1; i <= count; i++) {
-        arr.push({ code: prefix + i, name: gName + ' #' + i, flag: flag, groupName: gName });
-    }
-    return arr;
+function makeStickers(id, n, flag, name, specialMap={}) {
+  return Array.from({length:n}, (_,i) => {
+    const num = i+1;
+    const code = id+num;
+    const isSpecial = !!specialMap[num];
+    return {
+      code, num,
+      type: num===1 ? '🛡 Escudo' : num===13 ? '📸 Equipo' : '👤',
+      special: isSpecial || num===1 || num===13,
+      flag, groupName: name
+    };
+  });
 }
 
-// ESTRUCTURA COMPLETA DE GRUPOS Y SELECCIONES (980 láminas en total)
 const GROUPS = [
   {
-    id: 'FWC',
-    name: 'Especiales / Historia',
-    stickers: [
-      { code: 'FWC1', name: 'Trofeo del Mundo', special: true },
-      { code: 'FWC2', name: 'Emblema Oficial', special: true },
-      { code: 'FWC3', name: 'Mascota Oficial', special: true },
-      { code: 'FWC4', name: 'Pelota Oficial', special: true },
-      { code: 'FWC5', name: 'Estadio Inaugural', special: true },
-      { code: 'FWC6', name: 'Estadio de la Final', special: true },
-      { code: 'FWC7', name: 'Pele (Leyenda)', special: true },
-      { code: 'FWC8', name: 'Maradona (Leyenda)', special: true },
-      { code: 'FWC9', name: 'Cruyff (Leyenda)', special: true },
-      { code: 'FWC10', name: 'Zidane (Leyenda)', special: true },
-      { code: 'FWC11', name: 'Ronaldo (Leyenda)', special: true },
-      { code: 'FWC12', name: 'Beckham (Leyenda)', special: true }
+    id:'WC', name:'Presentación', flag:'🏆',
+    stickers:[
+      {code:'WC1',type:'⭐ Especial',special:true,flag:'🏆',groupName:'Presentación'},
     ]
   },
-  { id: 'USA', name: 'Estados Unidos', flag: '🇺🇸', stickers: makeStickers('USA', 20, '🇺🇸', 'Estados Unidos') },
-  { id: 'MEX', name: 'México', flag: '🇲🇽', stickers: makeStickers('MEX', 20, '🇲🇽', 'México') },
-  { id: 'CAN', name: 'Canadá', flag: '🇨🇦', stickers: makeStickers('CAN', 20, '🇨🇦', 'Canadá') },
-  { id: 'ARG', name: 'Argentina', flag: '🇦🇷', stickers: makeStickers('ARG', 20, '🇦🇷', 'Argentina') },
-  { id: 'BRA', name: 'Brasil', flag: '🇧🇷', stickers: makeStickers('BRA', 20, '🇧🇷', 'Brasil') },
-  { id: 'FRA', name: 'Francia', flag: '🇫🇷', stickers: makeStickers('FRA', 20, '🇫🇷', 'Francia') },
-  { id: 'ENG', name: 'Inglaterra', flag: '🇬🇧', stickers: makeStickers('ENG', 20, '🇬🇧', 'Inglaterra') },
-  { id: 'GER', name: 'Alemania', flag: '🇩🇪', stickers: makeStickers('GER', 20, '🇩🇪', 'Alemania') },
-  { id: 'ESP', name: 'España', flag: '🇪🇸', stickers: makeStickers('ESP', 20, '🇪🇸', 'España') },
-  { id: 'ITA', name: 'Italia', flag: '🇮🇹', stickers: makeStickers('ITA', 20, '🇮🇹', 'Italia') },
-  { id: 'POR', name: 'Portugal', flag: '🇵🇹', stickers: makeStickers('POR', 20, '🇵🇹', 'Portugal') },
-  { id: 'NED', name: 'Países Bajos', flag: '🇳🇱', stickers: makeStickers('NED', 20, '🇳🇱', 'Países Bajos') },
-  { id: 'BEL', name: 'Bélgica', flag: '🇧🇪', stickers: makeStickers('BEL', 20, '🇧🇪', 'Bélgica') },
-  { id: 'CRO', name: 'Croacia', flag: '🇭🇷', stickers: makeStickers('CRO', 20, '🇭🇷', 'Croacia') },
-  { id: 'URU', name: 'Uruguay', flag: '🇺🇾', stickers: makeStickers('URU', 20, '🇺🇾', 'Uruguay') },
-  { id: 'COL', name: 'Colombia', flag: '🇨🇴', stickers: makeStickers('COL', 20, '🇨🇴', 'Colombia') },
-  { id: 'CHI', name: 'Chile', flag: '🇨🇱', stickers: makeStickers('CHI', 20, '🇨🇱', 'Chile') },
-  { id: 'ECU', name: 'Ecuador', flag: '🇪🇨', stickers: makeStickers('ECU', 20, '🇪🇨', 'Ecuador') },
-  { id: 'PAR', name: 'Paraguay', flag: '🇵🇾', stickers: makeStickers('PAR', 20, '🇵🇾', 'Paraguay') },
-  { id: 'VEN', name: 'Venezuela', flag: '🇻🇪', stickers: makeStickers('VEN', 20, '🇻🇪', 'Venezuela') },
-  { id: 'PER', name: 'Perú', flag: '🇵🇪', stickers: makeStickers('PER', 20, '🇵🇪', 'Perú') },
-  { id: 'JPN', name: 'Japón', flag: '🇯🇵', stickers: makeStickers('JPN', 20, '🇯🇵', 'Japón') },
-  { id: 'KOR', name: 'Corea del Sur', flag: '🇰🇷', stickers: makeStickers('KOR', 20, '🇰🇷', 'Corea del Sur') },
-  { id: 'AUS', name: 'Australia', flag: '🇦🇺', stickers: makeStickers('AUS', 20, '🇦🇺', 'Australia') },
-  { id: 'KSA', name: 'Arabia Saudita', flag: '🇸🇦', stickers: makeStickers('KSA', 20, '🇸🇦', 'Arabia Saudita') },
-  { id: 'MAR', name: 'Marruecos', flag: '🇲🇦', stickers: makeStickers('MAR', 20, '🇲🇦', 'Marruecos') },
-  { id: 'SEN', name: 'Senegal', flag: '🇸🇳', stickers: makeStickers('SEN', 20, '🇸🇳', 'Senegal') },
-  { id: 'TUN', name: 'Túnez', flag: '🇹🇳', stickers: makeStickers('TUN', 20, '🇹🇳', 'Túnez') },
-  { id: 'CMR', name: 'Camerún', flag: '🇨🇲', stickers: makeStickers('CMR', 20, '🇨🇲', 'Camerún') },
-  { id: 'GHA', name: 'Ghana', flag: '🇬🇭', stickers: makeStickers('GHA', 20, '🇬🇭', 'Ghana') },
-  { id: 'NGA', name: 'Nigeria', flag: '🇳🇬', stickers: makeStickers('NGA', 20, '🇳🇬', 'Nigeria') },
-  { id: 'SUI', name: 'Suiza', flag: '🇨🇭', stickers: makeStickers('SUI', 20, '🇨🇭', 'Suiza') },
-  { id: 'DEN', name: 'Dinamarca', flag: '🇩🇰', stickers: makeStickers('DEN', 20, '🇩🇰', 'Dinamarca') },
-  { id: 'SWE', name: 'Suecia', flag: '🇸🇪', stickers: makeStickers('SWE', 20, '🇸🇪', 'Suecia') },
-  { id: 'NOR', name: 'Noruega', flag: '🇳🇴', stickers: makeStickers('NOR', 20, '🇳🇴', 'Noruega') },
-  { id: 'UKR', name: 'Ucrania', flag: '🇺🇦', stickers: makeStickers('UKR', 20, '🇺🇦', 'Ucrania') },
-  { id: 'TUR', name: 'Turquía', flag: '🇹🇷', stickers: makeStickers('TUR', 20, '🇹🇷', 'Turquía') },
-  { id: 'EGY', name: 'Egipto', flag: '🇪🇬', stickers: makeStickers('EGY', 20, '🇪🇬', 'Egipto') },
-  { id: 'RSA', name: 'Sudáfrica', flag: '🇿🇦', stickers: makeStickers('RSA', 20, '🇿🇦', 'Sudáfrica') },
-  { id: 'NZL', name: 'Nueva Zelanda', flag: '🇳🇿', stickers: makeStickers('NZL', 20, '🇳🇿', 'Nueva Zelanda') },
-  { id: 'CRC', name: 'Costa Rica', flag: '🇨🇷', stickers: makeStickers('CRC', 20, '🇨🇷', 'Costa Rica') },
-  { id: 'PAN', name: 'Panamá', flag: '🇵🇦', stickers: makeStickers('PAN', 20, '🇵🇦', 'Panamá') },
-  { id: 'JAM', name: 'Jamaica', flag: '🇯🇲', stickers: makeStickers('JAM', 20, '🇯🇲', 'Jamaica') },
-  { id: 'HON', name: 'Honduras', flag: '🇭🇳', stickers: makeStickers('HON', 20, '🇭🇳', 'Honduras') },
-  { id: 'SLV', name: 'El Salvador', flag: '🇸🇻', stickers: makeStickers('SLV', 20, '🇸🇻', 'El Salvador') },
-  { id: 'QAT', name: 'Catar', flag: '🇶🇦', stickers: makeStickers('QAT', 20, '🇶🇦', 'Catar') },
-  { id: 'UAE', name: 'EAU', flag: '🇦🇪', stickers: makeStickers('UAE', 20, '🇦🇪', 'EAU') },
-  { id: 'CHN', name: 'China', flag: '🇨🇳', stickers: makeStickers('CHN', 20, '🇨🇳', 'China') }
+  {
+    id:'FWC', name:'Historia del Mundial', flag:'🌍',
+    stickers: Array.from({length:19},(_, i)=>({
+      code:'FWC'+(i+1),
+      type: i<4 ? '⭐ Especial' : i<17 ? '🏟 Estadio' : '⭐ Especial',
+      special:true, flag:'🌍', groupName:'Historia del Mundial'
+    }))
+  },
+  {id:'ALG',name:'Argelia',      flag:'🇩🇿', stickers:makeStickers('ALG',20,'🇩🇿','Argelia')},
+  {id:'ARG',name:'Argentina',    flag:'🇦🇷', stickers:makeStickers('ARG',20,'🇦🇷','Argentina')},
+  {id:'AUS',name:'Australia',    flag:'🇦🇺', stickers:makeStickers('AUS',20,'🇦🇺','Australia')},
+  {id:'AUT',name:'Austria',      flag:'🇦🇹', stickers:makeStickers('AUT',20,'🇦🇹','Austria')},
+  {id:'BEL',name:'Bélgica',      flag:'🇧🇪', stickers:makeStickers('BEL',20,'🇧🇪','Bélgica')},
+  {id:'BIH',name:'Bosnia-Herz.', flag:'🇧🇦', stickers:makeStickers('BIH',20,'🇧🇦','Bosnia-Herz.')},
+  {id:'BRA',name:'Brasil',       flag:'🇧🇷', stickers:makeStickers('BRA',20,'🇧🇷','Brasil')},
+  {id:'CAN',name:'Canadá',       flag:'🇨🇦', stickers:makeStickers('CAN',20,'🇨🇦','Canadá')},
+  {id:'CIV',name:'Costa de Marfil',flag:'🇨🇮',stickers:makeStickers('CIV',20,'🇨🇮','Costa de Marfil')},
+  {id:'COD',name:'RD Congo',     flag:'🇨🇩', stickers:makeStickers('COD',20,'🇨🇩','RD Congo')},
+  {id:'COL',name:'Colombia',     flag:'🇨🇴', stickers:makeStickers('COL',20,'🇨🇴','Colombia')},
+  {id:'CPV',name:'Cabo Verde',   flag:'🇨🇻', stickers:makeStickers('CPV',20,'🇨🇻','Cabo Verde')},
+  {id:'CRO',name:'Croacia',      flag:'🇭🇷', stickers:makeStickers('CRO',20,'🇭🇷','Croacia')},
+  {id:'CUW',name:'Curaçao',      flag:'🇨🇼', stickers:makeStickers('CUW',20,'🇨🇼','Curaçao')},
+  {id:'CZE',name:'Rep. Checa',   flag:'🇨🇿', stickers:makeStickers('CZE',20,'🇨🇿','Rep. Checa')},
+  {id:'ECU',name:'Ecuador',      flag:'🇪🇨', stickers:makeStickers('ECU',20,'🇪🇨','Ecuador')},
+  {id:'EGY',name:'Egipto',       flag:'🇪🇬', stickers:makeStickers('EGY',20,'🇪🇬','Egipto')},
+  {id:'ENG',name:'Inglaterra',   flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', stickers:makeStickers('ENG',20,'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Inglaterra')},
+  {id:'ESP',name:'España',       flag:'🇪🇸', stickers:makeStickers('ESP',20,'🇪🇸','España')},
+  {id:'FRA',name:'Francia',      flag:'🇫🇷', stickers:makeStickers('FRA',20,'🇫🇷','Francia')},
+  {id:'GER',name:'Alemania',     flag:'🇩🇪', stickers:makeStickers('GER',20,'🇩🇪','Alemania')},
+  {id:'GHA',name:'Ghana',        flag:'🇬🇭', stickers:makeStickers('GHA',20,'🇬🇭','Ghana')},
+  {id:'HAI',name:'Haití',        flag:'🇭🇹', stickers:makeStickers('HAI',20,'🇭🇹','Haití')},
+  {id:'IRN',name:'Irán',         flag:'🇮🇷', stickers:makeStickers('IRN',20,'🇮🇷','Irán')},
+  {id:'IRQ',name:'Irak',         flag:'🇮🇶', stickers:makeStickers('IRQ',20,'🇮🇶','Irak')},
+  {id:'JOR',name:'Jordania',     flag:'🇯🇴', stickers:makeStickers('JOR',20,'🇯🇴','Jordania')},
+  {id:'JPN',name:'Japón',        flag:'🇯🇵', stickers:makeStickers('JPN',20,'🇯🇵','Japón')},
+  {id:'KOR',name:'Corea del Sur',flag:'🇰🇷', stickers:makeStickers('KOR',20,'🇰🇷','Corea del Sur')},
+  {id:'KSA',name:'Arabia Saudita',flag:'🇸🇦',stickers:makeStickers('KSA',20,'🇸🇦','Arabia Saudita')},
+  {id:'MAR',name:'Marruecos',    flag:'🇲🇦', stickers:makeStickers('MAR',20,'🇲🇦','Marruecos')},
+  {id:'MEX',name:'México',       flag:'🇲🇽', stickers:makeStickers('MEX',20,'🇲🇽','México')},
+  {id:'NED',name:'Países Bajos', flag:'🇳🇱', stickers:makeStickers('NED',20,'🇳🇱','Países Bajos')},
+  {id:'NOR',name:'Noruega',      flag:'🇳🇴', stickers:makeStickers('NOR',20,'🇳🇴','Noruega')},
+  {id:'NZL',name:'Nueva Zelanda',flag:'🇳🇿', stickers:makeStickers('NZL',20,'🇳🇿','Nueva Zelanda')},
+  {id:'PAN',name:'Panamá',       flag:'🇵🇦', stickers:makeStickers('PAN',20,'🇵🇦','Panamá')},
+  {id:'PAR',name:'Paraguay',     flag:'🇵🇾', stickers:makeStickers('PAR',20,'🇵🇾','Paraguay')},
+  {id:'POR',name:'Portugal',     flag:'🇵🇹', stickers:makeStickers('POR',20,'🇵🇹','Portugal')},
+  {id:'QAT',name:'Qatar',        flag:'🇶🇦', stickers:makeStickers('QAT',20,'🇶🇦','Qatar')},
+  {id:'RSA',name:'Sudáfrica',    flag:'🇿🇦', stickers:makeStickers('RSA',20,'🇿🇦','Sudáfrica')},
+  {id:'SCO',name:'Escocia',      flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', stickers:makeStickers('SCO',20,'🏴󠁧󠁢󠁳󠁣󠁴󠁿','Escocia')},
+  {id:'SEN',name:'Senegal',      flag:'🇸🇳', stickers:makeStickers('SEN',20,'🇸🇳','Senegal')},
+  {id:'SUI',name:'Suiza',        flag:'🇨🇭', stickers:makeStickers('SUI',20,'🇨🇭','Suiza')},
+  {id:'SWE',name:'Suecia',       flag:'🇸🇪', stickers:makeStickers('SWE',20,'🇸🇪','Suecia')},
+  {id:'TUN',name:'Túnez',        flag:'🇹🇳', stickers:makeStickers('TUN',20,'🇹🇳','Túnez')},
+  {id:'TUR',name:'Turquía',      flag:'🇹🇷', stickers:makeStickers('TUR',20,'🇹🇷','Turquía')},
+  {id:'URU',name:'Uruguay',      flag:'🇺🇾', stickers:makeStickers('URU',20,'🇺🇾','Uruguay')},
+  {id:'USA',name:'EE.UU.',       flag:'🇺🇸', stickers:makeStickers('USA',20,'🇺🇸','EE.UU.')},
+  {id:'UZB',name:'Uzbekistán',   flag:'🇺🇿', stickers:makeStickers('UZB',20,'🇺🇿','Uzbekistán')},
 ];
 
-const ALL_IDS = [];
-GROUPS.forEach(g => g.stickers.forEach(s => ALL_IDS.push(s.code)));
-const TOTAL = ALL_IDS.length;
+const ALL_IDS = GROUPS.flatMap(g => g.stickers.map(s=>s.code));
+const TOTAL   = ALL_IDS.length; 
 
-// ═══════════════ POOL DE PUBLICIDAD ROTATIVA ═══════════════
-const AD_POOL = [
-    { text: "⚽ ¡Consigue sobres de láminas especiales en la tienda oficial con un 20% de descuento usando el código: CUPON2026! ⚽", link: "https://example.com/tienda" },
-    { text: "🔥 ¡Prueba la versión Premium para guardar tu progreso en la nube y remover anuncios! 🔥", link: "https://example.com/premium" },
-    { text: "🏆 ¡Completa tu álbum más rápido! Comparte tus láminas repetidas automáticamente por WhatsApp 🏆", link: "https://example.com/compartir" },
-    { text: "📱 Descarga nuestra app oficial para iOS y Android y escanea tus láminas físicas al instante 📱", link: "https://example.com/download" },
-    { text: "⭐ ¡Atención! Se han reportado nuevos diseños de láminas metalizadas. ¡Revisa tu sección de Especiales! ⭐", link: "https://example.com/especiales" },
-    { text: "🍿 ¡Acompaña tu tarde de intercambio! 2x1 en combos usando el código: STICKER26 🍿", link: "https://example.com/snacks" }
-];
+let isProcessingOCR = false;   
+let ocrWorker       = null;
+let ocrInterval     = null;
+let ocrPaused       = false;
+let stream          = null;
+let scanning        = false;
 
-// FUNCIÓN PARA ROTAR EL BANNER INFERIOR CON PUBLICIDAD ALEATORIA
-function showInterstitial() {
-    if (typeof AD_POOL !== 'undefined' && AD_POOL.length > 0) {
-        const ad = AD_POOL[Math.floor(Math.random() * AD_POOL.length)];
-        const bText = document.getElementById('bannerText');
-        const bLink = document.getElementById('bannerLink');
-        if (bText && bLink) {
-            bText.style.opacity = 0;
-            setTimeout(() => {
-                bText.textContent = ad.text;
-                bLink.href = ad.link;
-                bText.style.opacity = 1;
-            }, 200);
-        }
-    }
+let state = {owned:{}, repeated:{}};
+try{const s=localStorage.getItem('mialb2026_v3');if(s)state=JSON.parse(s);}catch(e){}
+function save(){try{localStorage.setItem('mialb2026_v3',JSON.stringify(state));}catch(e){}}
+
+function status(id){
+  if(state.repeated[id]) return 'repeated';
+  if(state.owned[id]) return 'owned';
+  return 'missing';
 }
 
-// Reemplazo de la función detonadora para que NO use pantalla completa, sino el banner directamente
-function maybeShowInterstitial() {
-    stickerAddedCount++;
-    if (stickerAddedCount % 6 === 0) {
-        showInterstitial();
-    }
-}
+let stickerAddedCount = 0;
+const INTERSTITIAL_THRESHOLD = 15;
+let interCloseEnabled = false;
+let interCountdown = null;
 
-// Vaciar o neutralizar funciones de cierre innecesarias
-function closeInterstitial() { return; }
-
-// EN LÓGICA DE CONTROL DE VISTAS Y TABS
-function status(id) {
-    if (state.repeated[id] && state.repeated[id] > 0) return 'repeated';
-    return state.owned[id] ? 'owned' : 'missing';
-}
-
-function setTab(tab, btn) {
-    currentTab = tab;
-    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    render();
-}
-
-function showView(viewId, btn) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('view-' + viewId).classList.add('active');
-    btn.classList.add('active');
-    if (viewId !== 'scanner') stopScanner();
-    if (viewId === 'scanner') initScanner();
-    if (viewId === 'progreso') renderStatsView();
-    if (viewId === 'compartir') renderCompartirView();
-}
-
-// COMPOSICIÓN DINÁMICA DEL ÁLBUM
-function buildStructure() {
-    const filterSelect = document.getElementById('groupFilter');
-    const scrollContainer = document.getElementById('albumScroll');
-    
-    GROUPS.forEach(g => {
-        const opt = document.createElement('option');
-        opt.value = g.id;
-        opt.textContent = (g.flag ? g.flag + ' ' : '') + g.name;
-        filterSelect.appendChild(opt);
-
-        const sec = document.createElement('section');
-        sec.className = 'group-section';
-        sec.id = 'sec-' + g.id;
-        sec.innerHTML = `<div class="group-title">${g.flag ? '<span>'+g.flag+'</span>' : ''}<strong>${g.name}</strong></div>`;
-        
-        const grid = document.createElement('div');
-        grid.className = 'sticker-grid';
-        
-        g.stickers.forEach(s => {
-            const card = document.createElement('div');
-            card.className = 'sticker-card' + (s.special ? ' special' : '');
-            card.id = 'card-' + s.code;
-            card.onclick = (e) => toggleSticker(s.code, e);
-            
-            card.innerHTML = `
-                <div class="sc-num">${s.code}</div>
-                <div class="sc-lbl">${s.name}</div>
-                <div class="rep-badge" id="badge-${s.code}" style="display:none"></div>
-            `;
-            grid.appendChild(card);
-        });
-        
-        sec.appendChild(grid);
-        scrollContainer.appendChild(sec);
-    });
-}
-
-function render() {
-    const search = document.getElementById('searchInput').value.trim().toLowerCase();
-    const groupF = document.getElementById('groupFilter').value;
-
-    GROUPS.forEach(g => {
-        const sec = document.getElementById('sec-' + g.id);
-        let visibleInGroup = 0;
-
-        g.stickers.forEach(s => {
-            const card = document.getElementById('card-' + s.code);
-            const st = status(s.code);
-            
-            let matchTab = true;
-            if (currentTab === 'owned' && st === 'missing') matchTab = false;
-            if (currentTab === 'missing' && st !== 'missing') matchTab = false;
-            if (currentTab === 'repeated' && st !== 'repeated') matchTab = false;
-
-            let matchSearch = true;
-            if (search) {
-                if (!s.code.toLowerCase().includes(search) && !g.name.toLowerCase().includes(search)) {
-                    matchSearch = false;
-                }
-            }
-
-            let matchFilter = true;
-            if (groupF && g.id !== groupF) matchFilter = false;
-
-            if (matchTab && matchSearch && matchFilter) {
-                card.style.display = 'flex';
-                visibleInGroup++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-
-        sec.style.display = visibleInGroup > 0 ? 'block' : 'none';
-    });
-}
-
-function refreshSticker(code) {
-    const card = document.getElementById('card-' + code);
-    const badge = document.getElementById('badge-' + code);
-    if (!card) return;
-
-    card.classList.remove('owned', 'repeated');
-    badge.style.display = 'none';
-
-    if (state.repeated[code] && state.repeated[code] > 0) {
-        card.classList.add('repeated');
-        badge.style.display = 'flex';
-        badge.textContent = '+' + state.repeated[code];
-    } else if (state.owned[code]) {
-        card.classList.add('owned');
-    }
-}
-
-function toggleSticker(code, event) {
-    const st = status(code);
-    if (st === 'missing') {
-        state.owned[code] = true;
-        showToast(`✅ ${code} agregada`);
-        maybeShowInterstitial();
-    } else if (st === 'owned') {
-        state.repeated[code] = 1;
-        showToast(`🔁 ${code} configurada como repetida`);
-    } else if (st === 'repeated') {
-        state.repeated[code]++;
-        if (state.repeated[code] > 9) {
-            delete state.repeated[code];
-            delete state.owned[code];
-            showToast(`🗑️ ${code} eliminada del álbum`);
-        } else {
-            showToast(`🔁 ${code} acumulada ×${state.repeated[code]}`);
-        }
-    }
-    save();
-    refreshSticker(code);
-    updateStats();
-}
-
-// AGREGADO MASIVO
-function bulkAdd() {
-    const inp = document.getElementById('bulkInput');
-    const codes = inp.value.split(',');
-    let count = 0;
-    codes.forEach(c => {
-        const code = c.trim().toUpperCase();
-        if (ALL_IDS.includes(code) && status(code) === 'missing') {
-            state.owned[code] = true;
-            refreshSticker(code);
-            count++;
-        }
-    });
-    if (count > 0) { save(); updateStats(); render(); showToast(`✅ Añadidas ${count} láminas`); inp.value = ''; maybeShowInterstitial(); }
-    else { showToast('❌ Ninguna lámina nueva válida ingresada'); }
-}
-
-function bulkRepeat() {
-    const inp = document.getElementById('bulkInput');
-    const codes = inp.value.split(',');
-    let count = 0;
-    codes.forEach(c => {
-        const code = c.trim().toUpperCase();
-        if (ALL_IDS.includes(code)) {
-            state.owned[code] = true;
-            state.repeated[code] = (state.repeated[code] || 0) + 1;
-            refreshSticker(code);
-            count++;
-        }
-    });
-    if (count > 0) { save(); updateStats(); render(); showToast(`🔁 Registradas ${count} repetidas`); inp.value = ''; maybeShowInterstitial(); }
-    else { showToast('❌ Códigos no válidos'); }
-}
-
-// CÁLCULO DE MÉTRICAS GLOBALES
-function updateStats() {
-    let owned = 0;
-    let repes = 0;
-    
-    ALL_IDS.forEach(id => {
-        if (state.owned[id]) owned++;
-        if (state.repeated[id]) repes += state.repeated[id];
-    });
-
-    const missing = TOTAL - owned;
-    const pct = TOTAL > 0 ? Math.round((owned / TOTAL) * 100) : 0;
-
-    document.getElementById('val-total').textContent = TOTAL;
-    document.getElementById('val-owned').textContent = owned;
-    document.getElementById('val-missing').textContent = missing;
-    document.getElementById('val-repeated').textContent = repes;
-
-    document.getElementById('pctLabel').textContent = pct + '%';
-    document.getElementById('progressBar').style.width = pct + '%';
-
-    document.getElementById('tab-cnt-owned').textContent = owned;
-    document.getElementById('tab-cnt-missing').textContent = missing;
-    document.getElementById('tab-cnt-repeated').textContent = Object.keys(state.repeated).length;
-}
-
-// VISTA DE DESGLOSE POR PAÍS
-function renderStatsView() {
-    const container = document.getElementById('statsTeamsContainer');
-    container.innerHTML = '';
-
-    GROUPS.forEach(g => {
-        let tOwn = 0;
-        g.stickers.forEach(s => { if (state.owned[s.code]) tOwn++; });
-        const tTotal = g.stickers.length;
-        const tPct = Math.round((tOwn / tTotal) * 100);
-
-        const row = document.createElement('div');
-        row.className = 'team-stat-row';
-        row.innerHTML = `
-            <div class="ts-info">
-                <span class="ts-flag">${g.flag || '⭐'}</span>
-                <span class="ts-name">${g.name}</span>
-            </div>
-            <div class="ts-bar-container">
-                <div class="ts-bar-fill" style="width: ${tPct}%; background: ${tPct === 100 ? 'var(--green)' : 'var(--purple)'}"></div>
-            </div>
-            <div class="ts-nums">${tOwn}/${tTotal}</div>
-        `;
-        container.innerHTML += row.outerHTML;
-    });
-}
-
-function renderCompartirView() {
-    let owned = 0;
-    ALL_IDS.forEach(id => { if (state.owned[id]) owned++; });
-    const pct = Math.round((owned / TOTAL) * 100);
-    document.getElementById('shareMiniPct').textContent = pct + '%';
-    document.getElementById('shareMiniTxt').textContent = `Tengo ${owned} marcadas de las ${TOTAL} láminas requeridas para completar el álbum del 2026.`;
-}
-
-// MANUAL INPUT SCANNER
-function manualMark() {
-    const inp = document.getElementById('manualCode');
-    const code = inp.value.trim().toUpperCase();
-    if (!code) return;
-    if (!ALL_IDS.includes(code)) { showScanResult('err', `❌ Código "${code}" inexistente`); return; }
-    
-    inp.value = '';
-    const st = status(code);
-    if (st === 'missing') {
-        state.owned[code] = true;
-        save(); refreshSticker(code); updateStats();
-        showScanResult('ok', `✅ ${code} — ¡Marcada como adquirida!`);
-        maybeShowInterstitial();
-    } else if (st === 'owned') {
-        showScanResult('warn', `⚠️ Ya posees ${code}. ¿Añadir como repetida?`, code);
-    } else {
-        showScanResult('warn', `🔁 ${code} ya está repetida ×${state.repeated[code]}`);
-    }
-}
-
-// CONTROL DE ESCÁNER DE CÁMARA CON TESSERACT OCR
-async function initScanner() {
-    document.getElementById('scanHint').textContent = "Inicializando subsistemas de cámara...";
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment', width: { ideal: 640 }, height: { ideal: 480 } } });
-        const video = document.getElementById('video');
-        video.srcObject = stream;
-        video.setAttribute('playsinline', true);
-        video.play();
-        
-        document.getElementById('scanBtnMain').classList.add('scanning');
-        document.getElementById('scanHint').textContent = "Escáner activo. Ubica el código del recuadro dentro de la línea láser.";
-        
-        if (!ocrWorker) {
-            ocrWorker = await Tesseract.createWorker('eng');
-            await ocrWorker.setParameters({ tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' });
-        }
-        isProcessingOCR = true;
-        requestAnimationFrame(processFrame);
-    } catch (e) {
-        document.getElementById('scanHint').textContent = "⚠️ Error de acceso: Permiso denegado o cámara ocupada.";
-    }
-}
-
-function stopScanner() {
-    isProcessingOCR = false;
-    const video = document.getElementById('video');
-    if (video && video.srcObject) {
-        video.srcObject.getTracks().forEach(track => track.stop());
-        video.srcObject = null;
-    }
-    document.getElementById('scanBtnMain').classList.remove('scanning');
-    document.getElementById('scanHint').textContent = "Escáner en pausa.";
-}
-
-function toggleScanner() {
-    if (isProcessingOCR) stopScanner();
-    else initScanner();
-}
-
-async function processFrame() {
-    const video = document.getElementById('video');
-    if (!isProcessingOCR || !video || video.readyState !== video.HAVE_ENOUGH_DATA) {
-        if (isProcessingOCR) requestAnimationFrame(processFrame);
-        return;
-    }
-
-    const canvas = document.createElement('canvas');
-    canvas.width = 240; canvas.height = 100;
-    const ctx = canvas.getContext('2d');
-    
-    // Recorte de zona central delimitada
-    ctx.drawImage(video, video.videoWidth/2 - 120, video.videoHeight/2 - 50, 240, 100, 0, 0, 240, 100);
-    
-    // Filtro de binarización rápida para mejorar la precisión del OCR
-    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imgData.data;
-    for (let i = 0; i < data.length; i += 4) {
-        let v = (data[i] + data[i+1] + data[i+2])/3;
-        v = (v < 110) ? 0 : 255;
-        data[i] = data[i+1] = data[i+2] = v;
-    }
-    ctx.putImageData(imgData, 0, 0);
-
-    try {
-        const { data: { text } } = await ocrWorker.recognize(canvas);
-        const parsed = text.replace(/\s+/g, '').toUpperCase();
-        
-        // Match con patrones típicos como FWC5, ARG12 o MEX3
-        const matchedToken = parsed.match(/[A-Z]{3}\d+/);
-        if (matchedToken) {
-            const finalCode = matchedToken[0];
-            if (ALL_IDS.includes(finalCode)) {
-                triggerCodeFound(finalCode);
-            }
-        }
-    } catch(err) {}
-
-    if (isProcessingOCR) {
-        setTimeout(() => requestAnimationFrame(processFrame), 500); 
-    }
-}
-
-function triggerCodeFound(code) {
-    if (lastScannedCode === code) return; 
-    lastScannedCode = code;
-    
-    const st = status(code);
-    if (st === 'missing') {
-        state.owned[code] = true;
-        save(); refreshSticker(code); updateStats();
-        showScanResult('ok', `¡Detectado exitosamente! ✅ ${code} agregada.`);
-        maybeShowInterstitial();
-    } else {
-        showScanResult('warn', `¿Duplicada? Detectada: ${code}`, code);
-    }
-    
-    setTimeout(() => { lastScannedCode = null; }, 4000);
-}
-
-function showScanResult(type, text, optionalCode = null) {
-    const box = document.getElementById('scanResultOverlay');
-    const icon = document.getElementById('sroIcon');
-    const txt = document.getElementById('sroText');
-    const act = document.getElementById('sroAction');
-
-    box.style.display = 'flex';
-    txt.textContent = text;
-    
-    if (type === 'ok') {
-        box.style.background = '#065F46'; box.style.borderColor = '#10B981'; icon.textContent = '✅'; act.style.display = 'none';
-    } else if (type === 'warn') {
-        box.style.background = '#1E3A8A'; box.style.borderColor = '#3B82F6'; icon.textContent = '🔁';
-        if (optionalCode) {
-            act.style.display = 'block'; act.onclick = () => { addRepeatedFromScan(optionalCode); box.style.display = 'none'; };
-        } else { act.style.display = 'none'; }
-    } else {
-        box.style.background = '#7F1D1D'; box.style.borderColor = '#EF4444'; icon.textContent = '❌'; act.style.display = 'none';
-    }
-    setTimeout(() => { box.style.display = 'none'; }, 5000);
-}
-
-function addRepeatedFromScan(code) {
-    state.repeated[code] = (state.repeated[code] || 0) + 1;
-    save(); refreshSticker(code); updateStats();
-    showToast(`🔁 Registrada una repetida extra para ${code}`);
-    maybeShowInterstitial();
-}
-
-// EXPORTACIÓN DE INFOGRAFÍA COMPLETA (HTML2CANVAS)
-function generateInfografiaImage() {
-    let owned = 0, repes = 0;
-    ALL_IDS.forEach(id => {
-        if (state.owned[id]) owned++;
-        if (state.repeated[id]) repes += state.repeated[id];
-    });
-    const missing = TOTAL - owned;
-    const pct = Math.round((owned / TOTAL) * 100);
-
-    document.getElementById('infoPct').textContent = pct + '%';
-    document.getElementById('infoTot').textContent = TOTAL;
-    document.getElementById('infoOwn').textContent = owned;
-    document.getElementById('infoMis').textContent = missing;
-    document.getElementById('infoRep').textContent = repes;
-
-    const tpl = document.getElementById('infografia-template');
-    
-    html2canvas(tpl, { backgroundColor: '#0f0720', scale: 2 }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = `Mi_Progreso_Album_2026_${pct}pct.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-        showToast("📸 Infografía descargada correctamente");
-    });
-}
-
-function shareTextList() {
-    let missingList = [];
-    GROUPS.forEach(g => {
-        let groupMissing = [];
-        g.stickers.forEach(s => { if (!state.owned[s.code]) groupMissing.push(s.code); });
-        if (groupMissing.length > 0) missingList.push(`${g.flag || ''} ${g.name}: ${groupMissing.join(', ')}`);
-    });
-    
-    const rawText = `🏆 ¡Mi Lista de Faltantes del Álbum 2026! 🏆\n\n${missingList.join('\n')}`;
-    navigator.clipboard.writeText(rawText).then(() => { showToast("📋 Faltantes copiados al portapapeles"); });
-}
-
-// PERSISTENCIA Y RESPALDOS LOCALES
-function save() { localStorage.setItem('album_progreso_2026', JSON.stringify(state)); }
-function load() {
-    const raw = localStorage.getItem('album_progreso_2026');
-    if (raw) {
-        try { state = JSON.parse(raw); } catch(e) { state = { owned: {}, repeated: {} }; }
-    }
-}
-
-function exportBackupData() {
-    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'Respaldo_Progreso_Album2026.json';
-    a.click();
-    showToast("📥 Copia de seguridad descargada");
-}
-
-function restoreBackupData(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-        try {
-            const parsed = JSON.parse(evt.target.result);
-            if (parsed.owned && parsed.repeated) {
-                state = parsed; save();
-                ALL_IDS.forEach(id => refreshSticker(id));
-                updateStats(); render();
-                showToast("📤 Copia cargada con éxito");
-            } else { showToast("❌ Archivo JSON con formato inválido"); }
-        } catch(err) { showToast("❌ Error al procesar el archivo"); }
-    };
-    reader.readAsText(file);
-}
-
-function clearAllData() {
-    if (confirm("🚨 ¿Seguro que deseas reiniciar el álbum? Perderás todo tu progreso actual de forma permanente.")) {
-        state = { owned: {}, repeated: {} }; save();
-        ALL_IDS.forEach(id => refreshSticker(id));
-        updateStats(); render();
-        showToast("🗑️ Todo tu progreso ha sido borrado");
-    }
-}
-
-let toastTimer;
-function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg; t.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-// REGISTER SERVICE WORKER PARA PWA
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-            .then(() => console.log('[PWA] Activo'))
-            .catch(e => console.warn('[PWA] SW Errado:', e));
-    });
-}
-
-// ARRANQUE DE APLICACIÓN
-document.addEventListener('DOMContentLoaded', () => {
-    buildStructure();
-    load();
-    updateStats();
-    render();
-    
-    // Mostrar un anuncio aleatorio al cargar la aplicación inmediatamente
+function maybeShowInterstitial(){
+  if(stickerAddedCount > 0 && stickerAddedCount % INTERSTITIAL_THRESHOLD === 0){
     showInterstitial();
-    // Programar rotación aleatoria fluida en el banner de abajo cada 10 segundos
-    setInterval(showInterstitial, 10000);
+  }
+}
+
+function showInterstitial(){
+  const overlay = document.getElementById('interstitialOverlay');
+  const closeBtn = document.getElementById('interCloseBtn');
+  const timerEl  = document.getElementById('interTimer');
+  closeBtn.disabled = true;
+  closeBtn.style.opacity = '0.5';
+  interCloseEnabled = false;
+  overlay.classList.add('show');
+  let secs = 5;
+  timerEl.textContent = `Podrás cerrar en ${secs}s`;
+  interCountdown = setInterval(()=>{
+    secs--;
+    if(secs <= 0){
+      clearInterval(interCountdown);
+      closeBtn.disabled = false;
+      closeBtn.style.opacity = '1';
+      timerEl.textContent = '';
+      interCloseEnabled = true;
+    } else {
+      timerEl.textContent = `Podrás cerrar en ${secs}s`;
+    }
+  },1000);
+}
+
+function closeInterstitial(){
+  if(!interCloseEnabled) return;
+  document.getElementById('interstitialOverlay').classList.remove('show');
+  clearInterval(interCountdown);
+}
+
+let pressTimer = null;
+function startPress(id,el){
+  el.classList.add('pressing');
+  pressTimer=setTimeout(()=>{pressTimer=null;el.classList.remove('pressing');markRepeated(id);},500);
+}
+function endPress(id,el){
+  el.classList.remove('pressing');
+  if(pressTimer){clearTimeout(pressTimer);pressTimer=null;toggleOwned(id);}
+}
+function cancelPress(el){
+  el.classList.remove('pressing');
+  if(pressTimer){clearTimeout(pressTimer);pressTimer=null;}
+}
+
+function toggleOwned(id){
+  const st=status(id);
+  if(st==='missing'){
+    state.owned[id]=true;
+    stickerAddedCount++;
+    maybeShowInterstitial();
+    showToast('✅ '+id+' — ¡pegada!');
+  }else if(st==='owned'){
+    delete state.owned[id];
+    showToast('↩ '+id+' desmarcada');
+  }else{
+    delete state.repeated[id];
+    state.owned[id]=true;
+    showToast('✅ '+id+' — ya no repetida');
+  }
+  save();refreshSticker(id);updateStats();
+}
+
+function markRepeated(id){
+  const c=(state.repeated[id]||1)+1;
+  if(c>9){delete state.repeated[id];delete state.owned[id];showToast('🗑 '+id+' eliminada');}
+  else{state.repeated[id]=c;delete state.owned[id];showToast('🔁 '+id+' ×'+c+' para cambio');}
+  save();refreshSticker(id);updateStats();
+}
+
+function refreshSticker(id){
+  const el=document.getElementById('s_'+id);
+  if(!el) return;
+  const st=status(id);
+  const isSpec=el.dataset.special==='1';
+  el.className='sticker-card '+st+(isSpec?' special':'');
+  const badge=el.querySelector('.rep-badge');
+  const rep=state.repeated[id];
+  if(rep&&rep>1){
+    if(badge) badge.textContent='×'+rep;
+    else{const b=document.createElement('div');b.className='rep-badge';b.textContent='×'+rep;el.appendChild(b);}
+  }else{if(badge) badge.remove();}
+}
+
+function updateStats(){
+  const owned=ALL_IDS.filter(s=>state.owned[s]||state.repeated[s]).length;
+  const repCount=Object.values(state.repeated).reduce((a,b)=>a+(b-1),0);
+  const missing=TOTAL-owned;
+  const pct=Math.round((owned/TOTAL)*100);
+  document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('pctLabel').textContent=pct+'%';
+  document.getElementById('statsGrid').innerHTML=`
+    <div class="stat"><div class="stat-val">${TOTAL}</div><div class="stat-lbl">Total</div></div>
+    <div class="stat"><div class="stat-val g">${owned}</div><div class="stat-lbl">Tenidas</div></div>
+    <div class="stat"><div class="stat-val o">${missing}</div><div class="stat-lbl">Faltan</div></div>
+    <div class="stat"><div class="stat-val b">${repCount}</div><div class="stat-lbl">Cambio</div></div>
+  `;
+}
+
+let currentTab='all';
+function setTab(tab,el){
+  currentTab=tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function render(){
+  const search=document.getElementById('searchInput').value.toLowerCase().trim();
+  const gf=document.getElementById('groupFilter').value;
+  let html='';let any=false;
+  for(const g of GROUPS){
+    if(gf&&g.id!==gf) continue;
+    const matches=g.stickers.filter(s=>{
+      if(search&&!s.code.toLowerCase().includes(search)&&!g.name.toLowerCase().includes(search)) return false;
+      const st=status(s.code);
+      if(currentTab==='owned'&&st==='missing') return false;
+      if(currentTab==='missing'&&st!=='missing') return false;
+      if(currentTab==='repeated'&&st!=='repeated') return false;
+      return true;
+    });
+    if(!matches.length) continue;
+    any=true;
+    const ownedG=g.stickers.filter(s=>state.owned[s.code]||state.repeated[s.code]).length;
+    const total=g.stickers.length;
+    const pctG=Math.round((ownedG/total)*100);
+    html+=`<div class="country-page">
+      <div class="page-header">
+        <span class="page-flag">${g.flag}</span>
+        <div class="page-info">
+          <div class="page-name">${g.name}</div>
+          <div class="page-prog-track"><div class="page-prog-fill" style="width:${pctG}%"></div></div>
+        </div>
+        <span class="page-stat">${ownedG}/${total}</span>
+      </div>
+      <div class="sticker-book">`;
+    for(const s of matches){
+      const st=status(s.code);
+      const rep=state.repeated[s.code];
+      const isSpec=!!s.special;
+      html+=`<div class="sticker-card ${st}${isSpec?' special':''}" id="s_${s.code}" data-special="${isSpec?1:0}"
+        onpointerdown="startPress('${s.code}',this)"
+        onpointerup="endPress('${s.code}',this)"
+        onpointercancel="cancelPress(this)" onpointerleave="cancelPress(this)">`;
+      html+=`<span class="sc-flag">${g.flag}</span>`;
+      html+=`<span class="sc-num">${s.code}</span>`;
+      html+=`<span class="sc-type">${s.type||''}</span>`;
+      if(rep&&rep>1) html+=`<div class="rep-badge">×${rep}</div>`;
+      html+=`</div>`;
+    }
+    html+=`</div></div>`;
+  }
+  document.getElementById('albumScroll').innerHTML = any
+    ? html
+    : `<div class="empty"><div class="empty-ico">🔍</div><div>No hay láminas que mostrar</div></div>`;
+}
+
+function renderStats(){
+  const owned=ALL_IDS.filter(s=>state.owned[s]||state.repeated[s]).length;
+  const missing=TOTAL-owned;
+  const repCount=Object.values(state.repeated).reduce((a,b)=>a+(b-1),0);
+  const pct=Math.round((owned/TOTAL)*100);
+  const sobresEstimados=Math.max(0,Math.round((missing*100)/70));
+  const milestones=[
+    {pct:10,label:'¡Empezando!',ico:'🌱'},{pct:25,label:'25% completo',ico:'⭐'},
+    {pct:50,label:'¡Mitad!',ico:'🏅'},{pct:75,label:'¡Casi!',ico:'🔥'},
+    {pct:90,label:'90% logrado',ico:'💎'},{pct:100,label:'¡Álbum completo!',ico:'🏆'},
+  ];
+  const countryData=GROUPS.filter(g=>g.stickers.length===20).map(g=>{
+    const o=g.stickers.filter(s=>state.owned[s.code]||state.repeated[s.code]).length;
+    return {id:g.id,name:g.name,flag:g.flag,owned:o,total:g.stickers.length,
+      pct:Math.round((o/g.stickers.length)*100)};
+  }).sort((a,b)=>b.pct-a.pct);
+  const r=54,cx=64,cy=64,circ=2*Math.PI*r;
+  const ownedArc=circ*(owned/TOTAL);
+  const repArc=circ*(repCount/TOTAL);
+  const donut=`<svg width="128" height="128" viewBox="0 0 128 128">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(124,58,237,0.15)" stroke-width="18"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#10B981" stroke-width="18"
+      stroke-dasharray="${ownedArc} ${circ}" stroke-dashoffset="${circ/4}" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#3B82F6" stroke-width="18"
+      stroke-dasharray="${repArc} ${circ}" stroke-dashoffset="${circ/4-ownedArc}" stroke-linecap="round"/>
+    <text x="${cx}" y="${cy-6}" text-anchor="middle" font-size="22" font-weight="800" fill="#F0EEFF">${pct}%</text>
+    <text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="11" fill="#7C6BA8">completado</text>
+  </svg>`;
+  let html=`
+  <div class="sv-title">Resumen del álbum</div>
+  <div class="donut-wrap">${donut}
+    <div class="donut-legend">
+      <div class="donut-item"><div class="donut-dot" style="background:#10B981"></div>
+        <span class="donut-lbl">Tenidas</span><span class="donut-val">${owned}</span></div>
+      <div class="donut-item"><div class="donut-dot" style="background:#3B82F6"></div>
+        <span class="donut-lbl">Para cambio</span><span class="donut-val">${repCount}</span></div>
+      <div class="donut-item"><div class="donut-dot" style="background:rgba(124,58,237,0.3)"></div>
+        <span class="donut-lbl">Faltan</span><span class="donut-val">${missing}</span></div>
+    </div>
+  </div>
+  <div class="big-stat-row">
+    <div class="big-stat"><div class="big-stat-val" style="color:#6EE7B7">${pct}%</div>
+      <div class="big-stat-lbl">Completado</div></div>
+    <div class="big-stat"><div class="big-stat-val" style="color:#FCD34D">~${sobresEstimados}</div>
+      <div class="big-stat-lbl">Sobres estimados</div></div>
+  </div>
+  <div class="sv-title">Datos del álbum 2026</div>
+  <div class="fun-facts">
+    <div class="fact"><span class="fact-ico">📖</span>112 páginas · 48 selecciones clasificadas.</div>
+    <div class="fact"><span class="fact-ico">🌎</span>Torneo en 3 países: EE.UU., Canadá y México.</div>
+    <div class="fact"><span class="fact-ico">📦</span>Sobres de 7 láminas — récord histórico.</div>
+    <div class="fact"><span class="fact-ico">⭐</span>68 láminas especiales en material premium foil.</div>
+    <div class="fact"><span class="fact-ico">🏆</span>La colección más grande de la historia.</div>
+  </div>
+  <div class="sv-title">Progreso por selección</div>
+  <div class="country-bars">`;
+  for(const c of countryData){
+    html+=`<div class="cbar-row">
+      <span class="cbar-flag">${c.flag}</span>
+      <span class="cbar-name">${c.name}</span>
+      <div class="cbar-track"><div class="cbar-fill" style="width:${c.pct}%"></div></div>
+      <span class="cbar-pct">${c.pct}%</span>
+    </div>`;
+  }
+  html+=`</div><div class="sv-title">Logros</div><div class="milestones">`;
+  for(const m of milestones){
+    const reached=pct>=m.pct;
+    html+=`<div class="milestone${reached?' reached':''}">
+      <div class="milestone-ico">${m.ico}</div>
+      <div class="milestone-lbl">${m.label}</div>
+      <div class="milestone-pct">${m.pct}%</div>
+    </div>`;
+  }
+  html+=`</div>`;
+  document.getElementById('statsView').innerHTML=html;
+}
+
+function showView(name,btn){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='stats') renderStats();
+  if(name!=='scanner') stopCamera();
+}
+
+function bulkAdd(){
+  const raw=document.getElementById('bulkInput').value;
+  const ids=raw.split(/[,\s]+/).map(s=>s.trim().toUpperCase()).filter(Boolean);
+  let count=0;
+  ids.forEach(id=>{
+    if(ALL_IDS.includes(id)&&status(id)==='missing'){
+      state.owned[id]=true;delete state.repeated[id];
+      count++;stickerAddedCount++;
+    }
+  });
+  document.getElementById('bulkInput').value='';
+  save();render();updateStats();
+  showToast('✅ '+count+' láminas marcadas');
+  if(count>0) maybeShowInterstitial();
+}
+
+function bulkRepeat(){
+  const raw=document.getElementById('bulkInput').value;
+  const ids=raw.split(/[,\s]+/).map(s=>s.trim().toUpperCase()).filter(Boolean);
+  let count=0;
+  ids.forEach(id=>{
+    if(ALL_IDS.includes(id)){state.repeated[id]=(state.repeated[id]||1)+1;delete state.owned[id];count++;}
+  });
+  document.getElementById('bulkInput').value='';
+  save();render();updateStats();
+  showToast('🔁 '+count+' marcadas para cambio');
+}
+
+async function exportData(){
+  showToast('⏳ Generando infografía…');
+  const owned   = ALL_IDS.filter(s=>state.owned[s]||state.repeated[s]).length;
+  const missing  = TOTAL-owned;
+  const repCount = Object.values(state.repeated).reduce((a,b)=>a+(b-1),0);
+  const pct      = Math.round((owned/TOTAL)*100);
+
+  const completed = GROUPS
+    .filter(g=>g.stickers.length>0)
+    .filter(g=>g.stickers.every(s=>state.owned[s.code]||state.repeated[s.code]))
+    .map(g=>g.flag+' '+g.name);
+
+  document.getElementById('infog-date').textContent =
+    'Actualizado: '+new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('infog-pct').textContent   = pct+'%';
+  document.getElementById('infog-owned').textContent  = owned;
+  document.getElementById('infog-missing').textContent= missing;
+  document.getElementById('infog-repeated').textContent= repCount;
+  document.getElementById('infog-completed-list').textContent =
+    completed.length ? completed.join('  ·  ') : 'Ninguna aún — ¡sigue coleccionando!';
+
+  const circumference = 2*Math.PI*65; 
+  const arc = circumference*(pct/100);
+  const arcEl = document.getElementById('infog-ring-arc');
+  arcEl.setAttribute('stroke-dasharray', arc+' '+circumference);
+
+  await new Promise(r=>setTimeout(r,100));
+
+  try{
+    const canvas = await html2canvas(document.getElementById('infografia-template'),{
+      useCORS: true,
+      scale: 2,
+      backgroundColor: null,
+      logging: false,
+    });
+    const link = document.createElement('a');
+    link.download = 'Mi_Progreso_Album_2026.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    showToast('📸 ¡Infografía descargada!');
+  }catch(err){
+    console.error(err);
+    showToast('❌ Error al generar la imagen.');
+  }
+}
+
+function backupData(){
+  const backup = {
+    version: 'mialb2026_v3',
+    timestamp: new Date().toISOString(),
+    total: TOTAL,
+    state: state,
+  };
+  const blob = new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'backup_album_2026.json';
+  a.click();
+  showToast('💾 Copia de seguridad descargada');
+}
+
+function restoreData(event){
+  const file = event.target.files[0];
+  if(!file){ return; }
+  const reader = new FileReader();
+  reader.onload = function(e){
+    try{
+      const parsed = JSON.parse(e.target.result);
+      if(
+        typeof parsed !== 'object' ||
+        !parsed.version ||
+        !parsed.version.startsWith('mialb2026') ||
+        typeof parsed.state !== 'object' ||
+        typeof parsed.state.owned !== 'object' ||
+        typeof parsed.state.repeated !== 'object'
+      ){
+        showToast('❌ Archivo inválido.');
+        return;
+      }
+      const ownedKeys = Object.keys(parsed.state.owned);
+      const invalidKeys = ownedKeys.filter(k=>!ALL_IDS.includes(k));
+      if(invalidKeys.length > ownedKeys.length * 0.5){
+        showToast('❌ El backup no corresponde a este álbum.');
+        return;
+      }
+      state = {
+        owned:    parsed.state.owned    || {},
+        repeated: parsed.state.repeated || {},
+      };
+      save();render();updateStats();
+      showToast('✅ Progreso restaurado');
+    }catch(err){
+      showToast('❌ Error al leer el archivo.');
+    }finally{
+      event.target.value='';
+    }
+  };
+  reader.readAsText(file);
+}
+
+function clearAllData(){
+  if(!confirm('¿Seguro que quieres borrar TODO tu progreso?')) return;
+  state = {owned:{}, repeated:{}};
+  save();render();updateStats();
+  showToast('🗑 Progreso borrado');
+}
+
+const OCR_INTERVAL_MS = 1500;
+const OCR_PAUSE_MS    = 4000;
+
+function setOcrStatus(msg){
+  const el=document.getElementById('ocrStatus');
+  if(el) el.textContent=msg;
+}
+
+async function initOcrWorker(){
+  if(ocrWorker) return;
+  setOcrStatus('⏳ Cargando OCR…');
+  try{
+    ocrWorker = Tesseract.createWorker({logger:()=>{}});
+    await ocrWorker.load();
+    await ocrWorker.loadLanguage('eng');
+    await ocrWorker.initialize('eng');
+    await ocrWorker.setParameters({
+      tessedit_char_whitelist:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ',
+    });
+    setOcrStatus('✅ OCR listo — apunta la lámina');
+  }catch(e){
+    console.error('OCR init error',e);
+    setOcrStatus('❌ Error OCR: '+(e.message||e));
+    ocrWorker=null;
+    showScanResult('err','❌ Error OCR: '+(e.message||e));
+  }
+}
+
+async function toggleCamera(){
+  const btn=document.getElementById('camToggleBtn');
+  const camArea=document.getElementById('camArea');
+  const placeholder=document.getElementById('camPlaceholder');
+  const video=document.getElementById('video');
+  if(!scanning){
+    try{
+      stream=await navigator.mediaDevices.getUserMedia({
+        video:{facingMode:'environment',width:{ideal:1280},height:{ideal:720}}
+      });
+    }catch(e){
+      console.warn('Environment camera failed, retrying without facingMode',e);
+      try{
+        stream=await navigator.mediaDevices.getUserMedia({video:true});
+      }catch(err){
+        console.error('Camera access error',err);
+        showScanResult('err','❌ Sin acceso a cámara: '+(err.message||err));
+        setOcrStatus('❌ Sin acceso a cámara');
+        return;
+      }
+    }
+    video.srcObject=stream;
+    video.onloadedmetadata = ()=> video.play().catch(()=>{});
+    camArea.style.display='flex';
+    placeholder.style.display='none';
+    btn.className='cam-btn stop';
+    btn.textContent='⏹ Desactivar cámara';
+    scanning=true;
+    await initOcrWorker();
+    startOcrLoop();
+  }else{
+    stopCamera();
+  }
+}
+
+function stopCamera(){
+  stopOcrLoop();
+  if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
+  scanning=false;
+  const camArea=document.getElementById('camArea');
+  const placeholder=document.getElementById('camPlaceholder');
+  if(camArea) camArea.style.display='none';
+  if(placeholder) placeholder.style.display='flex';
+  const btn=document.getElementById('camToggleBtn');
+  if(btn){btn.className='cam-btn start';btn.textContent='📷 Activar cámara';}
+}
+
+function startOcrLoop(){
+  stopOcrLoop();
+  ocrInterval=setInterval(captureAndOCR, OCR_INTERVAL_MS);
+}
+function stopOcrLoop(){
+  if(ocrInterval){clearInterval(ocrInterval);ocrInterval=null;}
+  isProcessingOCR=false; 
+}
+
+function preprocessFrame(video){
+  const canvas=document.getElementById('ocrCanvas');
+  const vw=video.videoWidth,vh=video.videoHeight;
+  if(!vw||!vh) return null;
+  const cropW=Math.min(640,vw);
+  const cropH=Math.min(200,Math.round(vh*0.25));
+  const cropX=Math.round((vw-cropW)/2);
+  const cropY=Math.round((vh-cropH)/2);
+  canvas.width=cropW;canvas.height=cropH;
+  const ctx=canvas.getContext('2d');
+  ctx.drawImage(video,cropX,cropY,cropW,cropH,0,0,cropW,cropH);
+  const imgData=ctx.getImageData(0,0,cropW,cropH);
+  const d=imgData.data;
+  for(let i=0;i<d.length;i+=4){
+    const gray=0.299*d[i]+0.587*d[i+1]+0.114*d[i+2];
+    const bin=gray>128?255:0;
+    d[i]=d[i+1]=d[i+2]=bin;
+  }
+  ctx.putImageData(imgData,0,0);
+  const out=document.createElement('canvas');
+  out.width=cropW*2;out.height=cropH*2;
+  out.getContext('2d').drawImage(canvas,0,0,out.width,out.height);
+  return out;
+}
+
+async function captureAndOCR(){
+  if(isProcessingOCR||ocrPaused||!ocrWorker||!scanning) return; 
+  const video=document.getElementById('video');
+  if(!video||video.readyState<2) return;
+  const processedCanvas=preprocessFrame(video);
+  if(!processedCanvas) return;
+
+  isProcessingOCR=true; 
+  setOcrStatus('🔍 Analizando…');
+
+  try{
+    const {data:{text}}=await ocrWorker.recognize(processedCanvas);
+    const code=matchCode(text);
+    if(code) handleOcrHit(code);
+    else setOcrStatus('👀 Buscando código…');
+  }catch(e){
+    console.error('OCR recognize error',e);
+    setOcrStatus('⚠️ Error OCR, reintentando…');
+    showScanResult('err','⚠️ Error OCR: '+(e.message||e));
+  }finally{
+    isProcessingOCR=false; 
+  }
+}
+
+function matchCode(rawText){
+  const cleaned=rawText.toUpperCase().replace(/[^A-Z0-9]/g,'');
+  for(let len=8;len>=3;len--){
+    for(let i=0;i<=cleaned.length-len;i++){
+      const sub=cleaned.substring(i,i+len);
+      if(ALL_IDS.includes(sub)) return sub;
+    }
+  }
+  return null;
+}
+
+function handleOcrHit(code){
+  const st=status(code);
+  if(st==='missing'){
+    state.owned[code]=true;
+    stickerAddedCount++;
+    save();refreshSticker(code);updateStats();
+    showScanResult('ok','✅ '+code+' — ¡detectada y marcada!');
+    showToast('📷 '+code+' marcada por cámara');
+    setOcrStatus('✅ ¡'+code+' pegada!');
+    ocrPaused=true;
+    maybeShowInterstitial();
+    setTimeout(()=>{ocrPaused=false;setOcrStatus('👀 Buscando código…');},OCR_PAUSE_MS);
+  }else if(st==='owned'){
+    showScanResult('warn','⚠️ '+code+' ya la tienes. ¿Repetida?',code);
+    setOcrStatus('🔁 '+code+' ya tenida');
+    ocrPaused=true;
+    setTimeout(()=>{ocrPaused=false;setOcrStatus('👀 Buscando código…');},OCR_PAUSE_MS);
+  }else{
+    showScanResult('warn','🔁 '+code+' repetida ×'+(state.repeated[code]||1));
+    ocrPaused=true;
+    setTimeout(()=>{ocrPaused=false;setOcrStatus('👀 Buscando código…');},OCR_PAUSE_MS);
+  }
+}
+
+function showScanResult(type,msg,code){
+  document.getElementById('scanResult').innerHTML=
+    `<div class="scan-result ${type}">${msg}${
+      code
+        ?` <button onclick="markRepeated('${code}');document.getElementById('scanResult').innerHTML=''"
+             style="margin-left:8px;background:rgba(255,255,255,0.15);border:none;
+             color:inherit;padding:4px 10px;border-radius:8px;font-size:12px;cursor:pointer">
+             Sí, repetida</button>`
+        :''
+    }</div>`;
+}
+
+function manualMark(){
+  const inp=document.getElementById('manualCode');
+  const code=inp.value.trim().toUpperCase();
+  if(!code) return;
+  if(!ALL_IDS.includes(code)){
+    showScanResult('err','❌ Código "'+code+'" no existe en el álbum');
+    return;
+  }
+  inp.value='';
+  const st=status(code);
+  if(st==='missing'){
+    state.owned[code]=true;
+    stickerAddedCount++;
+    save();refreshSticker(code);updateStats();
+    showScanResult('ok','✅ '+code+' — ¡marcada como tenida!');
+    maybeShowInterstitial();
+  }else if(st==='owned'){
+    showScanResult('warn','⚠️ '+code+' ya la tienes. ¿Repetida?',code);
+  }else{
+    showScanResult('warn','🔁 '+code+' ya repetida ×'+state.repeated[code]);
+  }
+}
+
+let toastT;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js')
+      .then(()=>console.log('[PWA] Service Worker registrado'))
+      .catch(e=>console.warn('[PWA] SW no disponible:',e));
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const sel=document.getElementById('groupFilter');
+  GROUPS.forEach(g=>{
+    const o=document.createElement('option');
+    o.value=g.id;o.textContent=g.flag+' '+g.name;sel.appendChild(o);
+  });
+  updateStats();
+  render();
 });
 </script>
 </body>
