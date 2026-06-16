@@ -951,133 +951,41 @@ function showView(name,btn){
 }
 
 // ======================= PARTIDOS / CALENDARIO / PRONÓSTICOS =======================
-const FIXTURES = (function(){
-  // Minimal sample fixtures — dates in UTC; real app should replace with full fixture list
-  const start = Date.UTC(new Date().getUTCFullYear(),5,10); // placeholder June
-  const teams = GROUPS.filter(g=>g.id.length===3).map(g=>g.id);
-  const list = [];
-  for(let i=0;i<Math.min(teams.length-1,24);i+=2){
-    const a=teams[i], b=teams[i+1];
-    const dt = new Date(start + (i*24*60*60*1000));
-    list.push({id:'m'+i,teamA:a,teamB:b,date:dt.toISOString()});
-  }
-  return list;
-})();
 
-function loadPronosticos(){
-  try{return JSON.parse(localStorage.getItem('album_pronosticos')||'{}');}catch(e){return{}}
-}
-function savePronosticos(o){try{localStorage.setItem('album_pronosticos',JSON.stringify(o));}catch(e){}}
-
-function formatLocalDate(iso){
-  try{
-    const d=new Date(iso);
-    return new Intl.DateTimeFormat(undefined,{weekday:'short',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}).format(d);
-  }catch(e){return iso}
-}
-
-function renderPartidos(filterTeam){
-  const container=document.getElementById('partidosView');
-  const pron=loadPronosticos();
-  let html=`<div class="sv-title">Calendario & Simulador</div>`;
-  html+=`<div style="padding:10px">Zona horaria: <strong>${Intl.DateTimeFormat().resolvedOptions().timeZone}</strong></div>`;
-  html+=`<div style="padding:0 10px 12px">`;
-  FIXTURES.forEach(f=>{
-    if(filterTeam && f.teamA!==filterTeam && f.teamB!==filterTeam) return;
-    const key=f.id; const p=pron[key]||{sa:'',sb:''};
-    html+=`<div style="padding:10px;background:var(--card);border:1px solid var(--border);margin-bottom:8px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:8px">
-      <div style="min-width:140px">
-        <div style="font-weight:700">${f.teamA} vs ${f.teamB}</div>
-        <div style="font-size:12px;color:var(--text3)">${formatLocalDate(f.date)}</div>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <input inputmode="numeric" pattern="[0-9]*" placeholder="0" value="${p.sa||''}" id="in_${key}_a" style="width:44px;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--text)">
-        <span style="font-weight:800">-</span>
-        <input inputmode="numeric" pattern="[0-9]*" placeholder="0" value="${p.sb||''}" id="in_${key}_b" style="width:44px;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--text)">
-        <button class="bbtn g" onclick="savePronostico('${key}')">Guardar</button>
-      </div>
-    </div>`;
-  });
-  html+=`</div>`;
-  html+=renderTablaPosiciones(pron, filterTeam);
-  container.innerHTML=html;
-}
-
-function savePronostico(matchId){
-  const a=document.getElementById('in_'+matchId+'_a');
-  const b=document.getElementById('in_'+matchId+'_b');
-  if(!a||!b) return;
-  const sa=a.value.trim(); const sb=b.value.trim();
-  const pron=loadPronosticos(); pron[matchId]={sa, sb}; savePronosticos(pron);
-  showToast('✅ Pronóstico guardado');
-  renderPartidos();
-}
-
-function renderTablaPosiciones(pron, filterTeam){
-  // Simple simulated table based on pronósticos only (won=3, tie=1)
-  const teams={};
-  FIXTURES.forEach(f=>{teams[f.teamA]=teams[f.teamA]||{p:0,g:0};teams[f.teamB]=teams[f.teamB]||{p:0,g:0};});
-  Object.keys(pron).forEach(k=>{
-    const p=pron[k]; const f=FIXTURES.find(x=>x.id===k); if(!f) return;
-    if(p.sa===''||p.sb==='') return;
-    const sa=Number(p.sa), sb=Number(p.sb);
-    teams[f.teamA].g++; teams[f.teamB].g++;
-    if(sa>sb){teams[f.teamA].p+=3;}else if(sa<sb){teams[f.teamB].p+=3;}else{teams[f.teamA].p+=1;teams[f.teamB].p+=1}
-  });
-  const rows=Object.keys(teams).map(t=>({team:t,pts:teams[t].p,played:teams[t].g})).sort((a,b)=>b.pts-a.pts||b.played-a.played);
-  let html=`<div class="sv-title">Tabla simulada</div><div style="padding:10px">`;
-  html+=`<table style="width:100%;border-collapse:collapse;color:var(--text)">`;
-  html+=`<tr><th style="text-align:left;padding:6px 8px">Equipo</th><th style="text-align:right;padding:6px 8px">Pts</th><th style="text-align:right;padding:6px 8px">PJ</th></tr>`;
-  rows.forEach(r=>{html+=`<tr><td style="padding:6px 8px">${r.team}</td><td style="padding:6px 8px;text-align:right">${r.pts}</td><td style="padding:6px 8px;text-align:right">${r.played}</td></tr>`});
-  html+=`</table></div>`;
-  return html;
-}
-
-function openFixtureForTeam(teamId){
-  // Switch to partidos tab and filter
-  const btn = Array.from(document.querySelectorAll('.nav-btn')).find(b=>b.textContent.includes('Partidos'));
-  showView('partidos',btn);
-  renderPartidos(teamId);
-}
-
-// ======================= LOGROS / GAMIFICACIÓN =======================
-const ACHIEVEMENTS = [
-  {id:'first_scan',label:'Primer Escudo Escaneado',check:st=>Object.keys(st.owned||{}).length>=1},
-  {id:'groupA_complete',label:'Grupo A Completado',check:st=>{
-    const g=GROUPS.find(x=>x.id==='ARG'); return g?g.stickers.every(s=>st.owned[s.code]||st.repeated[s.code]):false
-  }},
-  {id:'twenty_repeats',label:'Rey de las Repetidas: 20 repetidas',check:st=>Object.values(st.repeated||{}).reduce((a,b)=>a+(b-1),0)>=20},
-  {id:'five_days',label:'Fiel Seguidor: 5 días usando la app',check:st=>{
-    try{const first=localStorage.getItem('mialb_first_use'); if(!first){localStorage.setItem('mialb_first_use',new Date().toISOString()); return false;} const days=Math.floor((Date.now()-new Date(first))/86400000); return days>=5}catch(e){return false}
-  }},
-];
-
-function loadAchievements(){try{return JSON.parse(localStorage.getItem('mialb_achievements')||'[]')}catch(e){return[]}}
-function saveAchievements(a){try{localStorage.setItem('mialb_achievements',JSON.stringify(a))}catch(e){}}
-
-function checkAchievements(){
-  const unlocked=loadAchievements();
-  const newUnlocked=[];
-  for(const a of ACHIEVEMENTS){
-    if(unlocked.includes(a.id)) continue;
-    try{if(a.check(state)){unlocked.push(a.id);newUnlocked.push(a);}}
-    catch(e){}
-  }
-  if(newUnlocked.length){saveAchievements(unlocked); newUnlocked.forEach(n=>showAchievement(n));}
-}
-
-function showAchievement(a){
-  showToast('🏅 Logro desbloqueado: '+a.label);
-  // small animated badge
-  const t=document.createElement('div'); t.innerHTML=`<div style="position:fixed;left:50%;top:20%;transform:translateX(-50%);background:linear-gradient(90deg,#F59E0B,#FCD34D);padding:12px 18px;border-radius:18px;font-weight:800;z-index:9999;box-shadow:0 8px 30px rgba(0,0,0,0.5)">${a.label}</div>`;
-  document.body.appendChild(t); setTimeout(()=>t.remove(),2800);
-}
 
 // ======================= TRIVIA DIARIA =======================
 const TRIVIA_POOL = [
-  {q:'¿Qué país ganó la Copa del Mundo 2018?',a:'FRA'},
-  {q:'¿Quién ganó el Balón de Oro 2018?',a:'LUKA'},
-  // ... fill up to 30 items; simplified answers
+  {q:'¿Quién ostenta el récord de más goles en la historia de las Copas del Mundo?',opciones:['Pelé','Miroslav Klose','Ronaldo Nazário','Just Fontaine'],correcta:1},
+  {q:'¿Cuál es el país que más Copas del Mundo ha ganado?',opciones:['Alemania','Italia','Brasil','Francia'],correcta:2},
+  {q:'¿En qué año Brasil ganó su quinta Copa del Mundo?',opciones:['2000','2002','2004','2006'],correcta:1},
+  {q:'¿Quién ganó el Balón de Oro del Mundial 2022?',opciones:['Neymar','Kylian Mbappé','Lionel Messi','Sergio Busquets'],correcta:1},
+  {q:'¿Cuántas veces ha ganado Argentina la Copa del Mundo?',opciones:['1 vez','2 veces','3 veces','4 veces'],correcta:1},
+  {q:'¿Quién anotó el gol más rápido en la historia de la Copa del Mundo?',opciones:['Hakan Şükür','Garrincha','Pelé','Diego Maradona'],correcta:0},
+  {q:'¿En qué país se jugó la Copa del Mundo 2014?',opciones:['España','Brasil','Alemania','Francia'],correcta:1},
+  {q:'¿Cuántos goles anotó Pelé en las Copas del Mundo?',opciones:['10','12','15','17'],correcta:1},
+  {q:'¿Qué selección ganó la Copa del Mundo 2018?',opciones:['Alemania','Francia','Brasil','Bélgica'],correcta:1},
+  {q:'¿Cuántas Copas del Mundo ha jugado Cristiano Ronaldo?',opciones:['3','4','5','6'],correcta:1},
+  {q:'¿Quién fue el goleador de la Copa del Mundo 2014?',opciones:['Neymar','James Rodríguez','Thomas Müller','Mario Götze'],correcta:1},
+  {q:'¿En qué país se jugó la primera Copa del Mundo?',opciones:['Francia','Italia','Uruguay','Brasil'],correcta:2},
+  {q:'¿Cuántos países participan en la Copa del Mundo 2026?',opciones:['32','40','44','48'],correcta:3},
+  {q:'¿Quién es el máximo goleador en la historia de la Copa del Mundo con 16 goles?',opciones:['Pelé','Gerd Müller','Miroslav Klose','Ronaldo'],correcta:2},
+  {q:'¿Cuánto tiempo duró el gol más rápido en una final de Copa del Mundo?',opciones:['11 segundos','12 segundos','13 segundos','14 segundos'],correcta:0},
+  {q:'¿Cuál fue el marcador de la final del Mundial 2022 entre Argentina y Francia?',opciones:['2-2','3-3','4-4','1-1'],correcta:1},
+  {q:'¿Qué selección ha ganado más Balones de Oro en Copas del Mundo?',opciones:['Alemania','Brasil','Francia','Argentina'],correcta:1},
+  {q:'¿En qué año Maradona ganó su primera Copa del Mundo?',opciones:['1982','1984','1986','1988'],correcta:2},
+  {q:'¿Cuántos goles anotó Diego Maradona en Copas del Mundo?',opciones:['6','8','10','12'],correcta:1},
+  {q:'¿Quién fue el entrenador de Francia en la Copa del Mundo 2018?',opciones:['Laurent Blanc','Didier Deschamps','Zinedine Zidane','Guy Stéphan'],correcta:1},
+  {q:'¿Cuál es el equipo con más participaciones en Copas del Mundo?',opciones:['Italia','Alemania','Brasil','Argentina'],correcta:2},
+  {q:'¿Cuántas finales ha jugado Italia en la Copa del Mundo?',opciones:['2','3','4','5'],correcta:2},
+  {q:'¿En qué país se jugará la Copa del Mundo 2026?',opciones:['México, Canadá y USA','Alemania y Austria','Arabia Saudita','Portugal y España'],correcta:0},
+  {q:'¿Quién fue el goleador del Mundial 2022?',opciones:['Lionel Messi','Kylian Mbappé','Gavi','Julián Álvarez'],correcta:1},
+  {q:'¿Cuál es el promedio de goles por partido en una Copa del Mundo?',opciones:['2.5','3.0','2.7','2.2'],correcta:2},
+  {q:'¿Qué selección ha ganado la Copa del Mundo antes de 2022?',opciones:['Alemania 2014','Francia 2018','Italia 2006','España 2010'],correcta:1},
+  {q:'¿Cuántos goles marcó Brasil en el Mundial 2002?',opciones:['10','12','13','14'],correcta:2},
+  {q:'¿Quién fue el Balón de Oro del Mundial 1990?',opciones:['Salvatore Schillaci','Lothar Matthäus','Diego Maradona','Franz Beckenbauer'],correcta:0},
+  {q:'¿Cuál ha sido la mayor goleada en una final de Copa del Mundo?',opciones:['3-0','4-1','5-2','6-3'],correcta:1},
+  {q:'¿En qué año se jugó la primera Copa del Mundo televisada?',opciones:['1930','1950','1954','1962'],correcta:2},
+  {q:'¿Cuántas veces ha sido subcampeona Alemania en la Copa del Mundo?',opciones:['2','3','4','5'],correcta:2}
 ];
 
 function triviaKey(){return 'album_trivia'}
@@ -1093,16 +1001,19 @@ function showTriviaIfNeeded(){
     if(saved.day===idx) return; // already answered today
     const t=TRIVIA_POOL[idx];
     if(!t) return;
-    // show modal
+    // show modal with multiple choice
     const overlay=document.createElement('div'); overlay.style= 'position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999';
-    const box=document.createElement('div'); box.style='background:var(--card);padding:20px;border-radius:12px;max-width:440px;color:var(--text);text-align:center';
-    box.innerHTML=`<div style="font-weight:800;margin-bottom:8px">Trivia del día</div><div style="margin-bottom:12px">${t.q}</div><input id="triviaAns" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--text);margin-bottom:10px"><div style="display:flex;gap:8px;justify-content:center"><button class="bbtn g" id="triviaOk">Responder</button><button class="bbtn" id="triviaSkip">Omitir</button></div>`;
+    const box=document.createElement('div'); box.style='background:var(--card);padding:20px;border-radius:12px;max-width:500px;color:var(--text);text-align:center';
+    let optionsHtml=t.opciones.map((o,i)=>`<div style="margin:8px 0;padding:10px;border-radius:8px;border:2px solid var(--border);cursor:pointer;background:var(--bg3);transition:all 0.2s" class="trivia-opt" data-idx="${i}" onclick="document.querySelectorAll('.trivia-opt').forEach(x=>x.style.borderColor='var(--border)');this.style.borderColor='#3B82F6'">${o}</div>`).join('');
+    box.innerHTML=`<div style="font-weight:800;margin-bottom:12px;font-size:18px">Trivia del día</div><div style="margin-bottom:16px">${t.q}</div><div style="margin-bottom:12px">${optionsHtml}</div><div style="display:flex;gap:8px;justify-content:center"><button class="bbtn g" id="triviaOk">Responder</button><button class="bbtn" id="triviaSkip">Omitir</button></div>`;
     overlay.appendChild(box); document.body.appendChild(overlay);
     document.getElementById('triviaOk').onclick=()=>{
-      const ans=document.getElementById('triviaAns').value.trim().toUpperCase();
-      if(ans===t.a){
+      const selected=document.querySelector('.trivia-opt[style*="rgb(59, 130, 246)"]');
+      if(!selected){showToast('⚠️ Selecciona una opción'); return;}
+      const ans=parseInt(selected.dataset.idx);
+      if(ans===t.correcta){
         confettiEffect(); showToast('✅ Correcto — ¡premio diario!');
-      }else{ showToast('❌ Incorrecto — Respuesta: '+t.a); }
+      }else{ showToast('❌ Incorrecto — Respuesta correcta: '+t.opciones[t.correcta]); }
       localStorage.setItem(triviaKey(),JSON.stringify({day:idx,ans:ans})); overlay.remove();
     };
     document.getElementById('triviaSkip').onclick=()=>{ overlay.remove(); };
