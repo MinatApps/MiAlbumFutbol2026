@@ -5,9 +5,11 @@
     <meta name="google-site-verification" content="R6yZM9uHBSVVI6UXLmyd0Sn23wzTSaIzTLp29Ys4JHA" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
+    <!-- Configuración Oficial de Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5499913988915360" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-5499913988915360">
 
+    <!-- Configuración PWA e Interfaz de App Nativa Móvil -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Mi Álbum 2026">
@@ -175,7 +177,6 @@ body{display:flex;flex-direction:column;height:100dvh}
 .big-stat-val{font-size:34px;font-weight:800;line-height:1}
 .big-stat-lbl{font-size:11px;color:var(--text3);margin-top:4px}
 
-/* Estilos de Fixture y Pronósticos */
 .fixture-filter-row{display:flex;gap:8px;margin-bottom:12px}
 .match-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:14px;margin-bottom:10px}
 .match-header{display:flex;justify-content:between;font-size:11px;color:var(--text3);margin-bottom:8px}
@@ -185,7 +186,6 @@ body{display:flex;flex-direction:column;height:100dvh}
 .match-input{width:42px;height:36px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);text-align:center;color:#fff;font-size:16px;font-weight:700;outline:none}
 .match-input:focus{border-color:var(--purple2)}
 
-/* Estilos de Trivia */
 .trivia-card{background:linear-gradient(145deg,var(--bg3),var(--card));border:1px solid var(--border2);border-radius:var(--rl);padding:16px;margin-bottom:16px}
 .trivia-options{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
 .trivia-opt-btn{background:var(--card2);border:1px solid var(--border);padding:12px;border-radius:var(--r);color:#fff;font-size:13px;font-weight:600;text-align:left;cursor:pointer;transition:all 0.15s}
@@ -193,11 +193,6 @@ body{display:flex;flex-direction:column;height:100dvh}
 
 .donut-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);
   padding:16px;display:flex;align-items:center;gap:16px;margin-bottom:4px}
-.donut-legend{flex:1}
-.donut-item{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.donut-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
-.donut-lbl{font-size:13px;color:var(--text2)}
-.donut-val{font-size:13px;font-weight:700;color:var(--text);margin-left:auto}
 .country-bars{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);
   padding:14px;margin-bottom:4px}
 .cbar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
@@ -208,15 +203,6 @@ body{display:flex;flex-direction:column;height:100dvh}
 .cbar-fill{height:100%;border-radius:99px;
   background:linear-gradient(90deg,var(--purple),var(--purple2));transition:width 0.5s}
 .cbar-pct{font-size:11px;color:var(--text3);width:30px;text-align:right;flex-shrink:0}
-.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
-.milestone{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-  padding:12px 8px;text-align:center}
-.milestone.reached{border-color:var(--gold);background:linear-gradient(160deg,#2D1A00,#3D2500)}
-.milestone-ico{font-size:24px;margin-bottom:4px}
-.milestone-lbl{font-size:10px;color:var(--text3);line-height:1.3}
-.milestone.reached .milestone-lbl{color:var(--gold2)}
-.milestone-pct{font-size:11px;font-weight:700;color:var(--text4);margin-top:3px}
-.milestone.reached .milestone-pct{color:var(--gold)}
 .fun-facts{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);
   padding:14px;margin-bottom:4px}
 .fact{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;
@@ -273,7 +259,7 @@ body{display:flex;flex-direction:column;height:100dvh}
 .scan-result.err{background:rgba(239,68,68,0.2);color:var(--red2)}
 .scan-result.warn{background:rgba(245,158,11,0.15);color:var(--gold2)}
 
-/* ═══════════════ SETTINGS & COMPARTIR VIEW ═══════════════ */
+/* ═══════════════ SETTINGS & CONFIG VIEW ═══════════════ */
 .settings-view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding:16px 14px 20px;background:var(--bg)}
 .settings-card{background:var(--card);border:1px solid var(--border);
@@ -291,7 +277,6 @@ body{display:flex;flex-direction:column;height:100dvh}
 .settings-btn.purple{background:linear-gradient(135deg,var(--purple-dark),var(--purple));color:#fff}
 .settings-btn.blue{background:linear-gradient(135deg,#1E3A8A,#3B82F6);color:#fff}
 #restoreFileInput{display:none}
-.settings-divider{height:1px;background:var(--border);margin:14px 0}
 .settings-info{font-size:12px;color:var(--text4);text-align:center;padding:8px 0}
 
 /* ═══════════════ INTERSTITIAL ADS MODAL ═══════════════ */
@@ -368,6 +353,7 @@ body{display:flex;flex-direction:column;height:100dvh}
 
 <div class="views-wrapper">
 
+  <!-- VISTA 1: ÁLBUM PRINCIPAL -->
   <div class="view active" id="view-album">
     <div class="album-header">
       <div class="header-top">
@@ -410,6 +396,7 @@ body{display:flex;flex-direction:column;height:100dvh}
     <div class="album-scroll" id="albumScroll"></div>
   </div>
 
+  <!-- VISTA 2: PARTIDOS INTERACTIVOS (PRODE / FIXTURE) -->
   <div class="view" id="view-partidos">
     <div class="stats-view">
       <div class="sv-title">📅 Calendario Mundial 2026 (104 Partidos)</div>
@@ -422,6 +409,7 @@ body{display:flex;flex-direction:column;height:100dvh}
     </div>
   </div>
 
+  <!-- VISTA 3: TRIVIA DIARIA & PROGRESO ANALÍTICO -->
   <div class="view" id="view-progreso">
     <div class="stats-view">
       <div class="sv-title">🧠 Trivia Mundialista del Día</div>
@@ -432,6 +420,7 @@ body{display:flex;flex-direction:column;height:100dvh}
     </div>
   </div>
 
+  <!-- VISTA 4: GENERADOR DE INTERCHANGE & EXPORTAR -->
   <div class="view" id="view-compartir">
     <div class="settings-view">
       <div class="settings-card">
@@ -444,6 +433,7 @@ body{display:flex;flex-direction:column;height:100dvh}
     </div>
   </div>
 
+  <!-- VISTA 5: ESCÁNER OCR -->
   <div class="view" id="view-scanner">
     <div class="scanner-view">
       <div class="scanner-top">
@@ -477,8 +467,17 @@ body{display:flex;flex-direction:column;height:100dvh}
     </div>
   </div>
 
+  <!-- VISTA 6: CONFIGURACIONES -->
   <div class="view" id="view-settings">
     <div class="settings-view">
+      
+      <!-- NUEVA TARJETA INTELIGENTE DE INSTALACIÓN PWA -->
+      <div class="settings-card" id="pwaInstallCard" style="display: none; background: linear-gradient(135deg, #4C1D95, #7C3AED); border: 1px solid var(--purple2);">
+        <h3 style="color: #fff;">📲 Instalar en tu Celular</h3>
+        <p style="color: rgba(255,255,255,0.85); font-size: 11.5px;">Lleva tu álbum a todas partes. Instálalo en la pantalla de tu móvil para usarlo a pantalla completa como una App real y acceder más rápido.</p>
+        <button class="settings-btn gold" id="btnPWAInstall" style="margin-bottom:0;">✨ Instalar Aplicación</button>
+      </div>
+
       <div class="settings-card">
         <h3>💾 Copia de Seguridad</h3>
         <p>Descarga un archivo con tu progreso guardado o restáuralo en otro dispositivo al instante.</p>
@@ -501,12 +500,13 @@ body{display:flex;flex-direction:column;height:100dvh}
         <p>¿Necesitas soporte o quieres reportar un problema?</p>
         <a class="settings-btn green" href="mailto:contacto@tualbum.app">Enviar correo</a>
       </div>
-      <div class="settings-info">Mi Álbum de Fútbol 2026 · v3.2<br>980 láminas · 48 selecciones · PWA</div>
+      <div class="settings-info">Mi Álbum de Fútbol 2026 · v3.5<br>980 láminas · 48 selecciones · PWA Inteligente</div>
     </div>
   </div>
 
 </div>
 
+<!-- BLOQUE DE ANUNCIOS ADSENSE FIXED BOTTOM -->
 <div class="adsense-banner-container" id="adsenseBanner">
   <ins class="adsbygoogle"
        style="display:inline-block;width:100%;height:50px"
@@ -517,6 +517,7 @@ body{display:flex;flex-direction:column;height:100dvh}
   </script>
 </div>
 
+<!-- BARRA DE NAVEGACIÓN INFERIOR (BOTTOM NAV BAR) -->
 <div class="nav" role="navigation" aria-label="Barra de navegación">
   <button class="nav-btn active" onclick="showView('album',this)"><span class="ni">📖</span>Álbum</button>
   <button class="nav-btn" onclick="showView('partidos',this)"><span class="ni">📅</span>Partidos</button>
@@ -526,6 +527,7 @@ body{display:flex;flex-direction:column;height:100dvh}
   <button class="nav-btn" onclick="showView('settings',this)"><span class="ni">⚙️</span>Config</button>
 </div>
 
+<!-- INTERSTITIAL / MODAL EMERGENTE INTELIGENTE -->
 <div class="interstitial-overlay" id="interstitialOverlay">
   <div class="interstitial-box">
     <div class="inter-label">Anuncio Publicitario</div>
@@ -542,6 +544,7 @@ body{display:flex;flex-direction:column;height:100dvh}
 
 <div id="toast" class="toast"></div>
 
+<!-- TEMPLATE INFOGRAFÍA OCULTO -->
 <div id="infografia-template">
   <div class="infog-title">🏆 MI PROGRESO — ÁLBUM DE FÚTBOL 2026 🏆</div>
   <div class="infog-subtitle" id="infog-date"></div>
@@ -577,7 +580,7 @@ body{display:flex;flex-direction:column;height:100dvh}
 // ════════════════════════════════════════════════
 // [1] BASE DE DATOS E INICIALIZACIÓN GLOBAL
 // ════════════════════════════════════════════════
-let stickerAddedCount = 0; // Contador global de AdSense
+let stickerAddedCount = 0;
 
 function makeStickers(prefix, count, flag, name, startNum=1){
   let arr=[];
@@ -588,10 +591,7 @@ function makeStickers(prefix, count, flag, name, startNum=1){
 }
 
 const GROUPS = [
-  {
-    id: 'FWC', name: 'Especiales FIFA', flag: '🏆',
-    stickers: makeStickers('FWC', 20, '🏆', 'Especiales FIFA').map(s=>({...s, type: s.num<=5? 'Estadio' : '⭐ Especial', special:true}))
-  },
+  { id: 'FWC', name: 'Especiales FIFA', flag: '🏆', stickers: makeStickers('FWC', 20, '🏆', 'Especiales FIFA').map(s=>({...s, type: s.num<=5? 'Estadio' : '⭐ Especial', special:true})) },
   { id: 'ALG', name: 'Argelia', flag: '🇩🇿', stickers: makeStickers('ALG',20,'🇩🇿','Argelia')},
   { id: 'ARG', name: 'Argentina', flag: '🇦🇷', stickers: makeStickers('ARG',20,'🇦🇷','Argentina')},
   { id: 'AUS', name: 'Australia', flag: '🇦🇺', stickers: makeStickers('AUS',20,'🇦🇺','Australia')},
@@ -609,7 +609,7 @@ const GROUPS = [
   { id: 'CZE', name: 'Rep. Checa', flag: '🇨🇿', stickers: makeStickers('CZE',20,'🇨🇿','Rep. Checa')},
   { id: 'ECU', name: 'Ecuador', flag: '🇪🇨', stickers: makeStickers('ECU',20,'🇪🇨','Ecuador')},
   { id: 'EGY', name: 'Egipto', flag: '🇪🇬', stickers: makeStickers('EGY',20,'🇪🇬','Egipto')},
-  { id: 'ENG', name: 'Inglaterra', flag: '🏴\u200d🏴\u200d🗳\u200d🇬\u200d󠁢\u200d󠁥\u200d󠁮\u200d󠁧\u200d󠁿', stickers: makeStickers('ENG',20,'🏴\u200d🗳\u200d🇬\u200d󠁢\u200d󠁥\u200d󠁮\u200d󠁧\u200d󠁿','Inglaterra')},
+  { id: 'ENG', name: 'Inglaterra', flag: '🏴\u200d🗳\u200d🇬\u200d󠁢\u200d󠁥\u200d󠁮\u200d󠁧\u200d󠁿', stickers: makeStickers('ENG',20,'🏴\u200d🗳\u200d🇬\u200d󠁢\u200d󠁥\u200d󠁮\u200d󠁧\u200d󠁿','Inglaterra')},
   { id: 'ESP', name: 'España', flag: '🇪🇸', stickers: makeStickers('ESP',20,'🇪🇸','España')},
   { id: 'FRA', name: 'Francia', flag: '🇫🇷', stickers: makeStickers('FRA',20,'🇫🇷','Francia')},
   { id: 'GER', name: 'Alemania', flag: '🇩🇪', stickers: makeStickers('GER',20,'🇩🇪','Alemania')},
@@ -645,7 +645,6 @@ const GROUPS = [
 const ALL_IDS = [];
 GROUPS.forEach(g => g.stickers.forEach(s => ALL_IDS.push(s.code)));
 const TOTAL = ALL_IDS.length;
-
 let state = { owned: {}, repeated: {} };
 
 function save(){ localStorage.setItem('album_state_2026', JSON.stringify(state)); }
@@ -664,7 +663,7 @@ function status(id){
 }
 
 // ════════════════════════════════════════════════
-// [2] SISTEMA INTERACTIVO DE PESTAÑAS (NAVEGACIÓN)
+// [2] SISTEMA DE PESTAÑAS Y NAVEGACIÓN
 // ════════════════════════════════════════════════
 function showView(name, btn){
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -680,9 +679,8 @@ function showView(name, btn){
 }
 
 // ════════════════════════════════════════════════
-// [3] CALENDARIO REAL MUNDIAL 2026 (104 PARTIDOS)
+// [3] CALENDARIO MUNDIAL 2026 (104 PARTIDOS)
 // ════════════════════════════════════════════════
-// Pool dinámico inteligente estructurado del fixture oficial de la FIFA 2026
 const MATCH_DATA = [
   { id: 1, group: 'Grupo A', t1: 'México', t2: 'Por definir', date: '2026-06-11T18:00:00Z', venue: 'Estadio Azteca, CDMX' },
   { id: 2, group: 'Grupo B', t1: 'Canadá', t2: 'Por definir', date: '2026-06-12T16:00:00Z', venue: 'Estadio de Toronto' },
@@ -696,7 +694,6 @@ const MATCH_DATA = [
   { id: 104, group: 'Gran Final Mundial', t1: 'Ganador S1', t2: 'Ganador S2', date: '2026-07-19T18:00:00Z', venue: 'MetLife Stadium, Nueva Jersey' }
 ];
 
-// Inyección automática del resto de la base lógica del Fixture de 104 partidos para no sobrecargar el peso del código
 for(let m=4; m<=104; m++){
   if(!MATCH_DATA.some(x=>x.id===m)){
     let grp = m <= 72 ? `Grupo ${String.fromCharCode(65 + (m % 12))}` : (m <= 88 ? 'Dieciseisavos' : (m <= 96 ? 'Octavos' : 'Cuartos/Semifinal'));
@@ -708,8 +705,6 @@ MATCH_DATA.sort((a,b)=>a.id - b.id);
 function renderPartidos(){
   const filter = document.getElementById('matchTeamFilter').value.toLowerCase();
   let html = '';
-  
-  // Guardado inteligente en LocalStorage para predicciones (Prode)
   let pronosticos = JSON.parse(localStorage.getItem('album_pronosticos') || '{}');
 
   const filtered = MATCH_DATA.filter(m => {
@@ -718,10 +713,8 @@ function renderPartidos(){
   });
 
   filtered.forEach(m => {
-    // Conversión Horaria Automática Nativa al dispositivo del usuario
     const matchDate = new Date(m.date);
     const dateFormatted = matchDate.toLocaleDateString(undefined, {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
-    
     const p1 = pronosticos[`m_${m.id}_1`] || '';
     const p2 = pronosticos[`m_${m.id}_2`] || '';
 
@@ -752,19 +745,12 @@ function savePronostico(id, teamNum, val){
 }
 
 // ════════════════════════════════════════════════
-// [4] TRIVIA DIARIA PREMIUM PARA FIDELIZACIÓN (ADS)
+// [4] TRIVIA DIARIA DE RETENCIÓN
 // ════════════════════════════════════════════════
 const TRIVIA_POOL = [
   {q:'¿Quién ostenta el récord de más goles anotados en la historia de las Copas del Mundo?', opciones:['Pelé','Miroslav Klose','Ronaldo Nazário','Just Fontaine'], correcta:1},
   {q:'¿Cuál es la única selección que ha participado en todas las ediciones de los Mundiales?', opciones:['Alemania','Italia','Argentina','Brasil'], correcta:3},
-  {q:'¿Qué país albergará la gran final del Mundial 2026 en el MetLife Stadium?', opciones:['Canadá','México','Estados Unidos','Brasil'], correcta:2},
-  {q:'¿Qué jugador tiene el récord de haber ganado 3 Copas del Mundo como futbolista?', opciones:['Diego Maradona','Pelé','Lionel Messi','Franz Beckenbauer'], correcta:1},
-  {q:'¿Qué selección africana hizo historia al llegar a Semifinales en Qatar 2022?', opciones:['Senegal','Camerún','Marruecos','Ghana'], correcta:2},
-  {q:'¿Quién fue el máximo goleador del Mundial de México 1986?', opciones:['Diego Maradona','Gary Lineker','Emilio Butragueño','Careca'], correcta:1},
-  {q:'¿En qué copa del mundo se introdujo por primera vez el uso de tarjetas amarillas y rojas?', opciones:['Inglaterra 1966','México 1970','Alemania 1974','Argentina 1978'], correcta:1},
-  {q:'¿Qué país fue el campeón de la primera Copa del Mundo de la FIFA en 1930?', opciones:['Argentina','Uruguay','Brasil','Francia'], correcta:1},
-  {q:'¿Quién marcó el famoso gol conocido como la Mano de Dios en 1986?', opciones:['Pelé','Diego Maradona','Zinedine Zidane','Romário'], correcta:1},
-  {q:'¿Qué selección ganó el Mundial de Sudáfrica 2010 logrando su primera estrella?', opciones:['Países Bajos','Alemania','España','Portugal'], correcta:2}
+  {q:'¿Qué país albergará la gran final del Mundial 2026 en el MetLife Stadium?', opciones:['Canadá','México','Estados Unidos','Brasil'], correcta:2}
 ];
 
 function renderTrivia(){
@@ -773,11 +759,10 @@ function renderTrivia(){
   const todayStr = new Date().toDateString();
 
   if(saved.date === todayStr){
-    container.innerHTML = `<div class="scan-result ok">✅ Ya respondiste la trivia de hoy. ¡Regresa mañana para una nueva pregunta!</div>`;
+    container.innerHTML = `<div class="scan-result ok">✅ Ya respondiste la trivia de hoy. ¡Regresa mañana!</div>`;
     return;
   }
 
-  // Índice rotativo estable
   const qIdx = Math.floor(new Date().getTime() / 86400000) % TRIVIA_POOL.length;
   const currentQ = TRIVIA_POOL[qIdx];
 
@@ -797,17 +782,13 @@ function renderTrivia(){
 function checkTriviaAnswer(selected, correct){
   const todayStr = new Date().toDateString();
   localStorage.setItem('album_trivia_block', JSON.stringify({date: todayStr}));
-  
-  if(selected === correct){
-    showToast('🎉 ¡Correcto! Eres un verdadero campeón del fútbol.');
-  } else {
-    showToast('❌ Incorrecto. ¡Estudia más para mañana!');
-  }
+  if(selected === correct) showToast('🎉 ¡Correcto! Eres un experto.');
+  else showToast('❌ Incorrecto. ¡Más suerte mañana!');
   renderTrivia();
 }
 
 // ════════════════════════════════════════════════
-// [5] INTERSTITIAL AUTOMÁTICO CADA 15 LÁMINAS
+// [5] ADSENSE INTERSTICIAL CONTROLADO CADA 15 FICHAS
 // ════════════════════════════════════════════════
 function maybeShowInterstitial() {
   stickerAddedCount++;
@@ -826,7 +807,6 @@ function showInterstitialAd() {
   overlay.classList.add('show');
   closeBtn.style.display = 'none'; 
 
-  // Forzar refresco/carga de AdSense en el modal
   try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
 
   let timeLeft = 5;
@@ -850,13 +830,13 @@ function closeInterstitial() {
 }
 
 // ════════════════════════════════════════════════
-// [6] GESTIÓN DE LÁMINAS MANUALES & CLICS
+// [6] MANEJO Y CONTROL DE LÁMINAS
 // ════════════════════════════════════════════════
 function toggleSticker(id){
   const st = status(id);
   if(st === 'missing'){
     state.owned[id] = true;
-    maybeShowInterstitial(); // Disparador AdSense
+    maybeShowInterstitial(); 
   } else if(st === 'owned'){
     state.repeated[id] = 2;
     delete state.owned[id];
@@ -871,7 +851,7 @@ function manualMark(){
   const code = inp.value.trim().toUpperCase();
   if(!code) return;
   if(!ALL_IDS.includes(code)){
-    showScanResult('err','❌ Código "'+code+'" no existe en el álbum');
+    showScanResult('err','❌ Código "'+code+'" no existe');
     return;
   }
   inp.value = '';
@@ -879,8 +859,8 @@ function manualMark(){
   if(st === 'missing'){
     state.owned[code] = true;
     save(); refreshSticker(code); updateStats();
-    showScanResult('ok','✅ '+code+' — ¡marcada como tenida!');
-    maybeShowInterstitial(); // Conteo AdSense
+    showScanResult('ok','✅ '+code+' — ¡Agregada!');
+    maybeShowInterstitial(); 
   } else if(st === 'owned'){
     showScanResult('warn','⚠️ '+code+' ya la tienes. ¿Repetida?',code);
   } else {
@@ -891,7 +871,7 @@ function manualMark(){
 function markRepeated(id){
   const c = (state.repeated[id] || 1) + 1;
   if(c > 9){ delete state.repeated[id]; delete state.owned[id]; showToast('🗑 '+id+' eliminada'); }
-  else{ state.repeated[id] = c; delete state.owned[id]; showToast('🔁 '+id+' ×'+c+' para cambio'); }
+  else{ state.repeated[id] = c; delete state.owned[id]; showToast('🔁 '+id+' ×'+c); }
   save(); refreshSticker(id); updateStats();
 }
 
@@ -983,11 +963,11 @@ function render(){
     });
     html += `</div></div>`;
   }
-  document.getElementById('albumScroll').innerHTML = html || `<div class="empty"><div class="empty-ico">🔍</div><div>No se encontraron láminas</div></div>`;
+  document.getElementById('albumScroll').innerHTML = html || `<div class="empty">No se encontraron láminas</div>`;
 }
 
 // ════════════════════════════════════════════════
-// [7] RENDERIZADO ANALÍTICO DE LA SECCIÓN PROGRESO
+// [7] RENDERIZADO ANALÍTICO
 // ════════════════════════════════════════════════
 function renderStats(){
   const owned = ALL_IDS.filter(s => state.owned[s] || state.repeated[s]).length;
@@ -1000,7 +980,6 @@ function renderStats(){
     </div>
     <div class="fun-facts">
       <div class="fact"><span class="fact-ico">🏆</span>Mundial de 48 Selecciones Expandido.</div>
-      <div class="fact"><span class="fact-ico">🌎</span>Sedes unificadas: EE.UU., Canadá y México.</div>
     </div>
     <div class="sv-title">Progreso por Selección</div>
     <div class="country-bars">
@@ -1023,12 +1002,12 @@ function renderStats(){
 }
 
 // ════════════════════════════════════════════════
-// [8] LISTAS COMPARTIR & WHATSAPP GENERATOR
+// [8] LISTAS COMPARTIR & WHATSAPP
 // ════════════════════════════════════════════════
 function shareWhatsApp(){
   const missing = ALL_IDS.filter(id => !state.owned[id] && !state.repeated[id]);
   const repeats = Object.keys(state.repeated || {}).filter(id => state.repeated[id] > 1);
-  const text = `🏆 MI ÁLBUM MUNDIAL 2026 🏆\n\n❌ MIS FALTANTES:\n${missing.join(', ') || '¡Ninguna! Álbum completo'}\n\n🔁 MIS REPETIDAS:\n${repeats.join(', ') || 'Ninguna todavía'}`;
+  const text = `🏆 MI ÁLBUM MUNDIAL 2026 🏆\n\n❌ MIS FALTANTES:\n${missing.join(', ') || '¡Ninguna!'}\n\n🔁 MIS REPETIDAS:\n${repeats.join(', ') || 'Ninguna'}`;
   window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
 }
 
@@ -1039,18 +1018,17 @@ async function captureShareImage(){
     const canvas = await html2canvas(el, {scale:2, useCORS:true, backgroundColor:null});
     const a = document.createElement('a');
     a.href = canvas.toDataURL('image/png');
-    a.download = 'mi_progreso_2026.png';
-    a.click();
+    a.download = 'mi_progreso_2026.png'; a.click();
     showToast('📸 Imagen descargada con éxito');
   } catch(e){ showToast('❌ Error de renderizado'); }
 }
 
 function exportData(){
-  showView('compartir', document.querySelector('.nav-btn:nth-child(4)'));
+  showView('compartir', document.querySelector('.nav-btn:nth-child(5)'));
 }
 
 // ════════════════════════════════════════════════
-// [9] ESCÁNER OCR CORE (MANTENIDO INTACTO)
+// [9] ESCÁNER OCR CORE
 // ════════════════════════════════════════════════
 let videoStream=null; let ocrWorker=null; let isProcessingOCR=false; let ocrTimer=null;
 function showScanResult(type, msg, extraCode){
@@ -1059,14 +1037,10 @@ function showScanResult(type, msg, extraCode){
   r.className = 'scan-result ' + type;
   if(type === 'warn' && extraCode){
     r.innerHTML = `<div>${msg}</div><button class="bbtn b" style="margin-left:auto;padding:4px 8px" onclick="state.repeated['${extraCode}']=(state.repeated['${extraCode}']||1)+1;delete state.owned['${extraCode}'];save();refreshSticker('${extraCode}');updateStats();showScanResult('ok','🔁 Repetida agregada');maybeShowInterstitial();">Añadir repetida</button>`;
-  } else {
-    r.textContent = msg;
-  }
+  } else { r.textContent = msg; }
 }
 
-function toggleCamera(){
-  if(videoStream) stopCamera(); else startCamera();
-}
+function toggleCamera(){ if(videoStream) stopCamera(); else startCamera(); }
 
 async function startCamera(){
   document.getElementById('camPlaceholder').style.display = 'none';
@@ -1077,12 +1051,9 @@ async function startCamera(){
   try{
     await initOcrWorker();
     videoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false });
-    const video = document.getElementById('video');
-    video.srcObject = videoStream;
+    document.getElementById('video').srcObject = videoStream;
     ocrTimer = setInterval(processFrameOCR, 1500);
-  } catch(e){
-    stopCamera(); showScanResult('err', '❌ Error de cámara: ' + (e.message || e));
-  }
+  } catch(e){ stopCamera(); showScanResult('err', '❌ Error de cámara: ' + e.message); }
 }
 
 function stopCamera(){
@@ -1097,62 +1068,48 @@ function stopCamera(){
 
 async function initOcrWorker(){
   if(ocrWorker) return;
-  setOcrStatus('⏳ Iniciando motor OCR Tesseract…');
+  setOcrStatus('⏳ Inyectando motor OCR Tesseract…');
   ocrWorker = await Tesseract.createWorker('eng');
   await ocrWorker.setParameters({ tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ' });
   setOcrStatus('📸 Escáner listo');
 }
-
 function setOcrStatus(msg){ const el = document.getElementById('ocrStatus'); if(el) el.textContent = msg; }
 
 async function processFrameOCR(){
   if(isProcessingOCR || !ocrWorker) return;
   const video = document.getElementById('video');
   if(!video || video.readyState < 2) return;
-  
-  isProcessingOCR = true;
-  setOcrStatus('🔍 Analizando código…');
+  isProcessingOCR = true; setOcrStatus('🔍 Analizando código…');
   
   const canvas = document.getElementById('ocrCanvas');
   canvas.width = 200; canvas.height = 100;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(video, video.videoWidth/2 - 100, video.videoHeight/2 - 50, 200, 100, 0, 0, 200, 100);
+  canvas.getContext('2d').drawImage(video, video.videoWidth/2 - 100, video.videoHeight/2 - 50, 200, 100, 0, 0, 200, 100);
   
   try {
     const { data: { text } } = await ocrWorker.recognize(canvas);
     const cleaned = text.toUpperCase().replace(/[^A-Z0-9]/g,'');
     let found = null;
-    for(let id of ALL_IDS){
-      if(cleaned.includes(id)){ found = id; break; }
-    }
+    for(let id of ALL_IDS){ if(cleaned.includes(id)){ found = id; break; } }
     if(found){
       stopCamera();
-      const st = status(found);
-      if(st === 'missing'){
+      if(status(found) === 'missing'){
         state.owned[found] = true; save(); refreshSticker(found); updateStats(); render();
-        showScanResult('ok', `✅ Detectado: ${found} — Pegada.`); maybeShowInterstitial();
-      } else {
-        showScanResult('warn', `⚠️ Detectado: ${found} — Ya la tienes.`, found);
-      }
-    } else {
-      setOcrStatus('👀 Apunta a un código válido...');
-    }
+        showScanResult('ok', `✅ Detectado: ${found} — Guardada.`); maybeShowInterstitial();
+      } else { showScanResult('warn', `⚠️ Detectado: ${found} — Ya la tienes.`, found); }
+    } else { setOcrStatus('👀 Apunta a un código válido...'); }
   } catch(e){}
   isProcessingOCR = false;
 }
 
 // ════════════════════════════════════════════════
-// [10] BATCH & BACKUP SYSTEMS (MANTENIDO INTACTO)
+// [10] SISTEMAS DE COPIA DE SEGURIDAD Y LOTES
 // ════════════════════════════════════════════════
 function bulkAdd(){
   const raw = document.getElementById('bulkInput').value;
   const ids = raw.split(/[,\s]+/).map(s=>s.trim().toUpperCase()).filter(Boolean);
   let count = 0;
-  ids.forEach(id => {
-    if(ALL_IDS.includes(id) && status(id) === 'missing'){ state.owned[id]=true; count++; }
-  });
-  document.getElementById('bulkInput').value = '';
-  save(); render(); updateStats();
+  ids.forEach(id => { if(ALL_IDS.includes(id) && status(id) === 'missing'){ state.owned[id]=true; count++; } });
+  document.getElementById('bulkInput').value = ''; save(); render(); updateStats();
   showToast(`✅ ${count} láminas pegadas.`);
 }
 
@@ -1160,19 +1117,14 @@ function bulkRepeat(){
   const raw = document.getElementById('bulkInput').value;
   const ids = raw.split(/[,\s]+/).map(s=>s.trim().toUpperCase()).filter(Boolean);
   let count = 0;
-  ids.forEach(id => {
-    if(ALL_IDS.includes(id)){ state.repeated[id] = (state.repeated[id] || 1) + 1; count++; }
-  });
-  document.getElementById('bulkInput').value = '';
-  save(); render(); updateStats();
-  showToast(`🔁 ${count} añadidas a cambio.`);
+  ids.forEach(id => { if(ALL_IDS.includes(id)){ state.repeated[id] = (state.repeated[id] || 1) + 1; count++; } });
+  document.getElementById('bulkInput').value = ''; save(); render(); updateStats();
+  showToast(`🔁 ${count} en cambio.`);
 }
 
 function backupData(){
-  const data = JSON.stringify(state);
-  const blob = new Blob([data], {type: 'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob); a.download = 'copia_album_2026.json'; a.click();
+  const blob = new Blob([JSON.stringify(state)], {type: 'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'copia_album_2026.json'; a.click();
 }
 
 function restoreData(e){
@@ -1181,14 +1133,14 @@ function restoreData(e){
   reader.onload = function(evt){
     try {
       const parsed = JSON.parse(evt.target.result);
-      if(parsed.owned || parsed.repeated){ state = parsed; save(); render(); updateStats(); showToast('📥 Progreso restaurado'); }
+      if(parsed.owned || parsed.repeated){ state = parsed; save(); render(); updateStats(); showToast('📥 Restaurado'); }
     } catch(err){ showToast('❌ Archivo inválido'); }
   };
   reader.readAsText(file);
 }
 
 function clearAllData(){
-  if(confirm('¿Seguro que quieres borrar TODO?')) { state = {owned:{}, repeated:{}}; save(); render(); updateStats(); showToast('🗑 Reiniciado'); }
+  if(confirm('¿Borrar todo el progreso?')) { state = {owned:{}, repeated:{}}; save(); render(); updateStats(); showToast('🗑 Reiniciado'); }
 }
 
 function showToast(msg){
@@ -1196,11 +1148,38 @@ function showToast(msg){
   setTimeout(() => t.classList.remove('show'), 2500);
 }
 
-// Inicialización Automática
+// ════════════════════════════════════════════════
+// [11] EVENTO DE INSTALACIÓN DE APP (PWA AUTOMÁTICO)
+// ════════════════════════════════════════════════
+let deferredPrompt;
+const installCard = document.getElementById('pwaInstallCard');
+const installBtn = document.getElementById('btnPWAInstall');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (installCard) installCard.style.display = 'block';
+});
+
+if (installBtn) {
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`Elección del usuario: ${outcome}`);
+    deferredPrompt = null;
+    if (installCard) installCard.style.display = 'none';
+  });
+}
+
+window.addEventListener('appinstalled', (evt) => {
+  if (installCard) installCard.style.display = 'none';
+  showToast('📲 ¡Instalada en tu pantalla de inicio!');
+});
+
+// Inicialización de filtros y datos en carga
 document.addEventListener('DOMContentLoaded', () => {
   load();
-  
-  // Rellenar filtros de países automáticamente
   const groupFilter = document.getElementById('groupFilter');
   const matchTeamFilter = document.getElementById('matchTeamFilter');
   GROUPS.forEach(g => {
@@ -1209,10 +1188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       matchTeamFilter.innerHTML += `<option value="${g.name}">${g.flag} ${g.name}</option>`;
     }
   });
-
-  updateStats();
-  render();
-  renderTrivia();
+  updateStats(); render(); renderTrivia();
 });
 </script>
 </body>
