@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://cristian272727-ship-it.github.io/sitemap.xml

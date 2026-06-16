@@ -1,0 +1,9 @@
+markdown: kramdown
+theme: none
+plugins: []
+exclude:
+  - README.md
+  - .git
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
