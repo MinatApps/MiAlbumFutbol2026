@@ -1527,13 +1527,27 @@ document.addEventListener('DOMContentLoaded',()=>{
   updateStats();
   render();
 
-  // ── INSTRUCCIÓN 1: Banner permanente — highperformanceformat ──
-  // Se inyecta con createElement para que el script se ejecute
-  // correctamente en una SPA (innerHTML no ejecuta scripts).
+  // ── BANNER PERMANENTE — highperformanceformat ──────────────
+  // Se bloquea window.open ANTES de cargar el script del proveedor
+  // para que el iframe del banner funcione pero NO pueda abrir
+  // popups ni pantallas emergentes en Android Chrome.
   (function initBannerAd(){
     const container = document.getElementById('ad-banner-container');
     if(!container) return;
-    // Definir las opciones del banner en window ANTES de cargar el script
+
+    // 1. Interceptar window.open para bloquear cualquier popup
+    //    que el script del proveedor intente abrir automáticamente.
+    //    Solo permite aperturas iniciadas por gesto real del usuario.
+    const _originalOpen = window.open.bind(window);
+    window.open = function(url, target, features){
+      // Bloquear: llamadas sin URL, llamadas a about:blank o popups sin gesto
+      if(!url || url === 'about:blank' || url === '') return null;
+      // Permitir solo si hay un evento de usuario activo (click real)
+      if(navigator.userActivation && !navigator.userActivation.isActive) return null;
+      return _originalOpen(url, target, features);
+    };
+
+    // 2. Definir opciones e inyectar el script
     window.atOptions = {
       'key'    : 'c556ff9b04e11bbff03a97b1278f36c8',
       'format' : 'iframe',
@@ -1541,10 +1555,9 @@ document.addEventListener('DOMContentLoaded',()=>{
       'width'  : 320,
       'params' : {}
     };
-    // Crear e insertar el script de invocación dinámicamente
-    const s    = document.createElement('script');
-    s.type     = 'text/javascript';
-    s.src      = 'https://www.highperformanceformat.com/c556ff9b04e11bbff03a97b1278f36c8/invoke.js';
+    const s   = document.createElement('script');
+    s.type    = 'text/javascript';
+    s.src     = 'https://www.highperformanceformat.com/c556ff9b04e11bbff03a97b1278f36c8/invoke.js';
     container.appendChild(s);
   })();
 });
