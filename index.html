@@ -37,30 +37,40 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
   overflow:hidden;display:flex;flex-direction:column;position:fixed;width:100%;top:0;left:0;}
 .views-wrapper{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;}
 
-/* ═══════════════ AD BANNER ═══════════════ */
+/* ═══════════════ AD BANNER — posición fija sobre el nav ═══════════════ */
 #ad-banner-container{
-  flex-shrink:0;
+  position:fixed;
+  left:0;
+  right:0;
+  /* Se posiciona justo encima del nav (nav ≈ 58px) */
+  bottom:58px;
   height:50px;
   min-height:50px;
   max-height:50px;
   background:#0d0a1a;
-  border-top:1px solid var(--border);
+  border-top:1px solid rgba(124,58,237,0.3);
+  border-bottom:1px solid rgba(124,58,237,0.15);
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
-  /* Bloquea cualquier iframe que intente crecer fuera de la franja */
-  position:relative;
-  z-index:5;
+  z-index:20;  /* sobre el contenido, bajo el interstitial */
 }
 #ad-banner-container iframe,
 #ad-banner-container ins{
   max-height:50px !important;
   overflow:hidden !important;
+  display:block !important;
+}
+/* Espacio reservado al fondo del scroll para que el banner no tape láminas */
+.album-scroll,
+.stats-view,
+.settings-view{
+  padding-bottom:120px !important;
 }
 
 /* ═══════════════ NAV ═══════════════ */
-.nav{display:flex;background:var(--bg2);border-top:1px solid var(--border);flex-shrink:0;z-index:10}
+.nav{display:flex;background:var(--bg2);border-top:1px solid var(--border);flex-shrink:0;z-index:10;position:relative;}
 .nav-btn{flex:1;padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;
   gap:2px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:10px;
   font-weight:500;position:relative}
@@ -761,24 +771,32 @@ function openInterstitialModal() {
     if (secs <= 0) {
       clearInterval(interCountdown);
       interCountdown    = null;
-      interCloseEnabled = true;        // ← habilitar cierre
+      interCloseEnabled = true;
       closeBtn.disabled = false;
       closeBtn.style.opacity = '1';
-      timerEl.textContent   = 'Toca para continuar';
+      timerEl.textContent   = '✕ Toca para continuar';
     } else {
-      timerEl.textContent = 'Podrás cerrar en ' + secs + 's';
+      timerEl.textContent = 'Se cerrará en ' + secs + 's…';
     }
   }, 1000);
+
+  // Cierre automático a los 5s — garantizado en cualquier dispositivo
+  setTimeout(() => {
+    interCloseEnabled = true;
+    closeInterstitial(true);   // force=true: cierra siempre sin importar el flag
+  }, 5500);
 }
 
 // Cierre del modal — libera iframe y RAM
-function closeInterstitial() {
-  if (!interCloseEnabled) return;       // bloquear si aún no pasaron los 5s
+// force=true lo usa el setTimeout para cerrar sin importar el flag
+function closeInterstitial(force) {
+  if (!interCloseEnabled && !force) return;  // solo bloquear si es tap manual antes de 5s
   clearInterval(interCountdown);
   interCountdown    = null;
   interCloseEnabled = false;
 
   const modal    = document.getElementById('interstitial-modal');
+  if (!modal || modal.style.display === 'none') return; // ya cerrado
   const closeBtn = document.getElementById('interCloseBtn');
   const timerEl  = document.getElementById('interTimer');
   const adSlot   = document.getElementById('ad-interstitial-container');
