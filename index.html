@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="google-adsense-account" content="ca-pub-5499913988915360">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Mi Álbum 2026">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#0f0720">
-  <meta name="description" content="Gestiona tu álbum de fútbol 2026. Marca láminas, escanea con cámara y comparte tu progreso.">
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icon-192.png">
-  <title>Mi Álbum de Fútbol 2026</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5499913988915360" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="monetag" content="802f0d9ed57035cbf152f9b1c74744d8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5499913988915360" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5499913988915360">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mi Álbum 2026">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0f0720">
+    <meta name="description" content="Gestiona tu álbum de fútbol 2026. Marca láminas, escanea con cámara y comparte tu progreso.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <title>Mi Álbum de Fútbol 2026</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.4.0/dist/tesseract.min.js"></script>
 <style>
 /* ═══════════════ RESET & TOKENS ═══════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -31,46 +35,30 @@
   --border:rgba(124,58,237,0.2);--border2:rgba(124,58,237,0.4);
   --r:10px;--rl:16px;
 }
-html{height:100%;height:100dvh}
-body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
-  overflow:hidden;display:flex;flex-direction:column;position:fixed;width:100%;top:0;left:0;}
-.views-wrapper{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;}
+html,body{height:100%;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;overflow:hidden}
+body{display:flex;flex-direction:column;height:100dvh}
+.views-wrapper{flex:1;overflow:hidden;display:flex;flex-direction:column;min-height:0}
 
-/* ═══════════════ AD BANNER — posición fija sobre el nav ═══════════════ */
+/* ═══════════════ AD BANNER — franja fija sobre el nav ═══════════════ */
 #ad-banner-container{
-  position:fixed;
-  left:0;
-  right:0;
-  /* Se posiciona justo encima del nav (nav ≈ 58px) */
-  bottom:58px;
-  height:50px;
+  flex-shrink:0;
   min-height:50px;
-  max-height:50px;
   background:#0d0a1a;
-  border-top:1px solid rgba(124,58,237,0.3);
-  border-bottom:1px solid rgba(124,58,237,0.15);
+  border-top:1px solid var(--border);
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
-  z-index:20;  /* sobre el contenido, bajo el interstitial */
+  width:100%;
 }
-#ad-banner-container iframe,
-#ad-banner-container ins{
-  max-height:50px !important;
-  overflow:hidden !important;
-  display:block !important;
-}
-/* Espacio reservado al fondo del scroll para que el banner no tape láminas */
-.album-scroll,
-.stats-view,
-.settings-view{
-  padding-bottom:120px !important;
+#ad-banner-container iframe{
+  max-height:60px !important;
+  width:320px !important;
 }
 
 /* ═══════════════ NAV ═══════════════ */
-.nav{display:flex;background:var(--bg2);border-top:1px solid var(--border);flex-shrink:0;z-index:10;position:relative;}
+.nav{display:flex;background:var(--bg2);border-top:1px solid var(--border);flex-shrink:0;z-index:10}
 .nav-btn{flex:1;padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;
   gap:2px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:10px;
   font-weight:500;position:relative}
@@ -80,8 +68,8 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
   height:2px;background:var(--purple2);border-radius:2px 2px 0 0}
 
 /* ═══════════════ VIEWS ═══════════════ */
-.view{display:none;flex-direction:column;min-height:0;overflow:hidden;}
-.view.active{display:flex;flex:1;}
+.view{display:none;flex:1;overflow:hidden;flex-direction:column;min-height:0}
+.view.active{display:flex}
 
 /* ═══════════════ HEADER ═══════════════ */
 .album-header{background:linear-gradient(160deg,#3B0764 0%,#7C3AED 60%,#4F46E5 100%);
@@ -107,8 +95,8 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
 .stat-lbl{font-size:10px;color:rgba(255,255,255,0.55);margin-top:2px}
 .prog-row{display:flex;justify-content:space-between;align-items:center;
   margin-bottom:5px;position:relative;z-index:1}
-.prog-lbl{font-size:12px;color:rgba(255,255,255,0.65)}
-.prog-pct{font-size:13px;font-weight:700;color:#fff}
+  .prog-lbl{font-size:12px;color:rgba(255,255,255,0.65)}
+  .prog-pct{font-size:13px;font-weight:700;color:#fff}
 .prog-track{height:6px;background:rgba(255,255,255,0.15);border-radius:99px;
   overflow:hidden;position:relative;z-index:1}
 .prog-fill{height:100%;background:linear-gradient(90deg,#6EE7B7,#34D399);
@@ -126,7 +114,7 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
 
 /* ═══════════════ SEARCH & BULK ═══════════════ */
 .search-row{display:flex;gap:8px;padding:10px 12px;background:var(--bg2);
-  border-bottom:1px solid var(--border);flex-shrink:0;}
+  border-bottom:1px solid var(--border);flex-shrink:0}
 .search-wrap{flex:1;position:relative}
 .search-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);
   font-size:14px;pointer-events:none}
@@ -150,7 +138,7 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
 .bbtn.b{background:var(--blue);color:#fff}
 
 /* ═══════════════ ALBUM SCROLL ═══════════════ */
-.album-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 10px 20px;}
+.album-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 10px 20px}
 .country-page{margin-bottom:24px}
 .page-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;
   padding:10px 12px;background:var(--card);border-radius:var(--rl);border:1px solid var(--border)}
@@ -189,7 +177,7 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
   border:2.5px solid var(--blue);animation:holdRing 0.5s ease-out}
 
 /* ═══════════════ STATS VIEW ═══════════════ */
-.stats-view{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+.stats-view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding:16px 14px 20px;background:var(--bg)}
 .sv-title{font-size:12px;font-weight:600;color:var(--text3);letter-spacing:0.06em;
   text-transform:uppercase;margin-bottom:10px;margin-top:16px}
@@ -233,7 +221,8 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
 .fact-ico{font-size:20px;flex-shrink:0;margin-top:1px}
 
 /* ═══════════════ SCANNER ═══════════════ */
-.scanner-view{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;}
+.scanner-view{flex:1;display:flex;flex-direction:column;background:var(--bg);
+  overflow:hidden;min-height:0}
 .scanner-top{padding:12px 16px 8px;flex-shrink:0}
 .scanner-top h2{font-size:17px;font-weight:700;color:var(--text);margin-bottom:2px}
 .scanner-top p{font-size:12px;color:var(--text3);line-height:1.4}
@@ -281,7 +270,7 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
 .scan-result.warn{background:rgba(245,158,11,0.15);color:var(--gold2)}
 
 /* ═══════════════ SETTINGS VIEW ═══════════════ */
-.settings-view{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+.settings-view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding:16px 14px 20px;background:var(--bg)}
 .settings-card{background:var(--card);border:1px solid var(--border);
   border-radius:var(--rl);padding:16px;margin-bottom:14px}
@@ -289,8 +278,7 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
 .settings-card p{font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.5}
 .settings-btn{width:100%;padding:13px;border-radius:var(--r);border:none;
   font-size:14px;font-weight:600;cursor:pointer;margin-bottom:10px;
-  display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity 0.15s;
-  text-decoration:none}
+  display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity 0.15s}
 .settings-btn:active{opacity:0.75}
 .settings-btn:last-child{margin-bottom:0}
 .settings-btn.gold{background:linear-gradient(135deg,#B45309,#F59E0B);color:#fff}
@@ -305,7 +293,7 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
 #interstitial-modal{
   display:none;
   position:fixed;inset:0;
-  background:rgba(0,0,0,0.93);
+  background:rgba(0,0,0,0.94);
   z-index:9999;
   flex-direction:column;
   align-items:center;
@@ -317,34 +305,33 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
   border:1px solid var(--border2);
   border-radius:var(--rl);
   width:100%;max-width:360px;
-  padding:20px 18px 18px;
+  padding:18px 16px 16px;
   text-align:center;
   position:relative;
 }
-.inter-label{
+.inter-top-label{
   font-size:10px;color:var(--text4);
   letter-spacing:0.12em;text-transform:uppercase;
   margin-bottom:10px;
 }
 #ad-interstitial-container{
   width:100%;
-  min-height:180px;
+  min-height:160px;
   background:var(--bg3);
   border-radius:var(--r);
-  border:1px dashed var(--border2);
+  overflow:hidden;
   display:flex;align-items:center;justify-content:center;
   margin-bottom:14px;
-  overflow:hidden;
 }
 .inter-close-btn{
   width:100%;padding:13px;
   border-radius:var(--r);border:none;
-  background:var(--purple);color:#fff;
-  font-size:15px;font-weight:700;cursor:pointer;
-  transition:opacity 0.2s;
+  background:linear-gradient(135deg,var(--purple-dark),var(--purple));
+  color:#fff;font-size:15px;font-weight:700;cursor:pointer;
 }
-.inter-close-btn:disabled{opacity:0.45;cursor:not-allowed}
-.inter-timer{font-size:12px;color:var(--text3);margin-top:8px;min-height:18px}
+.inter-autoclose{
+  font-size:12px;color:var(--text3);margin-top:8px;min-height:18px;
+}
 
 /* ═══════════════ TOAST ═══════════════ */
 .toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 112px);
@@ -386,16 +373,16 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
 .infog-cta{background:linear-gradient(135deg,#F59E0B,#EF4444);border-radius:14px;
   padding:18px 16px;text-align:center}
 .infog-cta-line1{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px}
-.infog-cta-url{font-size:15px;font-weight:900;color:#fff;letter-spacing:-0.3px;word-break:break-all}
-.infog-footer{text-align:center;font-size:11px;color:rgba(240,238,255,0.3);margin-top:16px}
+.infog-cta-url{font-size:15px;font-weight:900;color:#fff;letter-spacing:-0.3px;
+  word-break:break-all}
+.infog-footer{text-align:center;font-size:11px;color:rgba(240,238,255,0.3);
+  margin-top:16px}
 </style>
 </head>
 <body>
 
-<!-- ════ VIEWS WRAPPER ════ -->
 <div class="views-wrapper">
 
-  <!-- ── ALBUM VIEW ── -->
   <div class="view active" id="view-album">
     <div class="album-header">
       <div class="header-top">
@@ -438,12 +425,18 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
     <div class="album-scroll" id="albumScroll"></div>
   </div>
 
-  <!-- ── STATS VIEW ── -->
-  <div class="view" id="view-stats">
+  <div class="view" id="view-partidos">
+    <div class="stats-view" id="partidosView"></div>
+  </div>
+
+  <div class="view" id="view-progreso">
     <div class="stats-view" id="statsView"></div>
   </div>
 
-  <!-- ── SCANNER VIEW ── -->
+  <div class="view" id="view-compartir">
+    <div class="settings-view" id="compartirView"></div>
+  </div>
+
   <div class="view" id="view-scanner">
     <div class="scanner-view">
       <div class="scanner-top">
@@ -477,78 +470,91 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
     </div>
   </div>
 
-  <!-- ── SETTINGS VIEW ── -->
   <div class="view" id="view-settings">
     <div class="settings-view">
       <div class="sv-title" style="margin-top:0">Copia de seguridad</div>
+
       <div class="settings-card">
         <h3>💾 Generar Copia de Seguridad</h3>
         <p>Descarga un archivo .json con todo tu progreso actual para guardarlo en tu dispositivo y restaurarlo cuando quieras.</p>
-        <button class="settings-btn gold" onclick="backupData()">💾 Descargar backup_album_2026.json</button>
+        <button class="settings-btn gold" onclick="backupData()">
+          💾 Descargar backup_album_2026.json
+        </button>
       </div>
+
       <div class="settings-card">
         <h3>📂 Restaurar Progreso</h3>
         <p>Sube el archivo .json de tu copia de seguridad para recuperar tu álbum en este dispositivo.</p>
         <input type="file" id="restoreFileInput" accept=".json" onchange="restoreData(event)"/>
-        <button class="settings-btn green" onclick="document.getElementById('restoreFileInput').click()">📂 Seleccionar archivo .json</button>
+        <button class="settings-btn green" onclick="document.getElementById('restoreFileInput').click()">
+          📂 Seleccionar archivo .json
+        </button>
       </div>
+
       <div class="settings-divider"></div>
       <div class="sv-title">Compartir progreso</div>
+
       <div class="settings-card">
         <h3>📸 Infografía para redes</h3>
         <p>Genera una imagen con tu progreso actual optimizada para Instagram Stories y WhatsApp.</p>
-        <button class="settings-btn purple" onclick="exportData()">📸 Generar y descargar infografía PNG</button>
+        <button class="settings-btn purple" onclick="exportData()">
+          📸 Generar y descargar infografía PNG
+        </button>
       </div>
+
       <div class="settings-divider"></div>
       <div class="sv-title">Peligro</div>
+
       <div class="settings-card">
         <h3>🗑 Borrar todo el progreso</h3>
         <p>Elimina permanentemente todos tus datos del álbum. Esta acción no se puede deshacer.</p>
-        <button class="settings-btn red" onclick="clearAllData()">🗑 Borrar todo mi progreso</button>
+        <button class="settings-btn red" onclick="clearAllData()">
+          🗑 Borrar todo mi progreso
+        </button>
       </div>
+
       <div class="settings-divider"></div>
       <div class="settings-card">
         <h3>🔒 Política de Privacidad</h3>
         <p>Lee cómo usamos datos, anuncios y cookies. Recomendado por Google AdSense para verificación.</p>
         <a class="settings-btn" href="privacy.html" target="_blank" rel="noopener">Ver Política de Privacidad</a>
       </div>
+
       <div class="settings-card">
         <h3>✉️ Contacto</h3>
         <p>¿Necesitas soporte o quieres reportar un problema?</p>
         <a class="settings-btn green" href="mailto:contacto@tualbum.app">Enviar correo</a>
       </div>
-      <div class="settings-info">Mi Álbum de Fútbol 2026 · v3.1<br>980 láminas · 48 selecciones · PWA</div>
+
+      <div class="settings-info">Mi Álbum de Fútbol 2026 · v3.0<br>980 láminas · 48 selecciones · PWA</div>
     </div>
   </div>
 
-</div><!-- /views-wrapper -->
-
-<!-- ════ BANNER AdSense 320x50 — franja fija sobre el .nav ════
-     El <ins> se inyecta desde initBannerAd() en DOMContentLoaded.  -->
-<div id="ad-banner-container"></div>
-
-<!-- ════ NAV ════ -->
-<div class="nav">
-  <button class="nav-btn active" onclick="showView('album',this)"><span class="ni">📖</span>Álbum</button>
-  <button class="nav-btn" onclick="showView('stats',this)"><span class="ni">📊</span>Progreso</button>
-  <button class="nav-btn" onclick="showView('scanner',this)"><span class="ni">📷</span>Escáner</button>
-  <button class="nav-btn" onclick="showView('settings',this)"><span class="ni">⚙️</span>Ajustes</button>
 </div>
 
-<!-- ════ INSTRUCCIÓN 2: Modal Interstitial (effectivecpmnetwork) ════ -->
+<!-- ═══ BANNER AD — highperformanceformat (inyectado dinámicamente) ═══ -->
+<div id="ad-banner-container"></div>
+
+<div class="nav" role="navigation" aria-label="Barra de navegación">
+  <button class="nav-btn active" onclick="showView('album',this)"><span class="ni">📖</span>Álbum</button>
+  <button class="nav-btn" onclick="showView('progreso',this)"><span class="ni">📊</span>Progreso</button>
+  <button class="nav-btn" onclick="showView('scanner',this)"><span class="ni">📷</span>Cámara</button>
+  <button class="nav-btn" onclick="showView('compartir',this)"><span class="ni">🔗</span>Compartir</button>
+  <button class="nav-btn" onclick="showView('settings',this)"><span class="ni">⚙️</span>Config</button>
+</div>
+
+<!-- ═══ MODAL INTERSTITIAL — effectivecpmnetwork (inyectado dinámicamente) ═══ -->
 <div id="interstitial-modal">
   <div class="inter-box">
-    <div class="inter-label">Publicidad · Anuncio</div>
-    <!-- El contenedor real donde se inyecta el ad de forma dinámica -->
+    <div class="inter-top-label">Publicidad</div>
     <div id="ad-interstitial-container"></div>
-    <button class="inter-close-btn" id="interCloseBtn" disabled onclick="closeInterstitial()">
+    <button class="inter-close-btn" id="interCloseBtn" onclick="closeInterstitial()">
       ✕ Continuar al Álbum
     </button>
-    <div class="inter-timer" id="interTimer">Podrás cerrar en 5s</div>
+    <div class="inter-autoclose" id="interAutoclose"></div>
   </div>
 </div>
 
-<!-- ════ Infografía template (off-screen, capturado por html2canvas) ════ -->
 <div id="infografia-template">
   <div class="infog-title">🏆 MI PROGRESO — ÁLBUM DE FÚTBOL 2026 🏆</div>
   <div class="infog-subtitle" id="infog-date"></div>
@@ -594,378 +600,338 @@ body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
 <div class="toast" id="toast"></div>
 
 <script>
-// ════════════════════════════════════════════════════════════════
-// MI ÁLBUM DE FÚTBOL 2026 — v3.1
-// ════════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════
+// LÓGICA DE APLICACIÓN — MI ÁLBUM 2026
+// ════════════════════════════════════════════════
 
-// ── Generador de stickers por código ─────────────────────────
-function makeStickers(id, n, flag, name) {
+function makeStickers(id, n, flag, name, specialMap={}) {
   return Array.from({length:n}, (_,i) => {
     const num = i+1;
+    const code = id+num;
+    const isSpecial = !!specialMap[num];
     return {
-      code: id+num, num,
+      code, num,
       type: num===1 ? '🛡 Escudo' : num===13 ? '📸 Equipo' : '👤',
-      special: num===1 || num===13,
+      special: isSpecial || num===1 || num===13,
       flag, groupName: name
     };
   });
 }
 
-// ── Datos: 48 selecciones ─────────────────────────────────────
 const GROUPS = [
   {
     id:'WC', name:'Presentación', flag:'🏆',
-    stickers:[{code:'WC1',type:'⭐ Especial',special:true,flag:'🏆',groupName:'Presentación'}]
+    stickers:[
+      {code:'WC1',type:'⭐ Especial',special:true,flag:'🏆',groupName:'Presentación'},
+    ]
   },
   {
     id:'FWC', name:'Historia del Mundial', flag:'🌍',
-    stickers: Array.from({length:19},(_,i)=>({
+    stickers: Array.from({length:19},(_, i)=>({
       code:'FWC'+(i+1),
       type: i<4 ? '⭐ Especial' : i<17 ? '🏟 Estadio' : '⭐ Especial',
       special:true, flag:'🌍', groupName:'Historia del Mundial'
     }))
   },
-  {id:'ALG',name:'Argelia',        flag:'🇩🇿', stickers:makeStickers('ALG',20,'🇩🇿','Argelia')},
-  {id:'ARG',name:'Argentina',      flag:'🇦🇷', stickers:makeStickers('ARG',20,'🇦🇷','Argentina')},
-  {id:'AUS',name:'Australia',      flag:'🇦🇺', stickers:makeStickers('AUS',20,'🇦🇺','Australia')},
-  {id:'AUT',name:'Austria',        flag:'🇦🇹', stickers:makeStickers('AUT',20,'🇦🇹','Austria')},
-  {id:'BEL',name:'Bélgica',        flag:'🇧🇪', stickers:makeStickers('BEL',20,'🇧🇪','Bélgica')},
-  {id:'BIH',name:'Bosnia-Herz.',   flag:'🇧🇦', stickers:makeStickers('BIH',20,'🇧🇦','Bosnia-Herz.')},
-  {id:'BRA',name:'Brasil',         flag:'🇧🇷', stickers:makeStickers('BRA',20,'🇧🇷','Brasil')},
-  {id:'CAN',name:'Canadá',         flag:'🇨🇦', stickers:makeStickers('CAN',20,'🇨🇦','Canadá')},
-  {id:'CIV',name:'Costa de Marfil',flag:'🇨🇮', stickers:makeStickers('CIV',20,'🇨🇮','Costa de Marfil')},
-  {id:'COD',name:'RD Congo',       flag:'🇨🇩', stickers:makeStickers('COD',20,'🇨🇩','RD Congo')},
-  {id:'COL',name:'Colombia',       flag:'🇨🇴', stickers:makeStickers('COL',20,'🇨🇴','Colombia')},
-  {id:'CPV',name:'Cabo Verde',     flag:'🇨🇻', stickers:makeStickers('CPV',20,'🇨🇻','Cabo Verde')},
-  {id:'CRO',name:'Croacia',        flag:'🇭🇷', stickers:makeStickers('CRO',20,'🇭🇷','Croacia')},
-  {id:'CUW',name:'Curaçao',        flag:'🇨🇼', stickers:makeStickers('CUW',20,'🇨🇼','Curaçao')},
-  {id:'CZE',name:'Rep. Checa',     flag:'🇨🇿', stickers:makeStickers('CZE',20,'🇨🇿','Rep. Checa')},
-  {id:'ECU',name:'Ecuador',        flag:'🇪🇨', stickers:makeStickers('ECU',20,'🇪🇨','Ecuador')},
-  {id:'EGY',name:'Egipto',         flag:'🇪🇬', stickers:makeStickers('EGY',20,'🇪🇬','Egipto')},
-  {id:'ENG',name:'Inglaterra',     flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', stickers:makeStickers('ENG',20,'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Inglaterra')},
-  {id:'ESP',name:'España',         flag:'🇪🇸', stickers:makeStickers('ESP',20,'🇪🇸','España')},
-  {id:'FRA',name:'Francia',        flag:'🇫🇷', stickers:makeStickers('FRA',20,'🇫🇷','Francia')},
-  {id:'GER',name:'Alemania',       flag:'🇩🇪', stickers:makeStickers('GER',20,'🇩🇪','Alemania')},
-  {id:'GHA',name:'Ghana',          flag:'🇬🇭', stickers:makeStickers('GHA',20,'🇬🇭','Ghana')},
-  {id:'HAI',name:'Haití',          flag:'🇭🇹', stickers:makeStickers('HAI',20,'🇭🇹','Haití')},
-  {id:'IRN',name:'Irán',           flag:'🇮🇷', stickers:makeStickers('IRN',20,'🇮🇷','Irán')},
-  {id:'IRQ',name:'Irak',           flag:'🇮🇶', stickers:makeStickers('IRQ',20,'🇮🇶','Irak')},
-  {id:'JOR',name:'Jordania',       flag:'🇯🇴', stickers:makeStickers('JOR',20,'🇯🇴','Jordania')},
-  {id:'JPN',name:'Japón',          flag:'🇯🇵', stickers:makeStickers('JPN',20,'🇯🇵','Japón')},
-  {id:'KOR',name:'Corea del Sur',  flag:'🇰🇷', stickers:makeStickers('KOR',20,'🇰🇷','Corea del Sur')},
-  {id:'KSA',name:'Arabia Saudita', flag:'🇸🇦', stickers:makeStickers('KSA',20,'🇸🇦','Arabia Saudita')},
-  {id:'MAR',name:'Marruecos',      flag:'🇲🇦', stickers:makeStickers('MAR',20,'🇲🇦','Marruecos')},
-  {id:'MEX',name:'México',         flag:'🇲🇽', stickers:makeStickers('MEX',20,'🇲🇽','México')},
-  {id:'NED',name:'Países Bajos',   flag:'🇳🇱', stickers:makeStickers('NED',20,'🇳🇱','Países Bajos')},
-  {id:'NOR',name:'Noruega',        flag:'🇳🇴', stickers:makeStickers('NOR',20,'🇳🇴','Noruega')},
-  {id:'NZL',name:'Nueva Zelanda',  flag:'🇳🇿', stickers:makeStickers('NZL',20,'🇳🇿','Nueva Zelanda')},
-  {id:'PAN',name:'Panamá',         flag:'🇵🇦', stickers:makeStickers('PAN',20,'🇵🇦','Panamá')},
-  {id:'PAR',name:'Paraguay',       flag:'🇵🇾', stickers:makeStickers('PAR',20,'🇵🇾','Paraguay')},
-  {id:'POR',name:'Portugal',       flag:'🇵🇹', stickers:makeStickers('POR',20,'🇵🇹','Portugal')},
-  {id:'QAT',name:'Qatar',          flag:'🇶🇦', stickers:makeStickers('QAT',20,'🇶🇦','Qatar')},
-  {id:'RSA',name:'Sudáfrica',      flag:'🇿🇦', stickers:makeStickers('RSA',20,'🇿🇦','Sudáfrica')},
-  {id:'SCO',name:'Escocia',        flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', stickers:makeStickers('SCO',20,'🏴󠁧󠁢󠁳󠁣󠁴󠁿','Escocia')},
-  {id:'SEN',name:'Senegal',        flag:'🇸🇳', stickers:makeStickers('SEN',20,'🇸🇳','Senegal')},
-  {id:'SUI',name:'Suiza',          flag:'🇨🇭', stickers:makeStickers('SUI',20,'🇨🇭','Suiza')},
-  {id:'SWE',name:'Suecia',         flag:'🇸🇪', stickers:makeStickers('SWE',20,'🇸🇪','Suecia')},
-  {id:'TUN',name:'Túnez',          flag:'🇹🇳', stickers:makeStickers('TUN',20,'🇹🇳','Túnez')},
-  {id:'TUR',name:'Turquía',        flag:'🇹🇷', stickers:makeStickers('TUR',20,'🇹🇷','Turquía')},
-  {id:'URU',name:'Uruguay',        flag:'🇺🇾', stickers:makeStickers('URU',20,'🇺🇾','Uruguay')},
-  {id:'USA',name:'EE.UU.',         flag:'🇺🇸', stickers:makeStickers('USA',20,'🇺🇸','EE.UU.')},
-  {id:'UZB',name:'Uzbekistán',     flag:'🇺🇿', stickers:makeStickers('UZB',20,'🇺🇿','Uzbekistán')},
+  {id:'ALG',name:'Argelia',      flag:'🇩🇿', stickers:makeStickers('ALG',20,'🇩🇿','Argelia')},
+  {id:'ARG',name:'Argentina',    flag:'🇦🇷', stickers:makeStickers('ARG',20,'🇦🇷','Argentina')},
+  {id:'AUS',name:'Australia',    flag:'🇦🇺', stickers:makeStickers('AUS',20,'🇦🇺','Australia')},
+  {id:'AUT',name:'Austria',      flag:'🇦🇹', stickers:makeStickers('AUT',20,'🇦🇹','Austria')},
+  {id:'BEL',name:'Bélgica',      flag:'🇧🇪', stickers:makeStickers('BEL',20,'🇧🇪','Bélgica')},
+  {id:'BIH',name:'Bosnia-Herz.', flag:'🇧🇦', stickers:makeStickers('BIH',20,'🇧🇦','Bosnia-Herz.')},
+  {id:'BRA',name:'Brasil',       flag:'🇧🇷', stickers:makeStickers('BRA',20,'🇧🇷','Brasil')},
+  {id:'CAN',name:'Canadá',       flag:'🇨🇦', stickers:makeStickers('CAN',20,'🇨🇦','Canadá')},
+  {id:'CIV',name:'Costa de Marfil',flag:'🇨🇮',stickers:makeStickers('CIV',20,'🇨🇮','Costa de Marfil')},
+  {id:'COD',name:'RD Congo',     flag:'🇨🇩', stickers:makeStickers('COD',20,'🇨🇩','RD Congo')},
+  {id:'COL',name:'Colombia',     flag:'🇨🇴', stickers:makeStickers('COL',20,'🇨🇴','Colombia')},
+  {id:'CPV',name:'Cabo Verde',   flag:'🇨🇻', stickers:makeStickers('CPV',20,'🇨🇻','Cabo Verde')},
+  {id:'CRO',name:'Croacia',      flag:'🇭🇷', stickers:makeStickers('CRO',20,'🇭🇷','Croacia')},
+  {id:'CUW',name:'Curaçao',      flag:'🇨🇼', stickers:makeStickers('CUW',20,'🇨🇼','Curaçao')},
+  {id:'CZE',name:'Rep. Checa',   flag:'🇨🇿', stickers:makeStickers('CZE',20,'🇨🇿','Rep. Checa')},
+  {id:'ECU',name:'Ecuador',      flag:'🇪🇨', stickers:makeStickers('ECU',20,'🇪🇨','Ecuador')},
+  {id:'EGY',name:'Egipto',       flag:'🇪🇬', stickers:makeStickers('EGY',20,'🇪🇬','Egipto')},
+  {id:'ENG',name:'Inglaterra',   flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', stickers:makeStickers('ENG',20,'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Inglaterra')},
+  {id:'ESP',name:'España',       flag:'🇪🇸', stickers:makeStickers('ESP',20,'🇪🇸','España')},
+  {id:'FRA',name:'Francia',      flag:'🇫🇷', stickers:makeStickers('FRA',20,'🇫🇷','Francia')},
+  {id:'GER',name:'Alemania',     flag:'🇩🇪', stickers:makeStickers('GER',20,'🇩🇪','Alemania')},
+  {id:'GHA',name:'Ghana',        flag:'🇬🇭', stickers:makeStickers('GHA',20,'🇬🇭','Ghana')},
+  {id:'HAI',name:'Haití',        flag:'🇭🇹', stickers:makeStickers('HAI',20,'🇭🇹','Haití')},
+  {id:'IRN',name:'Irán',         flag:'🇮🇷', stickers:makeStickers('IRN',20,'🇮🇷','Irán')},
+  {id:'IRQ',name:'Irak',         flag:'🇮🇶', stickers:makeStickers('IRQ',20,'🇮🇶','Irak')},
+  {id:'JOR',name:'Jordania',     flag:'🇯🇴', stickers:makeStickers('JOR',20,'🇯🇴','Jordania')},
+  {id:'JPN',name:'Japón',        flag:'🇯🇵', stickers:makeStickers('JPN',20,'🇯🇵','Japón')},
+  {id:'KOR',name:'Corea del Sur',flag:'🇰🇷', stickers:makeStickers('KOR',20,'🇰🇷','Corea del Sur')},
+  {id:'KSA',name:'Arabia Saudita',flag:'🇸🇦',stickers:makeStickers('KSA',20,'🇸🇦','Arabia Saudita')},
+  {id:'MAR',name:'Marruecos',    flag:'🇲🇦', stickers:makeStickers('MAR',20,'🇲🇦','Marruecos')},
+  {id:'MEX',name:'México',       flag:'🇲🇽', stickers:makeStickers('MEX',20,'🇲🇽','México')},
+  {id:'NED',name:'Países Bajos', flag:'🇳🇱', stickers:makeStickers('NED',20,'🇳🇱','Países Bajos')},
+  {id:'NOR',name:'Noruega',      flag:'🇳🇴', stickers:makeStickers('NOR',20,'🇳🇴','Noruega')},
+  {id:'NZL',name:'Nueva Zelanda',flag:'🇳🇿', stickers:makeStickers('NZL',20,'🇳🇿','Nueva Zelanda')},
+  {id:'PAN',name:'Panamá',       flag:'🇵🇦', stickers:makeStickers('PAN',20,'🇵🇦','Panamá')},
+  {id:'PAR',name:'Paraguay',     flag:'🇵🇾', stickers:makeStickers('PAR',20,'🇵🇾','Paraguay')},
+  {id:'POR',name:'Portugal',     flag:'🇵🇹', stickers:makeStickers('POR',20,'🇵🇹','Portugal')},
+  {id:'QAT',name:'Qatar',        flag:'🇶🇦', stickers:makeStickers('QAT',20,'🇶🇦','Qatar')},
+  {id:'RSA',name:'Sudáfrica',    flag:'🇿🇦', stickers:makeStickers('RSA',20,'🇿🇦','Sudáfrica')},
+  {id:'SCO',name:'Escocia',      flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', stickers:makeStickers('SCO',20,'🏴󠁧󠁢󠁳󠁣󠁴󠁿','Escocia')},
+  {id:'SEN',name:'Senegal',      flag:'🇸🇳', stickers:makeStickers('SEN',20,'🇸🇳','Senegal')},
+  {id:'SUI',name:'Suiza',        flag:'🇨🇭', stickers:makeStickers('SUI',20,'🇨🇭','Suiza')},
+  {id:'SWE',name:'Suecia',       flag:'🇸🇪', stickers:makeStickers('SWE',20,'🇸🇪','Suecia')},
+  {id:'TUN',name:'Túnez',        flag:'🇹🇳', stickers:makeStickers('TUN',20,'🇹🇳','Túnez')},
+  {id:'TUR',name:'Turquía',      flag:'🇹🇷', stickers:makeStickers('TUR',20,'🇹🇷','Turquía')},
+  {id:'URU',name:'Uruguay',      flag:'🇺🇾', stickers:makeStickers('URU',20,'🇺🇾','Uruguay')},
+  {id:'USA',name:'EE.UU.',       flag:'🇺🇸', stickers:makeStickers('USA',20,'🇺🇸','EE.UU.')},
+  {id:'UZB',name:'Uzbekistán',   flag:'🇺🇿', stickers:makeStickers('UZB',20,'🇺🇿','Uzbekistán')},
 ];
 
-const ALL_IDS = GROUPS.flatMap(g => g.stickers.map(s => s.code));
-const TOTAL   = ALL_IDS.length; // 980
+const ALL_IDS = GROUPS.flatMap(g => g.stickers.map(s=>s.code));
+const TOTAL   = ALL_IDS.length; 
 
-// ── Variables globales OCR (scope global para Android) ────────
-let isProcessingOCR = false;
+let isProcessingOCR = false;   
 let ocrWorker       = null;
 let ocrInterval     = null;
 let ocrPaused       = false;
 let stream          = null;
 let scanning        = false;
 
-// ── Estado del álbum ─────────────────────────────────────────
-let state = { owned: {}, repeated: {} };
-try { const s = localStorage.getItem('mialb2026_v3'); if(s) state = JSON.parse(s); } catch(e) {}
-function save() { try { localStorage.setItem('mialb2026_v3', JSON.stringify(state)); } catch(e) {} }
+let state = {owned:{}, repeated:{}};
+try{const s=localStorage.getItem('mialb2026_v3');if(s)state=JSON.parse(s);}catch(e){}
+function save(){try{localStorage.setItem('mialb2026_v3',JSON.stringify(state));}catch(e){}}
 
-function status(id) {
-  if (state.repeated[id]) return 'repeated';
-  if (state.owned[id])    return 'owned';
+function status(id){
+  if(state.repeated[id]) return 'repeated';
+  if(state.owned[id]) return 'owned';
   return 'missing';
 }
 
-// ════════════════════════════════════════════════════════════════
-// BANNER — Google AdSense (franja fija 50px sobre el nav)
-// Usa createElement para ejecutarse correctamente en SPA.
-// ════════════════════════════════════════════════════════════════
-function initBannerAd() {
-  const container = document.getElementById('ad-banner-container');
-  if (!container) return;
+// ── Contadores y estado del interstitial ─────────────────────
+let stickerAddedCount = 0;
+let interCloseEnabled = false;
+let interAutoTimer    = null;
+let interCountdown    = null;
 
-  // Crear <ins> de AdSense formato banner 320x50
-  const ins = document.createElement('ins');
-  ins.className        = 'adsbygoogle';
-  ins.style.cssText    = 'display:inline-block;width:320px;height:50px;';
-  ins.dataset.adClient = 'ca-pub-5499913988915360';
-  ins.dataset.adSlot   = '3077431924';
-  ins.dataset.adFormat = 'fixed';
-  container.appendChild(ins);
-
-  // Push de AdSense dinámico
-  try {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-  } catch(e) {
-    console.warn('[AdSense banner]', e);
-  }
-}
-
-// ════════════════════════════════════════════════════════════════
-// INSTRUCCIÓN 2 & 3 — Interstitial (effectivecpmnetwork)
-// Contador: cada 15 láminas añadidas se abre el modal.
-// El script del ad se crea con createElement en cada disparo.
-// ════════════════════════════════════════════════════════════════
-let stickerAddedCount  = 0;
-let interCloseEnabled  = false;
-let interCountdown     = null;
-
-function maybeShowInterstitial() {
-  // Solo disparar si es múltiplo exacto de 15 y > 0
-  if (stickerAddedCount <= 0 || stickerAddedCount % 15 !== 0) return;
+// ── INSTRUCCIÓN 2: maybeShowInterstitial ─────────────────────
+// Se llama cada vez que se añade una lámina.
+// Dispara el modal exactamente cada 15 láminas.
+function maybeShowInterstitial(){
+  if(stickerAddedCount <= 0 || stickerAddedCount % 15 !== 0) return;
   openInterstitialModal();
 }
 
-function openInterstitialModal() {
-  const modal    = document.getElementById('interstitial-modal');
-  const closeBtn = document.getElementById('interCloseBtn');
-  const timerEl  = document.getElementById('interTimer');
-  const adSlot   = document.getElementById('ad-interstitial-container');
+function openInterstitialModal(){
+  const modal      = document.getElementById('interstitial-modal');
+  const closeBtn   = document.getElementById('interCloseBtn');
+  const autoLabel  = document.getElementById('interAutoclose');
+  const adSlot     = document.getElementById('ad-interstitial-container');
 
-  // Cancelar cualquier countdown anterior
+  // Cancelar timers anteriores si los hubiera
   clearInterval(interCountdown);
-  interCountdown = null;
+  clearTimeout(interAutoTimer);
 
-  // Limpiar slot anterior y re-inyectar el contenedor del ad
+  // Limpiar slot e inyectar el contenedor del ad
   adSlot.innerHTML = '<div id="container-47b8414b756b125da99bfd1fdf5e1df6"></div>';
 
-  // Inyectar el script del interstitial dinámicamente
+  // Crear e insertar el script del interstitial dinámicamente (INSTRUCCIÓN 2)
   const adScript = document.createElement('script');
   adScript.async = true;
-  adScript.setAttribute('data-cfasync', 'false');
+  adScript.setAttribute('data-cfasync','false');
   adScript.src   = 'https://pl29768116.effectivecpmnetwork.com/47b8414b756b125da99bfd1fdf5e1df6/invoke.js';
   adSlot.appendChild(adScript);
 
-  // Mostrar modal y resetear estado de cierre
+  // Mostrar modal y deshabilitar cierre manual al inicio
   modal.style.display = 'flex';
   interCloseEnabled   = false;
   closeBtn.disabled   = true;
   closeBtn.style.opacity = '0.45';
 
+  // Countdown visual de 5s — al llegar a 0 habilita el botón
   let secs = 5;
-  timerEl.textContent = 'Podrás cerrar en ' + secs + 's';
-
-  interCountdown = setInterval(() => {
+  autoLabel.textContent = 'Podrás cerrar en ' + secs + 's';
+  interCountdown = setInterval(()=>{
     secs--;
-    if (secs <= 0) {
+    if(secs <= 0){
       clearInterval(interCountdown);
-      interCountdown    = null;
-      interCloseEnabled = true;
-      closeBtn.disabled = false;
+      interCloseEnabled      = true;
+      closeBtn.disabled      = false;
       closeBtn.style.opacity = '1';
-      timerEl.textContent   = '✕ Toca para continuar';
+      autoLabel.textContent  = '';
     } else {
-      timerEl.textContent = 'Se cerrará en ' + secs + 's…';
+      autoLabel.textContent = 'Podrás cerrar en ' + secs + 's';
     }
   }, 1000);
 
-  // Cierre automático a los 5s — garantizado en cualquier dispositivo
-  setTimeout(() => {
+  // Cierre automático garantizado a los 5.5s por si el botón falla (INSTRUCCIÓN 3)
+  interAutoTimer = setTimeout(()=>{
     interCloseEnabled = true;
-    closeInterstitial(true);   // force=true: cierra siempre sin importar el flag
+    closeInterstitial();
   }, 5500);
 }
 
-// Cierre del modal — libera iframe y RAM
-// force=true lo usa el setTimeout para cerrar sin importar el flag
-function closeInterstitial(force) {
-  if (!interCloseEnabled && !force) return;  // solo bloquear si es tap manual antes de 5s
+// ── INSTRUCCIÓN 3: closeInterstitial ─────────────────────────
+// Oculta el modal y vacía el slot para liberar RAM.
+function closeInterstitial(){
+  if(!interCloseEnabled) return;
   clearInterval(interCountdown);
-  interCountdown    = null;
+  clearTimeout(interAutoTimer);
   interCloseEnabled = false;
 
-  const modal    = document.getElementById('interstitial-modal');
-  if (!modal || modal.style.display === 'none') return; // ya cerrado
-  const closeBtn = document.getElementById('interCloseBtn');
-  const timerEl  = document.getElementById('interTimer');
-  const adSlot   = document.getElementById('ad-interstitial-container');
+  const modal   = document.getElementById('interstitial-modal');
+  const adSlot  = document.getElementById('ad-interstitial-container');
+  const autoLbl = document.getElementById('interAutoclose');
+  const closeBtn= document.getElementById('interCloseBtn');
 
-  modal.style.display    = 'none';
-  adSlot.innerHTML       = '';          // libera el iframe del ad de la RAM
-  closeBtn.disabled      = true;
-  closeBtn.style.opacity = '0.45';
-  timerEl.textContent    = '';
+  if(modal)   modal.style.display = 'none';
+  if(adSlot)  adSlot.innerHTML    = '';   // libera el iframe de la RAM
+  if(autoLbl) autoLbl.textContent = '';
+  if(closeBtn){ closeBtn.disabled = true; closeBtn.style.opacity = '0.45'; }
 }
 
-// ── Touch hold (toque largo = repetida) ──────────────────────
 let pressTimer = null;
-function startPress(id, el) {
+function startPress(id,el){
   el.classList.add('pressing');
-  pressTimer = setTimeout(() => {
-    pressTimer = null;
-    el.classList.remove('pressing');
-    markRepeated(id);
-  }, 500);
+  pressTimer=setTimeout(()=>{pressTimer=null;el.classList.remove('pressing');markRepeated(id);},500);
 }
-function endPress(id, el) {
+function endPress(id,el){
   el.classList.remove('pressing');
-  if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; toggleOwned(id); }
+  if(pressTimer){clearTimeout(pressTimer);pressTimer=null;toggleOwned(id);}
 }
-function cancelPress(el) {
+function cancelPress(el){
   el.classList.remove('pressing');
-  if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+  if(pressTimer){clearTimeout(pressTimer);pressTimer=null;}
 }
 
-// ── Acciones principales ─────────────────────────────────────
-function toggleOwned(id) {
-  const st = status(id);
-  if (st === 'missing') {
-    state.owned[id] = true;
+function toggleOwned(id){
+  const st=status(id);
+  if(st==='missing'){
+    state.owned[id]=true;
     stickerAddedCount++;
     maybeShowInterstitial();
-    showToast('✅ ' + id + ' — ¡pegada!');
-  } else if (st === 'owned') {
+    showToast('✅ '+id+' — ¡pegada!');
+  }else if(st==='owned'){
     delete state.owned[id];
-    showToast('↩ ' + id + ' desmarcada');
-  } else {
+    showToast('↩ '+id+' desmarcada');
+  }else{
     delete state.repeated[id];
-    state.owned[id] = true;
-    showToast('✅ ' + id + ' — ya no repetida');
+    state.owned[id]=true;
+    showToast('✅ '+id+' — ya no repetida');
   }
-  save(); refreshSticker(id); updateStats();
+  save();refreshSticker(id);updateStats();
 }
 
-function markRepeated(id) {
-  const c = (state.repeated[id] || 1) + 1;
-  if (c > 9) {
-    delete state.repeated[id]; delete state.owned[id];
-    showToast('🗑 ' + id + ' eliminada');
-  } else {
-    state.repeated[id] = c; delete state.owned[id];
-    showToast('🔁 ' + id + ' ×' + c + ' para cambio');
-  }
-  save(); refreshSticker(id); updateStats();
+function markRepeated(id){
+  const c=(state.repeated[id]||1)+1;
+  if(c>9){delete state.repeated[id];delete state.owned[id];showToast('🗑 '+id+' eliminada');}
+  else{state.repeated[id]=c;delete state.owned[id];showToast('🔁 '+id+' ×'+c+' para cambio');}
+  save();refreshSticker(id);updateStats();
 }
 
-function refreshSticker(id) {
-  const el = document.getElementById('s_' + id);
-  if (!el) return;
-  const st     = status(id);
-  const isSpec = el.dataset.special === '1';
-  el.className = 'sticker-card ' + st + (isSpec ? ' special' : '');
-  const badge  = el.querySelector('.rep-badge');
-  const rep    = state.repeated[id];
-  if (rep && rep > 1) {
-    if (badge) badge.textContent = '×' + rep;
-    else { const b = document.createElement('div'); b.className = 'rep-badge'; b.textContent = '×' + rep; el.appendChild(b); }
-  } else { if (badge) badge.remove(); }
+function refreshSticker(id){
+  const el=document.getElementById('s_'+id);
+  if(!el) return;
+  const st=status(id);
+  const isSpec=el.dataset.special==='1';
+  el.className='sticker-card '+st+(isSpec?' special':'');
+  const badge=el.querySelector('.rep-badge');
+  const rep=state.repeated[id];
+  if(rep&&rep>1){
+    if(badge) badge.textContent='×'+rep;
+    else{const b=document.createElement('div');b.className='rep-badge';b.textContent='×'+rep;el.appendChild(b);}
+  }else{if(badge) badge.remove();}
 }
 
-function updateStats() {
-  const owned    = ALL_IDS.filter(s => state.owned[s] || state.repeated[s]).length;
-  const repCount = Object.values(state.repeated).reduce((a, b) => a + (b - 1), 0);
-  const missing  = TOTAL - owned;
-  const pct      = Math.round((owned / TOTAL) * 100);
-  document.getElementById('progressBar').style.width = pct + '%';
-  document.getElementById('pctLabel').textContent    = pct + '%';
-  document.getElementById('statsGrid').innerHTML = `
+function updateStats(){
+  const owned=ALL_IDS.filter(s=>state.owned[s]||state.repeated[s]).length;
+  const repCount=Object.values(state.repeated).reduce((a,b)=>a+(b-1),0);
+  const missing=TOTAL-owned;
+  const pct=Math.round((owned/TOTAL)*100);
+  document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('pctLabel').textContent=pct+'%';
+  document.getElementById('statsGrid').innerHTML=`
     <div class="stat"><div class="stat-val">${TOTAL}</div><div class="stat-lbl">Total</div></div>
     <div class="stat"><div class="stat-val g">${owned}</div><div class="stat-lbl">Tenidas</div></div>
     <div class="stat"><div class="stat-val o">${missing}</div><div class="stat-lbl">Faltan</div></div>
     <div class="stat"><div class="stat-val b">${repCount}</div><div class="stat-lbl">Cambio</div></div>
   `;
+  try{ checkAchievements(); }catch(e){}
 }
 
-// ── Tabs & render ────────────────────────────────────────────
-let currentTab = 'all';
-function setTab(tab, el) {
-  currentTab = tab;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+let currentTab='all';
+function setTab(tab,el){
+  currentTab=tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
   render();
 }
 
-function render() {
-  const search = document.getElementById('searchInput').value.toLowerCase().trim();
-  const gf     = document.getElementById('groupFilter').value;
-  let html = ''; let any = false;
-  for (const g of GROUPS) {
-    if (gf && g.id !== gf) continue;
-    const matches = g.stickers.filter(s => {
-      if (search && !s.code.toLowerCase().includes(search) && !g.name.toLowerCase().includes(search)) return false;
-      const st = status(s.code);
-      if (currentTab === 'owned'    && st === 'missing')   return false;
-      if (currentTab === 'missing'  && st !== 'missing')   return false;
-      if (currentTab === 'repeated' && st !== 'repeated')  return false;
+function render(){
+  const search=document.getElementById('searchInput').value.toLowerCase().trim();
+  const gf=document.getElementById('groupFilter').value;
+  let html='';let any=false;
+  for(const g of GROUPS){
+    if(gf&&g.id!==gf) continue;
+    const matches=g.stickers.filter(s=>{
+      if(search&&!s.code.toLowerCase().includes(search)&&!g.name.toLowerCase().includes(search)) return false;
+      const st=status(s.code);
+      if(currentTab==='owned'&&st==='missing') return false;
+      if(currentTab==='missing'&&st!=='missing') return false;
+      if(currentTab==='repeated'&&st!=='repeated') return false;
       return true;
     });
-    if (!matches.length) continue;
-    any = true;
-    const ownedG = g.stickers.filter(s => state.owned[s.code] || state.repeated[s.code]).length;
-    const total  = g.stickers.length;
-    const pctG   = Math.round((ownedG / total) * 100);
-    html += `<div class="country-page">
+    if(!matches.length) continue;
+    any=true;
+    const ownedG=g.stickers.filter(s=>state.owned[s.code]||state.repeated[s.code]).length;
+    const total=g.stickers.length;
+    const pctG=Math.round((ownedG/total)*100);
+    html+=`<div class="country-page">
       <div class="page-header">
         <span class="page-flag">${g.flag}</span>
         <div class="page-info">
-          <div class="page-name">${g.name}</div>
+          <div class="page-name" onclick="openFixtureForTeam('${g.id}')" style="cursor:pointer">${g.name} <span style="font-size:10px;color:var(--text4);margin-left:6px">Ver Fixture</span></div>
           <div class="page-prog-track"><div class="page-prog-fill" style="width:${pctG}%"></div></div>
         </div>
         <span class="page-stat">${ownedG}/${total}</span>
       </div>
       <div class="sticker-book">`;
-    for (const s of matches) {
-      const st     = status(s.code);
-      const rep    = state.repeated[s.code];
-      const isSpec = !!s.special;
-      html += `<div class="sticker-card ${st}${isSpec ? ' special' : ''}" id="s_${s.code}" data-special="${isSpec ? 1 : 0}"
+    for(const s of matches){
+      const st=status(s.code);
+      const rep=state.repeated[s.code];
+      const isSpec=!!s.special;
+      html+=`<div class="sticker-card ${st}${isSpec?' special':''}" id="s_${s.code}" data-special="${isSpec?1:0}"
         onpointerdown="startPress('${s.code}',this)"
         onpointerup="endPress('${s.code}',this)"
-        onpointercancel="cancelPress(this)" onpointerleave="cancelPress(this)">
-        <span class="sc-flag">${g.flag}</span>
-        <span class="sc-num">${s.code}</span>
-        <span class="sc-type">${s.type || ''}</span>
-        ${rep && rep > 1 ? '<div class="rep-badge">×' + rep + '</div>' : ''}
-      </div>`;
+        onpointercancel="cancelPress(this)" onpointerleave="cancelPress(this)">`;
+      html+=`<span class="sc-flag">${g.flag}</span>`;
+      html+=`<span class="sc-num">${s.code}</span>`;
+      html+=`<span class="sc-type">${s.type||''}</span>`;
+      if(rep&&rep>1) html+=`<div class="rep-badge">×${rep}</div>`;
+      html+=`</div>`;
     }
-    html += `</div></div>`;
+    html+=`</div></div>`;
   }
   document.getElementById('albumScroll').innerHTML = any
     ? html
     : `<div class="empty"><div class="empty-ico">🔍</div><div>No hay láminas que mostrar</div></div>`;
 }
 
-// ── Stats view ───────────────────────────────────────────────
-function renderStats() {
-  const owned    = ALL_IDS.filter(s => state.owned[s] || state.repeated[s]).length;
-  const missing  = TOTAL - owned;
-  const repCount = Object.values(state.repeated).reduce((a, b) => a + (b - 1), 0);
-  const pct      = Math.round((owned / TOTAL) * 100);
-  const sobresEstimados = Math.max(0, Math.round((missing * 100) / 70));
-  const milestones = [
+function renderStats(){
+  const owned=ALL_IDS.filter(s=>state.owned[s]||state.repeated[s]).length;
+  const missing=TOTAL-owned;
+  const repCount=Object.values(state.repeated).reduce((a,b)=>a+(b-1),0);
+  const pct=Math.round((owned/TOTAL)*100);
+  const sobresEstimados=Math.max(0,Math.round((missing*100)/70));
+  const milestones=[
     {pct:10,label:'¡Empezando!',ico:'🌱'},{pct:25,label:'25% completo',ico:'⭐'},
     {pct:50,label:'¡Mitad!',ico:'🏅'},{pct:75,label:'¡Casi!',ico:'🔥'},
     {pct:90,label:'90% logrado',ico:'💎'},{pct:100,label:'¡Álbum completo!',ico:'🏆'},
   ];
-  const countryData = GROUPS.filter(g => g.stickers.length === 20).map(g => {
-    const o = g.stickers.filter(s => state.owned[s.code] || state.repeated[s.code]).length;
-    return { id:g.id, name:g.name, flag:g.flag, owned:o, total:g.stickers.length,
-      pct: Math.round((o / g.stickers.length) * 100) };
-  }).sort((a, b) => b.pct - a.pct);
+  const countryData=GROUPS.filter(g=>g.stickers.length===20).map(g=>{
+    const o=g.stickers.filter(s=>state.owned[s.code]||state.repeated[s.code]).length;
+    return {id:g.id,name:g.name,flag:g.flag,owned:o,total:g.stickers.length,
+      pct:Math.round((o/g.stickers.length)*100)};
+  }).sort((a,b)=>b.pct-a.pct);
   const r=54,cx=64,cy=64,circ=2*Math.PI*r;
-  const ownedArc=circ*(owned/TOTAL), repArc=circ*(repCount/TOTAL);
-  const donut = `<svg width="128" height="128" viewBox="0 0 128 128">
+  const ownedArc=circ*(owned/TOTAL);
+  const repArc=circ*(repCount/TOTAL);
+  const donut=`<svg width="128" height="128" viewBox="0 0 128 128">
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(124,58,237,0.15)" stroke-width="18"/>
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#10B981" stroke-width="18"
       stroke-dasharray="${ownedArc} ${circ}" stroke-dashoffset="${circ/4}" stroke-linecap="round"/>
@@ -974,7 +940,7 @@ function renderStats() {
     <text x="${cx}" y="${cy-6}" text-anchor="middle" font-size="22" font-weight="800" fill="#F0EEFF">${pct}%</text>
     <text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="11" fill="#7C6BA8">completado</text>
   </svg>`;
-  let html = `
+  let html=`
   <div class="sv-title">Resumen del álbum</div>
   <div class="donut-wrap">${donut}
     <div class="donut-legend">
@@ -1002,395 +968,585 @@ function renderStats() {
   </div>
   <div class="sv-title">Progreso por selección</div>
   <div class="country-bars">`;
-  for (const c of countryData) {
-    html += `<div class="cbar-row">
+  for(const c of countryData){
+    html+=`<div class="cbar-row">
       <span class="cbar-flag">${c.flag}</span>
       <span class="cbar-name">${c.name}</span>
       <div class="cbar-track"><div class="cbar-fill" style="width:${c.pct}%"></div></div>
       <span class="cbar-pct">${c.pct}%</span>
     </div>`;
   }
-  html += `</div><div class="sv-title">Logros</div><div class="milestones">`;
-  for (const m of milestones) {
-    const reached = pct >= m.pct;
-    html += `<div class="milestone${reached ? ' reached' : ''}">
+  html+=`</div><div class="sv-title">Logros</div><div class="milestones">`;
+  for(const m of milestones){
+    const reached=pct>=m.pct;
+    html+=`<div class="milestone${reached?' reached':''}">
       <div class="milestone-ico">${m.ico}</div>
       <div class="milestone-lbl">${m.label}</div>
       <div class="milestone-pct">${m.pct}%</div>
     </div>`;
   }
-  html += `</div>`;
-  document.getElementById('statsView').innerHTML = html;
+  html+=`</div>`;
+  document.getElementById('statsView').innerHTML=html;
 }
 
-// ── View switcher ────────────────────────────────────────────
-function showView(name, btn) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('view-' + name).classList.add('active');
-  btn.classList.add('active');
-  if (name === 'stats')   renderStats();
-  if (name !== 'scanner') stopCamera();
+function showView(name,btn){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const view = document.getElementById('view-'+name);
+  if(!view) return;
+  view.classList.add('active');
+  if(btn && btn.classList) btn.classList.add('active');
+  // map names to renderers
+  if(name==='progreso') renderStats();
+  if(name==='partidos') renderPartidos();
+  if(name==='compartir') renderCompartir();
+  if(name!=='scanner') stopCamera();
 }
 
-// ── Bulk ─────────────────────────────────────────────────────
-function bulkAdd() {
-  const raw  = document.getElementById('bulkInput').value;
-  const ids  = raw.split(/[,\s]+/).map(s => s.trim().toUpperCase()).filter(Boolean);
-  let count  = 0;
-  ids.forEach(id => {
-    if (ALL_IDS.includes(id) && status(id) === 'missing') {
-      state.owned[id] = true; delete state.repeated[id];
-      count++; stickerAddedCount++;
+// ======================= TRIVIA DIARIA =======================
+
+const TRIVIA_POOL = [
+  {q:'¿Quién ostenta el récord de más goles en la historia de las Copas del Mundo?',opciones:['Pelé','Miroslav Klose','Ronaldo Nazário','Just Fontaine'],correcta:1},
+  {q:'¿Cuál es el país que más Copas del Mundo ha ganado?',opciones:['Alemania','Italia','Brasil','Francia'],correcta:2},
+  {q:'¿En qué año Brasil ganó su quinta Copa del Mundo?',opciones:['2000','2002','2004','2006'],correcta:1},
+  {q:'¿Quién ganó el Balón de Oro del Mundial 2022?',opciones:['Neymar','Kylian Mbappé','Lionel Messi','Sergio Busquets'],correcta:1},
+  {q:'¿Cuántas veces ha ganado Argentina la Copa del Mundo?',opciones:['1 vez','2 veces','3 veces','4 veces'],correcta:1},
+  {q:'¿Quién anotó el gol más rápido en la historia de la Copa del Mundo?',opciones:['Hakan Şükür','Garrincha','Pelé','Diego Maradona'],correcta:0},
+  {q:'¿En qué país se jugó la Copa del Mundo 2014?',opciones:['España','Brasil','Alemania','Francia'],correcta:1},
+  {q:'¿Cuántos goles anotó Pelé en las Copas del Mundo?',opciones:['10','12','15','17'],correcta:1},
+  {q:'¿Qué selección ganó la Copa del Mundo 2018?',opciones:['Alemania','Francia','Brasil','Bélgica'],correcta:1},
+  {q:'¿Cuántas Copas del Mundo ha jugado Cristiano Ronaldo?',opciones:['3','4','5','6'],correcta:1},
+  {q:'¿Quién fue el goleador de la Copa del Mundo 2014?',opciones:['Neymar','James Rodríguez','Thomas Müller','Mario Götze'],correcta:1},
+  {q:'¿En qué país se jugó la primera Copa del Mundo?',opciones:['Francia','Italia','Uruguay','Brasil'],correcta:2},
+  {q:'¿Cuántos países participan en la Copa del Mundo 2026?',opciones:['32','40','44','48'],correcta:3},
+  {q:'¿Quién es el máximo goleador en la historia de la Copa del Mundo con 16 goles?',opciones:['Pelé','Gerd Müller','Miroslav Klose','Ronaldo'],correcta:2},
+  {q:'¿Cuánto tiempo duró el gol más rápido en una final de Copa del Mundo?',opciones:['11 segundos','12 segundos','13 segundos','14 segundos'],correcta:0},
+  {q:'¿Cuál fue el marcador de la final del Mundial 2022 entre Argentina y Francia?',opciones:['2-2','3-3','4-4','1-1'],correcta:1},
+  {q:'¿Qué selección ha ganado más Balones de Oro en Copas del Mundo?',opciones:['Alemania','Brasil','Francia','Argentina'],correcta:1},
+  {q:'¿En qué año Maradona ganó su primera Copa del Mundo?',opciones:['1982','1984','1986','1988'],correcta:2},
+  {q:'¿Cuántos goles anotó Diego Maradona en Copas del Mundo?',opciones:['6','8','10','12'],correcta:1},
+  {q:'¿Quién fue el entrenador de Francia en la Copa del Mundo 2018?',opciones:['Laurent Blanc','Didier Deschamps','Zinedine Zidane','Guy Stéphan'],correcta:1},
+  {q:'¿Cuál es el equipo con más participaciones en Copas del Mundo?',opciones:['Italia','Alemania','Brasil','Argentina'],correcta:2},
+  {q:'¿Cuántas finales ha jugado Italia en la Copa del Mundo?',opciones:['2','3','4','5'],correcta:2},
+  {q:'¿En qué país se jugará la Copa del Mundo 2026?',opciones:['México, Canadá y USA','Alemania y Austria','Arabia Saudita','Portugal y España'],correcta:0},
+  {q:'¿Quién fue el goleador del Mundial 2022?',opciones:['Lionel Messi','Kylian Mbappé','Gavi','Julián Álvarez'],correcta:1},
+  {q:'¿Cuál es el promedio de goles por partido en una Copa del Mundo?',opciones:['2.5','3.0','2.7','2.2'],correcta:2},
+  {q:'¿Qué selección ha ganado la Copa del Mundo antes de 2022?',opciones:['Alemania 2014','Francia 2018','Italia 2006','España 2010'],correcta:1},
+  {q:'¿Cuántos goles marcó Brasil en el Mundial 2002?',opciones:['10','12','13','14'],correcta:2},
+  {q:'¿Quién fue el Balón de Oro del Mundial 1990?',opciones:['Salvatore Schillaci','Lothar Matthäus','Diego Maradona','Franz Beckenbauer'],correcta:0},
+  {q:'¿Cuál ha sido la mayor goleada en una final de Copa del Mundo?',opciones:['3-0','4-1','5-2','6-3'],correcta:1},
+  {q:'¿En qué año se jugó la primera Copa del Mundo televisada?',opciones:['1930','1950','1954','1962'],correcta:2},
+  {q:'¿Cuántas veces ha sido subcampeona Alemania en la Copa del Mundo?',opciones:['2','3','4','5'],correcta:2}
+];
+
+function triviaKey(){return 'album_trivia'}
+function todaysTriviaIndex(){
+  const day=Math.floor(new Date().getTime()/86400000);
+  return day % TRIVIA_POOL.length;
+}
+
+function showTriviaIfNeeded(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(triviaKey())||'{}');
+    const idx=todaysTriviaIndex();
+    if(saved.day===idx) return; // already answered today
+    const t=TRIVIA_POOL[idx];
+    if(!t) return;
+    // show modal with multiple choice
+    const overlay=document.createElement('div'); overlay.style= 'position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999';
+    const box=document.createElement('div'); box.style='background:var(--card);padding:20px;border-radius:12px;max-width:500px;color:var(--text);text-align:center';
+    let optionsHtml=t.opciones.map((o,i)=>`<div style="margin:8px 0;padding:10px;border-radius:8px;border:2px solid var(--border);cursor:pointer;background:var(--bg3);transition:all 0.2s" class="trivia-opt" data-idx="${i}" onclick="document.querySelectorAll('.trivia-opt').forEach(x=>x.style.borderColor='var(--border)');this.style.borderColor='#3B82F6'">${o}</div>`).join('');
+    box.innerHTML=`<div style="font-weight:800;margin-bottom:12px;font-size:18px">Trivia del día</div><div style="margin-bottom:16px">${t.q}</div><div style="margin-bottom:12px">${optionsHtml}</div><div style="display:flex;gap:8px;justify-content:center"><button class="bbtn g" id="triviaOk">Responder</button><button class="bbtn" id="triviaSkip">Omitir</button></div>`;
+    overlay.appendChild(box); document.body.appendChild(overlay);
+    document.getElementById('triviaOk').onclick=()=>{
+      const selected=document.querySelector('.trivia-opt[style*="rgb(59, 130, 246)"]');
+      if(!selected){showToast('⚠️ Selecciona una opción'); return;}
+      const ans=parseInt(selected.dataset.idx);
+      if(ans===t.correcta){
+        confettiEffect(); showToast('✅ Correcto — ¡premio diario!');
+      }else{ showToast('❌ Incorrecto — Respuesta correcta: '+t.opciones[t.correcta]); }
+      localStorage.setItem(triviaKey(),JSON.stringify({day:idx,ans:ans})); overlay.remove();
+    };
+    document.getElementById('triviaSkip').onclick=()=>{ overlay.remove(); };
+  }catch(e){}
+}
+
+function confettiEffect(){
+  // Lightweight CSS confetti: create few colored divs
+  const wrap=document.createElement('div'); wrap.style='position:fixed;inset:0;pointer-events:none;z-index:10000'; document.body.appendChild(wrap);
+  for(let i=0;i<24;i++){const d=document.createElement('div');const s=Math.random()*10+6;d.style=`position:absolute;left:${Math.random()*100}%;top:-10px;width:${s}px;height:${s*0.6}px;background:hsl(${Math.random()*360} 80% 60%);opacity:0.95;transform:rotate(${Math.random()*360}deg);animation:fall 1.6s linear forwards`;wrap.appendChild(d);} setTimeout(()=>wrap.remove(),1800);
+}
+
+// tiny confetti keyframes (inject)
+const kf = document.createElement('style'); kf.textContent='@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}'; document.head.appendChild(kf);
+
+// ======================= COMPARTIR / GENERADOR DE INTERCAMBIO =======================
+function renderCompartir(){
+  const container=document.getElementById('compartirView');
+  const missing = ALL_IDS.filter(id=>!state.owned[id] && !state.repeated[id]);
+  const repeats = Object.keys(state.repeated||{}).filter(id=>state.repeated[id]>1);
+  const byGroup=(list)=>{
+    const map={}; list.forEach(id=>{const g=id.replace(/\d+$/,''); map[g]=map[g]||[]; map[g].push(id)}); return map;
+  };
+  const mGroup=byGroup(missing), rGroup=byGroup(repeats);
+  let html=`<div class="sv-title">Compartir faltantes y repetidas</div>`;
+  html+=`<div style="padding:10px">`;
+  html+=`<div style="margin-bottom:8px"><strong>MIS FALTANTES:</strong> ${missing.slice(0,300).join(', ') || 'Ninguna'}</div>`;
+  html+=`<div style="margin-bottom:8px"><strong>MIS REPETIDAS:</strong> ${repeats.slice(0,300).join(', ') || 'Ninguna'}</div>`;
+  html+=`<div style="display:flex;gap:8px;margin-top:8px"><a class="bbtn g" href="#" onclick="shareWhatsApp()">Compartir por WhatsApp</a><button class="bbtn b" onclick="captureShareImage()">📸 Capturar imagen</button></div>`;
+  html+=`</div>`;
+  container.innerHTML=html;
+}
+
+function shareWhatsApp(){
+  const missing = ALL_IDS.filter(id=>!state.owned[id] && !state.repeated[id]);
+  const repeats = Object.keys(state.repeated||{}).filter(id=>state.repeated[id]>1);
+  const text=`MIS FALTANTES: ${missing.join(', ') || 'Ninguna'}\nMIS REPETIDAS: ${repeats.join(', ') || 'Ninguna'}`;
+  const url='https://api.whatsapp.com/send?text='+encodeURIComponent(text);
+  window.open(url,'_blank');
+}
+
+async function captureShareImage(){
+  try{ const el=document.getElementById('infografia-template'); const canvas=await html2canvas(el,{scale:2,useCORS:true,backgroundColor:null}); const a=document.createElement('a'); a.href=canvas.toDataURL('image/png'); a.download='mi_intercambio.png'; a.click(); showToast('📸 Imagen generada'); }
+  catch(e){console.error(e); showToast('❌ Error al capturar imagen');}
+}
+
+// ======================= INICIALIZACIÓN ADICIONAL =======================
+document.addEventListener('DOMContentLoaded',()=>{
+  checkAchievements();
+  showTriviaIfNeeded();
+});
+
+function bulkAdd(){
+  const raw=document.getElementById('bulkInput').value;
+  const ids=raw.split(/[,\s]+/).map(s=>s.trim().toUpperCase()).filter(Boolean);
+  let count=0;
+  ids.forEach(id=>{
+    if(ALL_IDS.includes(id)&&status(id)==='missing'){
+      state.owned[id]=true;delete state.repeated[id];
+      count++;stickerAddedCount++;
     }
   });
-  document.getElementById('bulkInput').value = '';
-  save(); render(); updateStats();
-  showToast('✅ ' + count + ' láminas marcadas');
-  if (count > 0) maybeShowInterstitial();
+  document.getElementById('bulkInput').value='';
+  save();render();updateStats();
+  showToast('✅ '+count+' láminas marcadas');
+  if(count>0) maybeShowInterstitial();
 }
 
-function bulkRepeat() {
-  const raw = document.getElementById('bulkInput').value;
-  const ids = raw.split(/[,\s]+/).map(s => s.trim().toUpperCase()).filter(Boolean);
-  let count = 0;
-  ids.forEach(id => {
-    if (ALL_IDS.includes(id)) {
-      state.repeated[id] = (state.repeated[id] || 1) + 1;
-      delete state.owned[id]; count++;
-    }
+function bulkRepeat(){
+  const raw=document.getElementById('bulkInput').value;
+  const ids=raw.split(/[,\s]+/).map(s=>s.trim().toUpperCase()).filter(Boolean);
+  let count=0;
+  ids.forEach(id=>{
+    if(ALL_IDS.includes(id)){state.repeated[id]=(state.repeated[id]||1)+1;delete state.owned[id];count++;}
   });
-  document.getElementById('bulkInput').value = '';
-  save(); render(); updateStats();
-  showToast('🔁 ' + count + ' marcadas para cambio');
+  document.getElementById('bulkInput').value='';
+  save();render();updateStats();
+  showToast('🔁 '+count+' marcadas para cambio');
 }
 
-// ── Exportar → Infografía PNG ────────────────────────────────
-async function exportData() {
+async function exportData(){
   showToast('⏳ Generando infografía…');
-  const owned    = ALL_IDS.filter(s => state.owned[s] || state.repeated[s]).length;
-  const missing  = TOTAL - owned;
-  const repCount = Object.values(state.repeated).reduce((a, b) => a + (b - 1), 0);
-  const pct      = Math.round((owned / TOTAL) * 100);
+  const owned   = ALL_IDS.filter(s=>state.owned[s]||state.repeated[s]).length;
+  const missing  = TOTAL-owned;
+  const repCount = Object.values(state.repeated).reduce((a,b)=>a+(b-1),0);
+  const pct      = Math.round((owned/TOTAL)*100);
+
   const completed = GROUPS
-    .filter(g => g.stickers.length > 0)
-    .filter(g => g.stickers.every(s => state.owned[s.code] || state.repeated[s.code]))
-    .map(g => g.flag + ' ' + g.name);
+    .filter(g=>g.stickers.length>0)
+    .filter(g=>g.stickers.every(s=>state.owned[s.code]||state.repeated[s.code]))
+    .map(g=>g.flag+' '+g.name);
 
   document.getElementById('infog-date').textContent =
-    'Actualizado: ' + new Date().toLocaleDateString('es-ES', {day:'2-digit',month:'long',year:'numeric'});
-  document.getElementById('infog-pct').textContent       = pct + '%';
-  document.getElementById('infog-owned').textContent     = owned;
-  document.getElementById('infog-missing').textContent   = missing;
-  document.getElementById('infog-repeated').textContent  = repCount;
+    'Actualizado: '+new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('infog-pct').textContent   = pct+'%';
+  document.getElementById('infog-owned').textContent  = owned;
+  document.getElementById('infog-missing').textContent= missing;
+  document.getElementById('infog-repeated').textContent= repCount;
   document.getElementById('infog-completed-list').textContent =
     completed.length ? completed.join('  ·  ') : 'Ninguna aún — ¡sigue coleccionando!';
 
-  const circumference = 2 * Math.PI * 65;
-  document.getElementById('infog-ring-arc')
-    .setAttribute('stroke-dasharray', (circumference * (pct / 100)) + ' ' + circumference);
+  const circumference = 2*Math.PI*65; 
+  const arc = circumference*(pct/100);
+  const arcEl = document.getElementById('infog-ring-arc');
+  arcEl.setAttribute('stroke-dasharray', arc+' '+circumference);
 
-  await new Promise(r => setTimeout(r, 100));
-  try {
-    const canvas = await html2canvas(document.getElementById('infografia-template'), {
-      useCORS: true, scale: 2, backgroundColor: null, logging: false,
+  await new Promise(r=>setTimeout(r,100));
+
+  try{
+    const canvas = await html2canvas(document.getElementById('infografia-template'),{
+      useCORS: true,
+      scale: 2,
+      backgroundColor: null,
+      logging: false,
     });
-    const link   = document.createElement('a');
+    const link = document.createElement('a');
     link.download = 'Mi_Progreso_Album_2026.png';
-    link.href     = canvas.toDataURL('image/png');
+    link.href = canvas.toDataURL('image/png');
     link.click();
     showToast('📸 ¡Infografía descargada!');
-  } catch(err) {
+  }catch(err){
     console.error(err);
     showToast('❌ Error al generar la imagen.');
   }
 }
 
-// ── Backup & Restore ─────────────────────────────────────────
-function backupData() {
-  const backup = { version:'mialb2026_v3', timestamp:new Date().toISOString(), total:TOTAL, state:state };
-  const blob   = new Blob([JSON.stringify(backup, null, 2)], {type:'application/json'});
-  const a      = document.createElement('a');
-  a.href       = URL.createObjectURL(blob);
-  a.download   = 'backup_album_2026.json';
+function backupData(){
+  const backup = {
+    version: 'mialb2026_v3',
+    timestamp: new Date().toISOString(),
+    total: TOTAL,
+    state: state,
+  };
+  const blob = new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'backup_album_2026.json';
   a.click();
   showToast('💾 Copia de seguridad descargada');
 }
 
-function restoreData(event) {
+function restoreData(event){
   const file = event.target.files[0];
-  if (!file) return;
+  if(!file){ return; }
   const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
+  reader.onload = function(e){
+    try{
       const parsed = JSON.parse(e.target.result);
-      if (typeof parsed !== 'object' || !parsed.version || !parsed.version.startsWith('mialb2026') ||
-          typeof parsed.state !== 'object' || typeof parsed.state.owned !== 'object' ||
-          typeof parsed.state.repeated !== 'object') {
-        showToast('❌ Archivo inválido.'); return;
+      if(
+        typeof parsed !== 'object' ||
+        !parsed.version ||
+        !parsed.version.startsWith('mialb2026') ||
+        typeof parsed.state !== 'object' ||
+        typeof parsed.state.owned !== 'object' ||
+        typeof parsed.state.repeated !== 'object'
+      ){
+        showToast('❌ Archivo inválido.');
+        return;
       }
-      const ownedKeys   = Object.keys(parsed.state.owned);
-      const invalidKeys = ownedKeys.filter(k => !ALL_IDS.includes(k));
-      if (invalidKeys.length > ownedKeys.length * 0.5) {
-        showToast('❌ El backup no corresponde a este álbum.'); return;
+      const ownedKeys = Object.keys(parsed.state.owned);
+      const invalidKeys = ownedKeys.filter(k=>!ALL_IDS.includes(k));
+      if(invalidKeys.length > ownedKeys.length * 0.5){
+        showToast('❌ El backup no corresponde a este álbum.');
+        return;
       }
-      state = { owned: parsed.state.owned || {}, repeated: parsed.state.repeated || {} };
-      save(); render(); updateStats();
+      state = {
+        owned:    parsed.state.owned    || {},
+        repeated: parsed.state.repeated || {},
+      };
+      save();render();updateStats();
       showToast('✅ Progreso restaurado');
-    } catch(err) {
+    }catch(err){
       showToast('❌ Error al leer el archivo.');
-    } finally {
-      event.target.value = '';
+    }finally{
+      event.target.value='';
     }
   };
   reader.readAsText(file);
 }
 
-function clearAllData() {
-  if (!confirm('¿Seguro que quieres borrar TODO tu progreso?')) return;
-  state = { owned:{}, repeated:{} };
-  save(); render(); updateStats();
+function clearAllData(){
+  if(!confirm('¿Seguro que quieres borrar TODO tu progreso?')) return;
+  state = {owned:{}, repeated:{}};
+  save();render();updateStats();
   showToast('🗑 Progreso borrado');
 }
 
-// ════════════════════════════════════════════════════════════════
-// OCR — Tesseract.js (variables globales para compatibilidad Android)
-// ════════════════════════════════════════════════════════════════
 const OCR_INTERVAL_MS = 1500;
 const OCR_PAUSE_MS    = 4000;
 
-function setOcrStatus(msg) {
-  const el = document.getElementById('ocrStatus');
-  if (el) el.textContent = msg;
+function setOcrStatus(msg){
+  const el=document.getElementById('ocrStatus');
+  if(el) el.textContent=msg;
 }
 
-async function initOcrWorker() {
-  if (ocrWorker) return;
+function loadTesseractIfNeeded(){
+  if(window.Tesseract && typeof window.Tesseract.createWorker === 'function'){
+    return Promise.resolve();
+  }
+  const existing = document.querySelector('script[src*="tesseract.js"]');
+  if(existing){
+    if(window.Tesseract && typeof window.Tesseract.createWorker === 'function'){
+      return Promise.resolve();
+    }
+    return new Promise((resolve,reject)=>{
+      const onLoad = ()=>{
+        cleanup();
+        if(window.Tesseract && typeof window.Tesseract.createWorker === 'function'){
+          resolve();
+        }else{
+          reject(new Error('Tesseract.js cargó, pero el objeto Tesseract no existe'));
+        }
+      };
+      const onError = ()=>{
+        cleanup();
+        reject(new Error('Error cargando Tesseract.js'));
+      };
+      const cleanup = ()=>{
+        existing.removeEventListener('load', onLoad);
+        existing.removeEventListener('error', onError);
+      };
+      existing.addEventListener('load', onLoad);
+      existing.addEventListener('error', onError);
+    });
+  }
+  return new Promise((resolve,reject)=>{
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.4.0/dist/tesseract.min.js';
+    script.async = true;
+    script.onload = () => {
+      if(window.Tesseract && typeof window.Tesseract.createWorker === 'function'){
+        resolve();
+      }else{
+        reject(new Error('Tesseract.js cargó, pero el objeto Tesseract no existe'));
+      }
+    };
+    script.onerror = () => reject(new Error('Error cargando Tesseract.js'));
+    document.head.appendChild(script);
+  });
+}
+
+async function initOcrWorker(){
+  if(ocrWorker) return;
   setOcrStatus('⏳ Cargando OCR…');
-  try {
-    ocrWorker = Tesseract.createWorker({ logger: () => {} });
+  try{
+    await loadTesseractIfNeeded();
+    ocrWorker = window.Tesseract.createWorker({logger:()=>{}});
     await ocrWorker.load();
     await ocrWorker.loadLanguage('eng');
     await ocrWorker.initialize('eng');
     await ocrWorker.setParameters({
-      tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ',
+      tessedit_char_whitelist:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ',
     });
     setOcrStatus('✅ OCR listo — apunta la lámina');
-  } catch(e) {
-    console.error('OCR init error', e);
-    setOcrStatus('❌ Error OCR: ' + (e.message || e));
-    showScanResult('err', '❌ Error OCR: ' + (e.message || e));
-    ocrWorker = null;
+  }catch(e){
+    console.error('OCR init error',e);
+    setOcrStatus('❌ Error OCR: '+(e.message||e));
+    showScanResult('err','❌ Error OCR: '+(e.message||e));
+    ocrWorker=null;
   }
 }
 
-async function toggleCamera() {
-  const btn         = document.getElementById('camToggleBtn');
-  const camArea     = document.getElementById('camArea');
-  const placeholder = document.getElementById('camPlaceholder');
-  const video       = document.getElementById('video');
-  if (!scanning) {
-    try {
-      stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode:'environment', width:{ideal:1280}, height:{ideal:720} }
+async function toggleCamera(){
+  const btn=document.getElementById('camToggleBtn');
+  const camArea=document.getElementById('camArea');
+  const placeholder=document.getElementById('camPlaceholder');
+  const video=document.getElementById('video');
+  if(!scanning){
+    try{
+      stream=await navigator.mediaDevices.getUserMedia({
+        video:{facingMode:'environment',width:{ideal:1280},height:{ideal:720}}
       });
-    } catch(e) {
-      console.warn('Environment camera failed, retrying without facingMode', e);
-      try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      } catch(err) {
-        console.error('Camera access error', err);
-        showScanResult('err', '❌ Sin acceso a cámara: ' + (err.message || err));
+    }catch(e){
+      console.warn('Environment camera failed, retrying without facingMode',e);
+      try{
+        stream=await navigator.mediaDevices.getUserMedia({video:true});
+      }catch(err){
+        console.error('Camera access error',err);
+        showScanResult('err','❌ Sin acceso a cámara: '+(err.message||err));
         setOcrStatus('❌ Sin acceso a cámara');
         return;
       }
     }
-    video.srcObject      = stream;
-    video.onloadedmetadata = () => video.play().catch(() => {});
-    camArea.style.display     = 'flex';
-    placeholder.style.display = 'none';
-    btn.className   = 'cam-btn stop';
-    btn.textContent = '⏹ Desactivar cámara';
-    scanning = true;
+    video.srcObject=stream;
+    video.onloadedmetadata = ()=> video.play().catch(()=>{});
+    camArea.style.display='flex';
+    placeholder.style.display='none';
+    btn.className='cam-btn stop';
+    btn.textContent='⏹ Desactivar cámara';
+    scanning=true;
     await initOcrWorker();
     startOcrLoop();
-  } else {
+  }else{
     stopCamera();
   }
 }
 
-function stopCamera() {
+function stopCamera(){
   stopOcrLoop();
-  if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
-  scanning = false;
-  const camArea     = document.getElementById('camArea');
-  const placeholder = document.getElementById('camPlaceholder');
-  if (camArea)     camArea.style.display     = 'none';
-  if (placeholder) placeholder.style.display = 'flex';
-  const btn = document.getElementById('camToggleBtn');
-  if (btn) { btn.className = 'cam-btn start'; btn.textContent = '📷 Activar cámara'; }
+  if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
+  scanning=false;
+  const camArea=document.getElementById('camArea');
+  const placeholder=document.getElementById('camPlaceholder');
+  if(camArea) camArea.style.display='none';
+  if(placeholder) placeholder.style.display='flex';
+  const btn=document.getElementById('camToggleBtn');
+  if(btn){btn.className='cam-btn start';btn.textContent='📷 Activar cámara';}
 }
 
-function startOcrLoop() {
+function startOcrLoop(){
   stopOcrLoop();
-  ocrInterval = setInterval(captureAndOCR, OCR_INTERVAL_MS);
+  ocrInterval=setInterval(captureAndOCR, OCR_INTERVAL_MS);
 }
-function stopOcrLoop() {
-  if (ocrInterval) { clearInterval(ocrInterval); ocrInterval = null; }
-  isProcessingOCR = false; // siempre liberar el lock global
+function stopOcrLoop(){
+  if(ocrInterval){clearInterval(ocrInterval);ocrInterval=null;}
+  isProcessingOCR=false; 
 }
 
-function preprocessFrame(video) {
-  const canvas = document.getElementById('ocrCanvas');
-  const vw = video.videoWidth, vh = video.videoHeight;
-  if (!vw || !vh) return null;
-  const cropW = Math.min(640, vw);
-  const cropH = Math.min(200, Math.round(vh * 0.25));
-  const cropX = Math.round((vw - cropW) / 2);
-  const cropY = Math.round((vh - cropH) / 2);
-  canvas.width = cropW; canvas.height = cropH;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(video, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
-  const imgData = ctx.getImageData(0, 0, cropW, cropH);
-  const d = imgData.data;
-  for (let i = 0; i < d.length; i += 4) {
-    const gray = 0.299*d[i] + 0.587*d[i+1] + 0.114*d[i+2];
-    const bin  = gray > 128 ? 255 : 0;
-    d[i] = d[i+1] = d[i+2] = bin;
+function preprocessFrame(video){
+  const canvas=document.getElementById('ocrCanvas');
+  const vw=video.videoWidth,vh=video.videoHeight;
+  if(!vw||!vh) return null;
+  const cropW=Math.min(640,vw);
+  const cropH=Math.min(200,Math.round(vh*0.25));
+  const cropX=Math.round((vw-cropW)/2);
+  const cropY=Math.round((vh-cropH)/2);
+  canvas.width=cropW;canvas.height=cropH;
+  const ctx=canvas.getContext('2d');
+  ctx.drawImage(video,cropX,cropY,cropW,cropH,0,0,cropW,cropH);
+  const imgData=ctx.getImageData(0,0,cropW,cropH);
+  const d=imgData.data;
+  for(let i=0;i<d.length;i+=4){
+    const gray=0.299*d[i]+0.587*d[i+1]+0.114*d[i+2];
+    const bin=gray>128?255:0;
+    d[i]=d[i+1]=d[i+2]=bin;
   }
-  ctx.putImageData(imgData, 0, 0);
-  const out = document.createElement('canvas');
-  out.width  = cropW * 2; out.height = cropH * 2;
-  out.getContext('2d').drawImage(canvas, 0, 0, out.width, out.height);
+  ctx.putImageData(imgData,0,0);
+  const out=document.createElement('canvas');
+  out.width=cropW*2;out.height=cropH*2;
+  out.getContext('2d').drawImage(canvas,0,0,out.width,out.height);
   return out;
 }
 
-async function captureAndOCR() {
-  // Usar la variable global isProcessingOCR (fix de scope para Android)
-  if (isProcessingOCR || ocrPaused || !ocrWorker || !scanning) return;
-  const video = document.getElementById('video');
-  if (!video || video.readyState < 2) return;
-  const processedCanvas = preprocessFrame(video);
-  if (!processedCanvas) return;
+async function captureAndOCR(){
+  if(isProcessingOCR||ocrPaused||!ocrWorker||!scanning) return; 
+  const video=document.getElementById('video');
+  if(!video||video.readyState<2) return;
+  const processedCanvas=preprocessFrame(video);
+  if(!processedCanvas) return;
 
-  isProcessingOCR = true;
+  isProcessingOCR=true; 
   setOcrStatus('🔍 Analizando…');
 
-  try {
-    const { data: { text } } = await ocrWorker.recognize(processedCanvas);
-    const code = matchCode(text);
-    if (code) handleOcrHit(code);
+  try{
+    const {data:{text}}=await ocrWorker.recognize(processedCanvas);
+    const code=matchCode(text);
+    if(code) handleOcrHit(code);
     else setOcrStatus('👀 Buscando código…');
-  } catch(e) {
-    console.error('OCR recognize error', e);
+  }catch(e){
+    console.error('OCR recognize error',e);
     setOcrStatus('⚠️ Error OCR, reintentando…');
-    showScanResult('err', '⚠️ Error OCR: ' + (e.message || e));
-  } finally {
-    // El bloque finally SIEMPRE libera el lock, incluso si hay error
-    isProcessingOCR = false;
+    showScanResult('err','⚠️ Error OCR: '+(e.message||e));
+  }finally{
+    isProcessingOCR=false; 
   }
 }
 
-function matchCode(rawText) {
-  const cleaned = rawText.toUpperCase().replace(/[^A-Z0-9]/g, '');
-  for (let len = 8; len >= 3; len--) {
-    for (let i = 0; i <= cleaned.length - len; i++) {
-      const sub = cleaned.substring(i, i + len);
-      if (ALL_IDS.includes(sub)) return sub;
+function matchCode(rawText){
+  const cleaned=rawText.toUpperCase().replace(/[^A-Z0-9]/g,'');
+  for(let len=8;len>=3;len--){
+    for(let i=0;i<=cleaned.length-len;i++){
+      const sub=cleaned.substring(i,i+len);
+      if(ALL_IDS.includes(sub)) return sub;
     }
   }
   return null;
 }
 
-function handleOcrHit(code) {
-  const st = status(code);
-  if (st === 'missing') {
-    state.owned[code] = true;
+function handleOcrHit(code){
+  const st=status(code);
+  if(st==='missing'){
+    state.owned[code]=true;
     stickerAddedCount++;
-    save(); refreshSticker(code); updateStats();
-    showScanResult('ok', '✅ ' + code + ' — ¡detectada y marcada!');
-    showToast('📷 ' + code + ' marcada por cámara');
-    setOcrStatus('✅ ¡' + code + ' pegada!');
-    ocrPaused = true;
+    save();refreshSticker(code);updateStats();
+    showScanResult('ok','✅ '+code+' — ¡detectada y marcada!');
+    showToast('📷 '+code+' marcada por cámara');
+    setOcrStatus('✅ ¡'+code+' pegada!');
+    ocrPaused=true;
     maybeShowInterstitial();
-    setTimeout(() => { ocrPaused = false; setOcrStatus('👀 Buscando código…'); }, OCR_PAUSE_MS);
-  } else if (st === 'owned') {
-    showScanResult('warn', '⚠️ ' + code + ' ya la tienes. ¿Repetida?', code);
-    setOcrStatus('🔁 ' + code + ' ya tenida');
-    ocrPaused = true;
-    setTimeout(() => { ocrPaused = false; setOcrStatus('👀 Buscando código…'); }, OCR_PAUSE_MS);
-  } else {
-    showScanResult('warn', '🔁 ' + code + ' repetida ×' + (state.repeated[code] || 1));
-    ocrPaused = true;
-    setTimeout(() => { ocrPaused = false; setOcrStatus('👀 Buscando código…'); }, OCR_PAUSE_MS);
+    setTimeout(()=>{ocrPaused=false;setOcrStatus('👀 Buscando código…');},OCR_PAUSE_MS);
+  }else if(st==='owned'){
+    showScanResult('warn','⚠️ '+code+' ya la tienes. ¿Repetida?',code);
+    setOcrStatus('🔁 '+code+' ya tenida');
+    ocrPaused=true;
+    setTimeout(()=>{ocrPaused=false;setOcrStatus('👀 Buscando código…');},OCR_PAUSE_MS);
+  }else{
+    showScanResult('warn','🔁 '+code+' repetida ×'+(state.repeated[code]||1));
+    ocrPaused=true;
+    setTimeout(()=>{ocrPaused=false;setOcrStatus('👀 Buscando código…');},OCR_PAUSE_MS);
   }
 }
 
-function showScanResult(type, msg, code) {
-  document.getElementById('scanResult').innerHTML =
+function showScanResult(type,msg,code){
+  document.getElementById('scanResult').innerHTML=
     `<div class="scan-result ${type}">${msg}${
       code
-        ? ` <button onclick="markRepeated('${code}');document.getElementById('scanResult').innerHTML=''"
-               style="margin-left:8px;background:rgba(255,255,255,0.15);border:none;
-               color:inherit;padding:4px 10px;border-radius:8px;font-size:12px;cursor:pointer">
-               Sí, repetida</button>`
-        : ''
+        ?` <button onclick="markRepeated('${code}');document.getElementById('scanResult').innerHTML=''"
+             style="margin-left:8px;background:rgba(255,255,255,0.15);border:none;
+             color:inherit;padding:4px 10px;border-radius:8px;font-size:12px;cursor:pointer">
+             Sí, repetida</button>`
+        :''
     }</div>`;
 }
 
-function manualMark() {
-  const inp  = document.getElementById('manualCode');
-  const code = inp.value.trim().toUpperCase();
-  if (!code) return;
-  if (!ALL_IDS.includes(code)) {
-    showScanResult('err', '❌ Código "' + code + '" no existe en el álbum'); return;
+function manualMark(){
+  const inp=document.getElementById('manualCode');
+  const code=inp.value.trim().toUpperCase();
+  if(!code) return;
+  if(!ALL_IDS.includes(code)){
+    showScanResult('err','❌ Código "'+code+'" no existe en el álbum');
+    return;
   }
-  inp.value  = '';
-  const st   = status(code);
-  if (st === 'missing') {
-    state.owned[code] = true;
+  inp.value='';
+  const st=status(code);
+  if(st==='missing'){
+    state.owned[code]=true;
     stickerAddedCount++;
-    save(); refreshSticker(code); updateStats();
-    showScanResult('ok', '✅ ' + code + ' — ¡marcada como tenida!');
+    save();refreshSticker(code);updateStats();
+    showScanResult('ok','✅ '+code+' — ¡marcada como tenida!');
     maybeShowInterstitial();
-  } else if (st === 'owned') {
-    showScanResult('warn', '⚠️ ' + code + ' ya la tienes. ¿Repetida?', code);
-  } else {
-    showScanResult('warn', '🔁 ' + code + ' ya repetida ×' + state.repeated[code]);
+  }else if(st==='owned'){
+    showScanResult('warn','⚠️ '+code+' ya la tienes. ¿Repetida?',code);
+  }else{
+    showScanResult('warn','🔁 '+code+' ya repetida ×'+state.repeated[code]);
   }
 }
 
-// ── Toast ────────────────────────────────────────────────────
 let toastT;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
   clearTimeout(toastT);
-  toastT = setTimeout(() => t.classList.remove('show'), 2500);
+  toastT=setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-// ── PWA — Service Worker ─────────────────────────────────────
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
     navigator.serviceWorker.register('sw.js')
-      .then(() => console.log('[PWA] Service Worker registrado'))
-      .catch(e => console.warn('[PWA] SW no disponible:', e));
+      .then(()=>console.log('[PWA] Service Worker registrado'))
+      .catch(e=>console.warn('[PWA] SW no disponible:',e));
   });
 }
 
-// ── Init ─────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  // Poblar selector de países
-  const sel = document.getElementById('groupFilter');
-  GROUPS.forEach(g => {
-    const o = document.createElement('option');
-    o.value = g.id; o.textContent = g.flag + ' ' + g.name; sel.appendChild(o);
+document.addEventListener('DOMContentLoaded',()=>{
+  const sel=document.getElementById('groupFilter');
+  GROUPS.forEach(g=>{
+    const o=document.createElement('option');
+    o.value=g.id;o.textContent=g.flag+' '+g.name;sel.appendChild(o);
   });
   updateStats();
   render();
 
-  // INSTRUCCIÓN 1 — Inyectar banner ad dinámicamente al cargar
-  initBannerAd();
+  // ── INSTRUCCIÓN 1: Banner permanente — highperformanceformat ──
+  // Se inyecta con createElement para que el script se ejecute
+  // correctamente en una SPA (innerHTML no ejecuta scripts).
+  (function initBannerAd(){
+    const container = document.getElementById('ad-banner-container');
+    if(!container) return;
+    // Definir las opciones del banner en window ANTES de cargar el script
+    window.atOptions = {
+      'key'    : 'c556ff9b04e11bbff03a97b1278f36c8',
+      'format' : 'iframe',
+      'height' : 50,
+      'width'  : 320,
+      'params' : {}
+    };
+    // Crear e insertar el script de invocación dinámicamente
+    const s    = document.createElement('script');
+    s.type     = 'text/javascript';
+    s.src      = 'https://www.highperformanceformat.com/c556ff9b04e11bbff03a97b1278f36c8/invoke.js';
+    container.appendChild(s);
+  })();
 });
 </script>
 </body>
