@@ -31,10 +31,11 @@
   --border:rgba(124,58,237,0.2);--border2:rgba(124,58,237,0.4);
   --r:10px;--rl:16px;
 }
-html,body{height:100%;background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;overflow:hidden}
-body{display:flex;flex-direction:column;height:100dvh}
-.views-wrapper{flex:1;overflow:hidden;display:flex;flex-direction:column;min-height:0}
+html{height:100%;height:100dvh}
+body{height:100%;height:100dvh;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
+  overflow:hidden;display:flex;flex-direction:column;position:fixed;width:100%;top:0;left:0;}
+.views-wrapper{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;}
 
 /* ═══════════════ AD BANNER ═══════════════ */
 #ad-banner-container{
@@ -69,8 +70,8 @@ body{display:flex;flex-direction:column;height:100dvh}
   height:2px;background:var(--purple2);border-radius:2px 2px 0 0}
 
 /* ═══════════════ VIEWS ═══════════════ */
-.view{display:none;flex:1;overflow:hidden;flex-direction:column;min-height:0}
-.view.active{display:flex}
+.view{display:none;flex-direction:column;min-height:0;overflow:hidden;}
+.view.active{display:flex;flex:1;}
 
 /* ═══════════════ HEADER ═══════════════ */
 .album-header{background:linear-gradient(160deg,#3B0764 0%,#7C3AED 60%,#4F46E5 100%);
@@ -115,7 +116,7 @@ body{display:flex;flex-direction:column;height:100dvh}
 
 /* ═══════════════ SEARCH & BULK ═══════════════ */
 .search-row{display:flex;gap:8px;padding:10px 12px;background:var(--bg2);
-  border-bottom:1px solid var(--border);flex-shrink:0}
+  border-bottom:1px solid var(--border);flex-shrink:0;}
 .search-wrap{flex:1;position:relative}
 .search-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);
   font-size:14px;pointer-events:none}
@@ -139,7 +140,7 @@ body{display:flex;flex-direction:column;height:100dvh}
 .bbtn.b{background:var(--blue);color:#fff}
 
 /* ═══════════════ ALBUM SCROLL ═══════════════ */
-.album-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 10px 20px}
+.album-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 10px 20px;}
 .country-page{margin-bottom:24px}
 .page-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;
   padding:10px 12px;background:var(--card);border-radius:var(--rl);border:1px solid var(--border)}
@@ -178,7 +179,7 @@ body{display:flex;flex-direction:column;height:100dvh}
   border:2.5px solid var(--blue);animation:holdRing 0.5s ease-out}
 
 /* ═══════════════ STATS VIEW ═══════════════ */
-.stats-view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+.stats-view{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding:16px 14px 20px;background:var(--bg)}
 .sv-title{font-size:12px;font-weight:600;color:var(--text3);letter-spacing:0.06em;
   text-transform:uppercase;margin-bottom:10px;margin-top:16px}
@@ -222,8 +223,7 @@ body{display:flex;flex-direction:column;height:100dvh}
 .fact-ico{font-size:20px;flex-shrink:0;margin-top:1px}
 
 /* ═══════════════ SCANNER ═══════════════ */
-.scanner-view{flex:1;display:flex;flex-direction:column;background:var(--bg);
-  overflow:hidden;min-height:0}
+.scanner-view{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;}
 .scanner-top{padding:12px 16px 8px;flex-shrink:0}
 .scanner-top h2{font-size:17px;font-weight:700;color:var(--text);margin-bottom:2px}
 .scanner-top p{font-size:12px;color:var(--text3);line-height:1.4}
@@ -271,7 +271,7 @@ body{display:flex;flex-direction:column;height:100dvh}
 .scan-result.warn{background:rgba(245,158,11,0.15);color:var(--gold2)}
 
 /* ═══════════════ SETTINGS VIEW ═══════════════ */
-.settings-view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+.settings-view{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding:16px 14px 20px;background:var(--bg)}
 .settings-card{background:var(--card);border:1px solid var(--border);
   border-radius:var(--rl);padding:16px;margin-bottom:14px}
